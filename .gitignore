@@ -1,0 +1,19 @@
+# Exclude scaffold files
+ind4skylivey_github_io_scaffold/
+ind4skylivey_github_io_scaffold.zip
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% include head.html %}
+    <title>{{ page.title }} | {{ site.title }}</title>
+  </head>
+  <body class="bg">
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">Livey</a>
+        <nav>
+          <a href="/about/">About</a>
+          <a href="/projects/">Projects</a>
+          <a href="/research/">Research</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      {{ content }}
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {{ "now" | date: "%Y" }} Livey — Built with Jekyll · <a href="https://github.com/ind4skylivey">GitHub</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

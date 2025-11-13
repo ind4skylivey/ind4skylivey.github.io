@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="project">
+  <header class="project-header">
+    {% if page.banner %}<img class="banner" src="{{ page.banner }}" alt="{{ page.title }} banner">{% endif %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="lede">{{ page.description }}</p>{% endif %}
+    {% if page.repo %}<p><a class="btn" href="{{ page.repo }}" target="_blank" rel="noopener">View Repository ↗</a></p>{% endif %}
+    {% if page.tags %}<p class="tags">{% for t in page.tags %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
+  </header>
+  <section class="project-body">
+    {{ content }}
+  </section>
+</article>

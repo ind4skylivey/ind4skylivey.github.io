@@ -1,0 +1,25 @@
+title: "Livey | Software Engineer & Cybersecurity Researcher"
+description: "AI-powered frameworks, security tooling, and open systems."
+url: "https://ind4skylivey.github.io"
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  research:
+    output: true
+    permalink: /research/:name/
+
+# Permalinks
+permalink: /:categories/:title/
+
+# Build settings
+exclude:
+  - README.md
+  - .gitignore
