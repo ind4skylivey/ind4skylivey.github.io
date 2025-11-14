@@ -97,18 +97,23 @@ Just code, clarity, and neon quiet.
 - Accessible tags, alt-text, contrast-aware  
 - Fast load, zero clutter
 
- /
+<p align="center">
+
+<pre>
+/
 ├─ assets/
-│ ├─ readme/ # banners & visual identity
-│ ├─ logos/
-│ └─ icons/
+│  ├─ readme/     # banners & visual identity
+│  ├─ logos/
+│  └─ icons/
 ├─ css/
 ├─ js/
 ├─ sections/
 ├─ index.html
 ├─ head.html
 └─ README.md
+</pre>
 
+</p>
 
 ---
 
