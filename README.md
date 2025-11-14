@@ -1,12 +1,3 @@
-# ind4skylivey.github.io
+# ind4skylivey.github.io — v3 CyberDeck UI + Terminal
 
-Professional portfolio + blog for Livey.
-
-## Local preview
-```bash
-# If you have Ruby/Jekyll installed
-bundle exec jekyll serve
-# or
-jekyll serve
-```
-GitHub Pages will build automatically on push to `main`.
+Livey’s professional portfolio, research hub, terminal, and lab logs.

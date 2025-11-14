@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% include head.html %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/personal.css">
+    <title>{{ page.title }} | {{ site.title }}</title>
+  </head>
+  <body class="personal-body">
+    <div class="personal-sky" aria-hidden="true">
+      <div class="sunset-gradient"></div>
+      <div class="sunset-halo"></div>
+      <div class="paper-overlay"></div>
+      <div class="wind-ribbon wind-ribbon-one"></div>
+      <div class="wind-ribbon wind-ribbon-two"></div>
+      <div class="particle-swarm">
+        {% for i in (1..18) %}
+          <span class="particle" style="--i:{{ i }}"></span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="personal-shell">
+      <header class="personal-header">
+        <a class="personal-brand" href="/personal/">
+          <span class="personal-brand__icon" aria-hidden="true">🐾</span>
+          <span class="personal-brand__text">
+            <span class="eyebrow">Personal Corner</span>
+            <span class="title">Ghibli-Tech Sanctuary</span>
+          </span>
+        </a>
+        <nav class="personal-nav" aria-label="Personal navigation">
+          <a href="/personal/" class="{% if page.url == '/personal/' %}active{% endif %}">Sanctuary</a>
+          <a href="/personal/miyuki/" class="{% if page.url == '/personal/miyuki/' %}active{% endif %}">Miyuki</a>
+          <a href="/personal/garden/" class="{% if page.url == '/personal/garden/' %}active{% endif %}">Garden</a>
+          <a href="/personal/codex/" class="{% if page.url == '/personal/codex/' %}active{% endif %}">Codex</a>
+        </nav>
+        <a class="return-link" href="/">Return to Cyberdeck</a>
+      </header>
+      <section class="personal-hero">
+        <p class="hero-eyebrow">{{ page.eyebrow | default: "Sunset transmissions" }}</p>
+        <h1>{{ page.title }}</h1>
+        {% if page.lead %}
+          <p class="hero-lead">{{ page.lead }}</p>
+        {% endif %}
+      </section>
+      <main class="personal-content">
+        {{ content }}
+      </main>
+      <footer class="personal-footer">
+        <p>{{ site.signature | default: "Open intelligence is ethical intelligence." }}</p>
+      </footer>
+    </div>
+    <script>
+      (function(){
+        if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          document.body.classList.add('reduce-motion');
+        }
+      })();
+    </script>
+  </body>
+</html>

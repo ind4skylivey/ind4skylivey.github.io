@@ -12,7 +12,7 @@ Universal CLI installer for Affinity apps on Linux (Photo, Designer, Publisher).
 
 ### Highlights
 - Designed and maintained by Livey.
-- Built for Linux power users and security workflows.
+- Built for Linux power users, developers, and security researchers.
 
 ### Tech stack
 Python • Linux • CLI • Wine

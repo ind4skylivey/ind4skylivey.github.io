@@ -12,7 +12,7 @@ Fast, non-destructive scanner to detect security misconfigurations in Laravel 10
 
 ### Highlights
 - Designed and maintained by Livey.
-- Built for Linux power users and security workflows.
+- Built for Linux power users, developers, and security researchers.
 
 ### Tech stack
 PHP • Laravel • Security • Scanner

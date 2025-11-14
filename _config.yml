@@ -1,13 +1,15 @@
-title: "Livey | Software Engineer & Cybersecurity Researcher"
-description: "AI-powered frameworks, security tooling, and open systems."
+title: "Livey | Open Intelligence Engineer"
+description: "Engineering AI-powered frameworks, security tooling, and open systems."
 url: "https://ind4skylivey.github.io"
+author:
+  email: "ind4skylivey@proton.me"
+signature: "Open intelligence is ethical intelligence."
 markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Collections
 collections:
   projects:
     output: true
@@ -16,10 +18,8 @@ collections:
     output: true
     permalink: /research/:name/
 
-# Permalinks
 permalink: /:categories/:title/
 
-# Build settings
 exclude:
   - README.md
   - .gitignore

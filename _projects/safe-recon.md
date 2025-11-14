@@ -12,7 +12,7 @@ Advanced cyber-reconnaissance toolkit for ethical hackers and red teams.
 
 ### Highlights
 - Designed and maintained by Livey.
-- Built for Linux power users and security workflows.
+- Built for Linux power users, developers, and security researchers.
 
 ### Tech stack
 Python • Security • Recon • CLI

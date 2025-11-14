@@ -5,4 +5,4 @@ date: 2025-11-15
 tags: [AI, Security, Automation]
 ---
 
-Early notes on integrating local LLMs to assist static/dynamic analysis inside secure pipelines for Linux tooling.
+Early notes on integrating local LLMs to assist static and dynamic analysis inside secure pipelines for Linux tooling.

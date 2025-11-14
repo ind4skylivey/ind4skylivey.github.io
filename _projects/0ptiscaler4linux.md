@@ -12,7 +12,7 @@ Intelligent upscaling & GPU-optimized profiles for RDNA/Arc/RTX on Linux.
 
 ### Highlights
 - Designed and maintained by Livey.
-- Built for Linux power users and security workflows.
+- Built for Linux power users, developers, and security researchers.
 
 ### Tech stack
 Vulkan • Linux • Shell • Upscaling

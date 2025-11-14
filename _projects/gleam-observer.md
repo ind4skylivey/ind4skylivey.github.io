@@ -12,7 +12,7 @@ Rust-powered observability tool with real-time analytics and cyberpunk aesthetic
 
 ### Highlights
 - Designed and maintained by Livey.
-- Built for Linux power users and security workflows.
+- Built for Linux power users, developers, and security researchers.
 
 ### Tech stack
 Rust • Observability • Ratatui • Catppuccin

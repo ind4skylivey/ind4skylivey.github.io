@@ -1,6 +1,8 @@
 # Exclude scaffold files
 ind4skylivey_github_io_scaffold/
 ind4skylivey_github_io_scaffold.zip
+ind4skylivey_github_io_v2/
+ind4skylivey_github_io_v3/
 
 # Jekyll
 _site/
