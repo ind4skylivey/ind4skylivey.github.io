@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="assets/readme/banner-livey.svg" width="100%" alt="Livey Banner"/>
-</p>
+<img width="1024" height="1024" alt="gzf3pll6grbs3x9fqymq" src="https://github.com/user-attachments/assets/07d81957-ad7b-4dc0-8643-3bea8306242e" />
+
 
 <p align="center">
 <img src="https://img.shields.io/badge/Livey-0xC1B3R%20N0D3-8a2be2?style=for-the-badge&logo=linux&logoColor=f5f2ff" />
