@@ -10,444 +10,285 @@ permalink: /research/podman-isolated-labs/
 
 ---
 
-## 1. Introduction
+## 1. TL;DR / Executive Summary
 
-Malware analysis demands **highly isolated** environments where mistakes do not compromise the entire host system.
+**What is it?**
+Podman Isolated Labs is a malware analysis environment built on Arch Linux using **rootless containers** and **isolated virtual networks**.
 
-Containers offer a lightweight way to encapsulate processes, but they must meet specific requirements:
+**Who is it for?**
+Security researchers, Red Teamers, and developers needing a disposable, safe sandbox without the overhead of full VMs.
+
+**Problem Solved:**
+It allows the execution of real malware samples without compromising the host, maintaining a strict workflow: `Prepare → Isolate → Analyze → Log → Destroy`.
+
+**Key Takeaway:**
+In 15 minutes, you will deploy a reproducible infrastructure where you can "break things" safely, collecting logs and traffic (PCAP) with zero persistence.
+
+---
+
+## 2. Threat Model & Ethics
+
+### ⚠️ Ethical & Legal Notice
+This laboratory design is intended **solely for educational purposes and authorized security research**.
+*   **Do not** use this environment to analyze malware you are not authorized to possess.
+*   **Do not** use these techniques to launch attacks.
+*   **Do not** run this in a production enterprise environment without strict hardening.
+
+### Threat Model: What we assume
+1.  **Shared Kernel:** Unlike VMs, containers share the host kernel. A vulnerability in the Linux kernel (zero-day) could allow a container escape.
+2.  **Rootless Mitigation:** Even if an escape occurs, the attacker gains access only to the unprivileged user's context, not the host's root.
+3.  **Persistence:** The environment is ephemeral. We assume the malware cannot persist across container destructions unless it writes to a mounted volume.
+
+**This lab DOES NOT replace an air-gapped machine for analyzing high-risk, kernel-level rootkits.**
+
+---
+
+## 3. Introduction
+
+Malware analysis demands **highly isolated** environments where mistakes do not compromise the entire host system. Containers offer a lightweight way to encapsulate processes, provided they meet specific requirements:
 
 - **Rootless:** No root privileges on the host.
 - **Multi-network:** Support for multiple virtual networks to simulate real-world environments.
 - **Disposable:** Easy to destroy and recreate after every experiment.
 
-This document outlines the design of **Podman Isolated Labs**, built upon:
+---
 
-- **Host:** Arch Linux
-- **Containers:** Podman in rootless mode
-- **Objective:** Malware analysis and security research in a secure, reproducible environment.
+## 4. Architecture & Design
 
-This approach is designed for:
-- Cybersecurity professionals and Red Teamers.
-- Intermediate developers seeking a serious yet understandable experimentation environment.
+### 4.1 Visual Architecture
+
+```mermaid
+flowchart LR
+    subgraph Host [Arch Linux Host]
+        direction TB
+        P1[Podman Rootless Daemon]
+    end
+
+    subgraph Network [Virtual Networks]
+        LAN[netLAN 10.90.0.0/24]
+        WAN[netWAN 10.91.0.0/24]
+        LAB[netLAB (Isolated)]
+    end
+
+    subgraph Containers [User Namespace]
+        C1[Container: REMnux/Malware]
+        C2[Container: Tools/Listener]
+    end
+
+    Host --> P1
+    P1 --> C1
+    P1 --> C2
+    
+    C1 <--> LAN
+    C1 <--> LAB
+    C2 <--> LAB
+```
+
+### 4.2 Key Concepts
+*   **Rootless Containers:** The container sees an internal root, but it maps to an unprivileged UID on the host.
+*   **Namespaces:** We isolate Users, Network, PID, and Mounts.
+*   **Multi-Segment:** Simulating complex topologies (e.g., C1 talks to C2 via a private "Darknet" while C1 thinks it's on the internet).
 
 ---
 
-## 2. Lab Objectives
+## 5. Recommended Repository Structure
 
-1. **Educate and demonstrate** a concrete technique for setting up malware labs using Podman.
-2. Execute malware within rootless containers without compromising the host.
-3. Establish **multiple network segments** (LAN, WAN, "Simulated Internet") for behavioral analysis.
-4. Collect **logs, traces, and metrics** from each experiment.
-5. Maintain a workflow that is:
-   - Reproducible,
-   - Auditable,
-   - And easy to destroy/clean.
-
----
-
-## 3. General Architecture
-
-### 3.1 High-Level View
+To turn this research into a reproducible project, organize your directory as follows:
 
 ```text
-+------------------------------------------------------+
-|                    Arch Linux Host                   |
-|                                                      |
-|  +----------------------+   +----------------------+ |
-|  |  Podman Rootless     |   |  Podman Rootless     | |
-|  |  (User Namespace)    |   |  (User Namespace)    | |
-|  |                      |   |                      | |
-|  |  +-------------+     |   |  +-------------+     | |
-|  |  |  Malware    |     |   |  |  Tools      |     | |
-|  |  |  Sandbox    |     |   |  |  (REMnux,   |     | |
-|  |  +-------------+     |   |  |  custom)    |     | |
-|  |   netLAN / netWAN    |   |   netLAB       |     | |
-|  +----------------------+   +----------------------+ |
-|         \         /                 |                |
-|          \       /     Multi-network bridges        |
-+------------------------------------------------------+
+podman-isolated-labs/
+  ├── docs/
+  │   ├── README.md                # Main documentation
+  │   ├── threat-model.md          # Detailed security assumptions
+  │   └── cheat-sheet.md           # Podman quick commands
+  ├── lab/
+  │   ├── networks.sh              # Creates netLAN, netWAN, netLAB
+  │   ├── run-remnux.sh            # Launches the REMnux container
+  │   └── cleanup.sh               # Destroys containers/networks
+  ├── reports/
+  │   └── template-experiment.md   # Standardized log for each analysis
+  └── benchmarks/
+      └── results.md               # Performance data
 ```
-
-### 3.2 Key Concepts
-
-**Rootless Containers**
-The container sees an internal root, but this root is mapped to an unprivileged UID on the host.
-
-**Linux Namespaces**
-We isolate:
-- Users (user namespace)
-- Network (network namespace)
-- Processes (PID)
-- File System (mount)
-
-**Multiple Networks**
-We create several virtual networks (`netLAN`, `netWAN`, etc.) to simulate different scenarios:
-- Totally isolated lab
-- Segment with limited egress
-- Controlled "Internet"
 
 ---
 
-## 4. Host Preparation (Arch Linux)
+## 6. Host Preparation (Arch Linux)
 
-### 4.1 Enable User Namespaces
-
-Check support:
-
+### 6.1 Enable User Namespaces
 ```bash
+# Check support (should be y)
 zgrep CONFIG_USER_NS /proc/config.gz
-# Should show: CONFIG_USER_NS=y
-```
 
-Allow unprivileged namespace creation:
-
-```bash
-sudo sysctl -w kernel.unprivileged_userns_clone=1
+# Allow unprivileged creation
 echo 'kernel.unprivileged_userns_clone=1' | sudo tee /etc/sysctl.d/userns.conf
 ```
 
-### 4.2 Sub-UID and Sub-GID Ranges
-
-Assign ranges to your user (example):
-
+### 6.2 Sub-UID/GID Ranges
 ```bash
-sudo touch /etc/subuid /etc/subgid
 sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
 ```
+*Log out/in required.*
 
-*Log out and log back in for changes to take effect.*
-
-### 4.3 Installing Podman and Tools
-
+### 6.3 Installation
 ```bash
-sudo pacman -Syu
 sudo pacman -S podman crun slirp4netns netavark
 ```
 
-Check general info:
+---
 
-```bash
-podman info
-```
+## 7. Operational Playbooks
 
-**Points to verify:**
-- `rootless: true` when running as your user.
-- `networkBackend`: `netavark` or similar.
-- `store`: Located in your `$HOME`, not `/var/lib/...`.
+Recipes for common analysis scenarios.
+
+### Playbook A: Rapid Static Analysis
+**Goal:** Identify basic properties (strings, hash, file type) without execution.
+
+1.  **Prepare:** Place sample in `~/malware/sample.exe`.
+2.  **Run:**
+    ```bash
+    podman run --rm -it \
+      --read-only \
+      -v ~/malware:/samples:ro \
+      remnux/remnux-distro:focal bash
+    ```
+3.  **Analyze (Inside):**
+    ```bash
+    cd /samples
+    sha256sum sample.exe
+    floss sample.exe > strings.txt  # Extract obfuscated strings
+    peframe sample.exe              # Static PE analysis
+    ```
+4.  **Cleanup:** Exit shell (auto-destroys due to `--rm`).
+
+### Playbook B: Dynamic Analysis with Traffic Capture
+**Goal:** Execute malware and capture network beacons.
+
+1.  **Setup Networks:**
+    ```bash
+    podman network create netLAB --internal
+    ```
+2.  **Start Listener (Fake Internet):**
+    ```bash
+    podman run -d --name listener --network netLAB alpine nc -lk -p 80
+    ```
+3.  **Start Sniffer (Host Side):**
+    Identify the bridge interface for `netLAB` and run:
+    ```bash
+    sudo tcpdump -i <bridge_interface> -w capture.pcap
+    ```
+4.  **Run Malware:**
+    ```bash
+    podman run --rm -it --network netLAB \
+      -v ~/malware:/samples:ro \
+      remnux/remnux-distro:focal \
+      wine /samples/sample.exe
+    ```
+5.  **Interpret:** Check `capture.pcap` for DNS queries or HTTP requests to the listener.
+
+### Playbook C: Comparing Samples (A/B Testing)
+**Goal:** Run two variants in parallel on isolated networks.
+
+1.  **Create 2 Networks:** `netA` and `netB`.
+2.  **Launch Variant A:** attached to `netA`.
+3.  **Launch Variant B:** attached to `netB`.
+4.  **Compare:** Use `podman stats` to see which variant consumes more CPU/RAM (potential crypto-mining vs. keylogging).
 
 ---
 
-## 5. Getting Started with Rootless Podman
+## 8. Experiment Report Template
 
-### 5.1 Minimal Container
+Use this template to log your findings.
 
-```bash
-podman run --rm -it alpine sh
-```
+```markdown
+### 🧪 Experiment Report
+**ID:** LAB-20251205-01
+**Analyst:** Livey
 
-```text
-/ # echo "Hello from a rootless container"
-Hello from a rootless container
-```
+#### 1. Sample Data
+*   **Filename:** invoice_urgent.exe
+*   **Hash (SHA256):** e3b0c44298...
+*   **Source:** MalwareBazaar
 
-Observe from another terminal:
+#### 2. Environment
+*   **Image:** `remnux/remnux-distro:focal`
+*   **Networks:** `netLAB` (Isolated)
+*   **Tools:** `wine`, `tcpdump`, `floss`
 
-```bash
-podman ps
-podman top <CONTAINER_ID>
-```
+#### 3. Static Observations
+*   **Packer:** UPX detected.
+*   **Suspicious Strings:** `powershell.exe`, `DownloadString`, `192.168.1.X`
 
-You will see that, on the host, the processes are not root, even though they appear as root inside the container.
+#### 4. Dynamic Behavior
+*   **Network:** Attempted DNS resolution for `update-windows-kernel.com`.
+*   **Files:** Created `C:\temp\drop.bat` (simulated).
 
-### 5.2 Analysis Image (Example: REMnux)
+#### 5. Artifacts
+*   [ ] Pcap saved: `logs/20251205-01.pcap`
+*   [ ] IOC List generated.
 
-```bash
-podman pull docker.io/remnux/remnux-distro:focal
-
-podman run --rm -it \
-  --name remnux-lab \
-  -u remnux \
-  remnux/remnux-distro:focal bash
-```
-
-Inside, you will have typical malware analysis tools (THUG, disassemblers, etc.).
-
----
-
-## 6. Multi-Segment Networks with Podman
-
-### 6.1 Create Isolated Networks
-
-```bash
-podman network create netLAN --subnet 10.90.0.0/24
-podman network create netWAN --subnet 10.91.0.0/24
-```
-
-Optional: Completely internal network (no host egress):
-
-```bash
-podman network create \
-  --subnet 10.92.0.0/24 \
-  --internal \
-  netLAB
-```
-
-### 6.2 Connect a Container to Multiple Networks
-
-```bash
-podman run --rm -it \
-  --name malware-sandbox \
-  --network netLAN \
-  --network netLAB \
-  alpine sh
-```
-
-Inside the container:
-
-```bash
-ip a
-# You should see multiple interfaces: eth0 (netLAN), eth1 (netLAB), etc.
-```
-
-### 6.3 rp_filter and Connectivity
-
-If you notice strange behavior with multiple interfaces (dropped packets):
-
-```bash
-sudo sysctl -w net.ipv4.conf.all.rp_filter=2
-echo "net.ipv4.conf.all.rp_filter=2" | sudo tee -a /etc/sysctl.conf
-```
-
----
-
-## 7. Isolation and Hardening
-
-### 7.1 Rootless + User Namespaces
-
-This is the core of the security model:
-- Inside the container: You have UID 0.
-- On the host: That UID 0 is mapped to a "powerless" UID (via `/etc/subuid` range).
-- **Result:** Even if malware gains "root" inside the container, it is not root on the host.
-
-### 7.2 Read-Only File System
-
-To prevent persistence and unwanted modifications:
-
-```bash
-podman run --rm -it \
-  --name malware-sandbox \
-  --read-only \
-  -v /home/livey/malware:/samples:ro \
-  --network netLAB \
-  remnux/remnux-distro:focal bash
-```
-
-- `--read-only`: Container rootfs is read-only.
-- `:ro` on volume: Samples cannot be modified from within.
-
-### 7.3 Minimizing Capabilities
-
-```bash
-podman run --rm -it \
-  --cap-drop ALL \
-  --cap-add NET_RAW \
-  --read-only \
-  ...
-```
-
-Start with `--cap-drop ALL`. Add only what is strictly necessary (e.g., `NET_RAW` if you need network tools to work).
-
-### 7.4 Seccomp / AppArmor / SELinux (Optional)
-
-Use a default or custom seccomp profile:
-
-```bash
-podman run --security-opt seccomp=/path/to/profile.json ...
-```
-
-Activate AppArmor/SELinux on the host with restrictive profiles for Podman.
-
----
-
-## 8. Practical Malware Analysis Workflow
-
-### 8.1 Obtain Samples (Legally and Safely)
-
-Typical sources (always respect their terms):
-- MalwareBazaar
-- VirusShare
-
-Example storage:
-```text
-/home/livey/malware/
-  ├── sample1.exe
-  ├── sample2.bin
-  └── README.txt  (notes)
-```
-
-### 8.2 Launch Analysis Container
-
-```bash
-podman run --rm -it \
-  --name remnux-malware-lab \
-  --read-only \
-  -v /home/livey/malware:/samples:ro \
-  --network netLAB \
-  remnux/remnux-distro:focal bash
-```
-
-### 8.3 Static Analysis Inside Container
-
-```bash
-cd /samples
-
-file sample1.exe
-sha256sum sample1.exe
-strings sample1.exe | head -n 40
-```
-
-Complement with disassemblers, YARA tools, Packer detectors, etc.
-
-### 8.4 Controlled Dynamic Analysis
-
-Generic example (pseudo-command):
-
-```bash
-# Run inside a sandbox in REMnux / wine / emulator
-# (depends on your stack inside the container)
-./run_in_sandbox sample1.exe
-```
-
-Meanwhile, from the host:
-
-```bash
-podman logs -f remnux-malware-lab
-podman stats remnux-malware-lab
-```
-
-And, if desired, capture traffic on the host:
-
-```bash
-sudo tcpdump -i any host 10.92.0.10 -w capture.pcap
-```
-
-*(Replace IP with container IP in netLAB)*
-
-### 8.5 Teardown: Destroy Everything
-
-The container is automatically removed with `--rm`. 
-To clean networks if no longer needed:
-
-```bash
-podman network rm netLAN netWAN netLAB
-podman image prune
-podman network prune
+#### 6. Conclusion
+Likely a standard dropper/downloader. Safe to destroy.
 ```
 
 ---
 
-## 9. Logs and Metrics
+## 9. Logs & Metrics
 
-### 9.1 Container Logs
-
+**Container Logs:**
 ```bash
-podman logs remnux-malware-lab
+podman logs -f <container_name>
 ```
 
-Example (simplified):
-```text
-[2025-01-10 03:21:00] Starting dynamic analysis for sample1.exe
-[2025-01-10 03:21:05] DNS query: evil.domain.test
-[2025-01-10 03:21:07] HTTP POST to 10.91.0.50:8080
-[2025-01-10 03:21:10] Suspicious mutex created: Global\{A1B2C3D4-...
-[2025-01-10 03:21:15] Analysis finished, report stored at /reports/sample1.json
-```
-
-### 9.2 Quick Metrics
-
+**Real-time Resource Usage:**
 ```bash
-podman stats remnux-malware-lab
+podman stats --no-stream
 ```
-
-Output:
-```text
-ID           NAME                 CPU %   MEM USAGE / LIMIT   NET IO           BLOCK IO
-a1b2c3d4e5   remnux-malware-lab   24.3%   560MiB / 4GiB       10MB / 2MB       30MB / 12MB
-```
-Save these metrics as part of each experiment's report.
+*Tip: High CPU usage often indicates mining or unpacking routines.*
 
 ---
 
-## 10. Performance (Benchmarks)
+## 10. Troubleshooting / FAQ
 
-In multiple studies and internal tests:
-- Podman overhead vs. host execution is typically low (around 5–10% in intensive loads).
-- For malware analysis tools (not extreme HPC), the practical difference is negligible.
+**Q: "Error: could not get runtime dir"**
+*A:* Ensure `XDG_RUNTIME_DIR` is set. Usually happens if you `su` into a user instead of logging in.
 
-Typical comparison scheme you can replicate:
-Task: Scan 1 GB of samples with Tool X
+**Q: "Containers can't see each other."**
+*A:* Check firewall rules (`ufw`/`iptables`) on the host. Podman needs permission to route between bridge interfaces.
 
-- **Bare-metal:** 100 s (reference)
-- **Podman rootless:** 105 s (≈ +5%)
-
-**Recommendation:** Generate your own benchmarks.
-
-```bash
-time podman run --rm ... <your_analysis_command>
-```
-
-Save results in a `benchmarks.md` file within the repo/lab.
+**Q: "Permission denied mounting volumes."**
+*A:* SElinux/AppArmor might be blocking. Use the `:z` or `:Z` flag on volumes if using SELinux, or ensure the host path is readable by the remapped user ID.
 
 ---
 
-## 11. General Best Practices
+## 11. Known Limitations
 
-- **Never** use this lab on the same machine where you store critical data without backups.
-- Execute everything as a **normal user**, never as root on the host.
-- Always use:
-  - `--rm`
-  - `--read-only`
-  - `:ro` volumes for samples
-  - Minimal capabilities (`--cap-drop ALL`)
-- Maintain an **experiment journal**:
-  - Sample hash
-  - Date/Time
-  - Image used
-  - Active networks
-  - Generated logs and pcaps
-- Regularly update Podman, kernel, and base images.
-- If sharing results, avoid uploading real samples; share only hashes and metadata.
+*   **Kernel Exploits:** Cannot protect against malware specifically targeting Linux kernel vulnerabilities.
+*   **Rootkits:** Not suitable for analyzing ring-0 rootkits.
+*   **Windows Native:** Requires `wine` or Mono; cannot run native Windows kernel drivers.
+*   **Air-Gap:** This is software isolation. For state-sponsored threats, use physical air-gaps.
 
 ---
 
-## 12. Useful References
+## 12. Ecosystem Integration
 
-**Podman**
-- Official Docs: [https://podman.io/](https://podman.io/)
-- Arch Wiki (Podman): [https://wiki.archlinux.org/title/Podman](https://wiki.archlinux.org/title/Podman)
+This lab is designed to work within the **Livey** ecosystem:
 
-**Namespaces and Rootless Containers**
-- Rootless containers overview: [https://rootlesscontaine.rs/](https://rootlesscontaine.rs/)
-
-**Labs / Malware Analysis**
-- REMnux: [https://remnux.org/](https://remnux.org/)
-- MalwareBazaar: [https://bazaar.abuse.ch/](https://bazaar.abuse.ch/)
-- VirusShare: [https://virusshare.com/](https://virusshare.com/)
+*   **Future Integration:**
+    *   **Livey-Codex-Toolkit:** Automate playbook generation and report parsing.
+    *   **AetherFrame:** Use this lab as a backend execution node for the AetherFrame intelligence network.
+    *   **CLI Automation:** A planned `codex lab up` command to spin up the entire topology instantly.
 
 ---
 
-## 13. Future Work
+## 13. Appendices
 
-Research lines to extend from this lab:
-- Integrate this environment with CI/CD to run samples in controlled pipelines.
-- Experiment with LLMs to:
-  - Summarize logs.
-  - Classify behaviors.
-  - Suggest Indicators of Compromise (IoCs).
-- Add a web dashboard (read-only) to visualize:
-  - Network topology.
-  - Active containers.
-  - Analysis statistics per sample.
+### Cheat Sheet
+*   `podman system prune -a`: Nuclear option (deletes all stopped containers/images).
+*   `podman inspect <id>`: JSON details about IP/Mounts.
+*   `podman network ls`: List active networks.
 
-**Podman Isolated Labs** is just the foundation; from here, you can build your own "black box" for offensive/defensive research in an environment that respects the principle:
-*Experiment hard, break things… but only inside the sandbox.*
+### Glossary
+*   **Rootless:** Running containers without daemon root privileges.
+*   **C2:** Command and Control server.
+*   **IOC:** Indicator of Compromise (IP, Hash, Domain).
