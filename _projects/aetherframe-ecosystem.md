@@ -4,7 +4,7 @@ title: "aetherframe-ecosystem"
 description: "Red‑team orchestration stack: FastAPI + Celery + Postgres/Redis/MinIO backend."
 tags: ["FastAPI", "React", "Docker", "Security"]
 repo: "https://github.com/ind4skylivey/aetherframe-ecosystem"
-featured: false
+featured: true
 ---
 
 ### Overview

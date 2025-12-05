@@ -4,7 +4,7 @@ title: "Laravel Secure Baseline"
 description: "Fast, non-destructive scanner to detect security misconfigurations in Laravel 10/11."
 tags: ["PHP", "Laravel", "Security", "Scanner"]
 repo: "https://github.com/ind4skylivey/laravel-secure-baseline"
-featured: false
+featured: true
 ---
 
 ### Overview
