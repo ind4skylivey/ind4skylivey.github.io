@@ -1,12 +1,13 @@
 :root{
-  --bg:#05060a;
-  --panel:#0d0f18;
-  --panel-soft:#101321;
+  --bg:#030407;
+  --panel:#080910;
+  --panel-soft:#0b0d16;
   --text:#f2f3ff;
   --muted:#9fa4c7;
   --accent:#b44bff;
   --accent-soft:rgba(180,75,255,.2);
   --accent-2:#00f2c3;
+  --red-team:#ff003c;
   --border:#272a3f;
   --radius:18px;
   --shadow-soft:0 18px 60px rgba(0,0,0,.55);
@@ -27,10 +28,10 @@ body.bg{
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 18% 0%, rgba(180,75,255,.28), transparent 55%),
-    radial-gradient(circle at 80% 10%, rgba(0,242,195,.18), transparent 58%),
-    radial-gradient(circle at 50% 90%, rgba(101,120,255,.18), transparent 60%),
-    radial-gradient(circle at calc(var(--pointer-x)*100%) calc(var(--pointer-y)*100%), rgba(0,242,195,.24), transparent 45%);
+    radial-gradient(circle at 18% 0%, rgba(255,0,60,.15), transparent 55%),
+    radial-gradient(circle at 80% 10%, rgba(0,242,195,.12), transparent 58%),
+    radial-gradient(circle at 50% 90%, rgba(180,75,255,.12), transparent 60%),
+    radial-gradient(circle at calc(var(--pointer-x)*100%) calc(var(--pointer-y)*100%), rgba(255,0,60,.18), transparent 45%);
   filter:blur(40px);
   opacity:.9;
   mix-blend-mode:screen;
