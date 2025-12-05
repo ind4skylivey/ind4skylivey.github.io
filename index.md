@@ -57,7 +57,7 @@ permalink: /
     </div>
   </div>
 
-  {% assign spotlights = site.projects | where_exp: "p","p.featured == true" %}
+  {% assign spotlights = site.projects | where: "featured", true %}
   {% if spotlights.size > 0 %}
   <div class="grid">
     {% for spotlight in spotlights %}
