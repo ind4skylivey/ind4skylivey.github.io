@@ -16,3 +16,6 @@ permalink: /projects/
   </div>
 {% endfor %}
 </div>
+
+<!-- Here will go my personal guides for my projects -->
+  
