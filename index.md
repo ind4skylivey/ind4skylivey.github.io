@@ -57,12 +57,16 @@ permalink: /
     </div>
   </div>
 
-  {% assign spotlight = site.projects | where_exp: "p","p.featured == true" | first %}
-  {% if spotlight %}
-  <div class="card">
-    <h3><a href="{{ spotlight.url }}">{{ spotlight.title }}</a></h3>
-    <p>{{ spotlight.description }}</p>
-    {% if spotlight.repo %}<p><a href="{{ spotlight.repo }}" target="_blank" rel="noopener">View repository ↗</a></p>{% endif %}
+  {% assign spotlights = site.projects | where_exp: "p","p.featured == true" %}
+  {% if spotlights.size > 0 %}
+  <div class="grid">
+    {% for spotlight in spotlights %}
+    <div class="card">
+      <h3><a href="{{ spotlight.url }}">{{ spotlight.title }}</a></h3>
+      <p>{{ spotlight.description }}</p>
+      {% if spotlight.repo %}<p><a href="{{ spotlight.repo }}" target="_blank" rel="noopener">View repository ↗</a></p>{% endif %}
+    </div>
+    {% endfor %}
   </div>
   {% else %}
   <p>No featured project yet. Mark one of your projects with <code>featured: true</code> in its front matter.</p>
