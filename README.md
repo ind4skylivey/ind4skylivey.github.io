@@ -44,11 +44,6 @@ One where everything is deliberate.
 
 **https://ind4skylivey.github.io**
 
----
-
-<img width="1024" height="1024" alt="ChatGPT Image Nov 14, 2025, 02_01_47 AM" src="https://github.com/user-attachments/assets/1fb12dc0-17d5-4ff0-9f91-f180cb159e7b" />
-
-
 ## ✦ What This Space Is
 
 Think of it as a console window into my world:
