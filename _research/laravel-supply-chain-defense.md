@@ -13,7 +13,7 @@ permalink: /research/laravel-supply-chain-defense/
 > **PROJECT STATUS:** `ACTIVE` 🟢
 > **STACK:** PHP / Laravel · **TOOLING:** Composer
 > **FOCUS:** Supply Chain Security · Dependency Analysis · SCA
-> ![Laravel](https://img.shields.io/badge/Laravel-Framework-ff2d20?style=flat-square&logo=laravel&logoColor=white) ![Security](https://img.shields.io/badge/Security-Supply_Chain-blue?style=flat-square)
+> ![LiveySupplyChain](https://img.shields.io/badge/LiveySupplyChain-Defense-00e8ff?style=flat-square&logo=laravel&logoColor=white)
 
 ### ⚡ TL;DR
 
@@ -24,6 +24,7 @@ This research explores real supply-chain risks, historical incidents, and common
 This research delivers a **production-ready Supply Chain Toolkit**:
 *   **LiveyScore™ 2.0:** An advanced scoring engine for dependencies.
 *   **Configurable Policies:** YAML-based allow/deny lists.
+*   **Livey Dashboard:** HTML/JS visualization of your supply chain health.
 *   **Automated CI/CD:** GitHub Actions integration.
 
 ---
@@ -193,7 +194,7 @@ scoring:
 
 ### 🛠️ 6.2 LiveyScore™ Scanner 2.0 (`tools/livey_supply_chain_scan.py`)
 
-This Python script reads your policy and `composer.lock` to enforce security.
+This Python script reads your policy and `composer.lock` to enforce security. Includes JSON reporting for the dashboard.
 
 ```python
 #!/usr/bin/env python3
@@ -308,7 +309,7 @@ def compute_score(pkg, meta, scripts, policy, project_root):
     if pop == "tiny": reasons.append("Very low popularity")
 
     # Version
-    if version.startswith("dev-"):
+    if version.startswith("dev-"): 
         total += scoring["version"]["dev"]
         reasons.append("Dev version")
     elif "RC" in version or "beta" in version.lower(): 
@@ -335,6 +336,7 @@ def main():
     parser.add_argument("--composer-lock", default="composer.lock")
     parser.add_argument("--composer-json", default="composer.json")
     parser.add_argument("--policy", default="tools/supply_chain_policy.yaml")
+    parser.add_argument("--json-output", default=None, help="Generate JSON report")
     args = parser.parse_args()
 
     lock = load_json(Path(args.composer_lock))
@@ -348,6 +350,12 @@ def main():
 
     print("🔒 LiveySupplyChain Defense Scanner 2.0\n")
     bad = []
+    report_data = {
+        "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "warn_threshold": warn_score,
+        "fail_threshold": fail_score,
+        "packages": []
+    }
 
     for pkg in packages:
         name = pkg["name"]
@@ -355,13 +363,30 @@ def main():
         meta = get_packagist_meta(name)
         score, reasons = compute_score(pkg, meta, scripts, policy, project_root)
 
-        print(f"📦 {name} | v{pkg.get('version')} | Score: {score}/100")
+        status = "OK"
+        if score < fail_score: status = "FAIL"
+        elif score < warn_score: status = "WARN"
+
+        print(f"📦 {name} | v{pkg.get('version')} | Score: {score}/100 [{status}]")
         if reasons:
             for r in reasons: print(f"     - {r}")
         print("")
 
-        if score < fail_score: bad.append((name, score, "FAIL"))
-        elif score < warn_score: bad.append((name, score, "WARN"))
+        if status != "OK":
+            bad.append((name, score, status))
+        
+        report_data["packages"].append({
+            "name": name,
+            "version": pkg.get("version"),
+            "score": score,
+            "status": status,
+            "reasons": reasons
+        })
+
+    if args.json_output:
+        with open(args.json_output, "w", encoding="utf-8") as f:
+            json.dump(report_data, f, indent=2)
+        print(f"📄 JSON report generated: {args.json_output}")
 
     if any(x[2] == "FAIL" for x in bad):
         print("❌ BLOCKED: packages below fail threshold.")
@@ -407,12 +432,76 @@ jobs:
       - run: pip install requests pyyaml
 
       - name: Run LiveyScore™ Scanner
-        run: python tools/livey_supply_chain_scan.py --policy tools/supply_chain_policy.yaml
+        run: python tools/livey_supply_chain_scan.py --policy tools/supply_chain_policy.yaml --json-output reports/livey_supply_report.json
+      
+      - name: Upload Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supply-chain-report
+          path: reports/livey_supply_report.json
 ```
 
 ---
 
-## 7. Conclusion
+## 7. Visualization & Dashboard
+
+To make supply chain data consumable for humans, we provide a standalone HTML dashboard that visualizes the JSON output from the scanner.
+
+### 🎨 7.1 LiveySupplyChain™ Logo (SVG)
+
+Save this as `assets/livey_supplychain_logo.svg`:
+
+```xml
+<svg width="360" height="120" viewBox="0 0 360 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E8FF"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#FF22AA"/>
+    </linearGradient>
+    <linearGradient id="grad-node" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E8FF"/>
+      <stop offset="100%" stop-color="#FF22AA"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="360" height="120" rx="16" fill="#050510"/>
+  <g transform="translate(32,18)" filter="url(#glow)">
+    <path d="M40 0 L4 12 L4 44 C4 57 14 70 40 82 C66 70 76 57 76 44 L76 12 Z" fill="none" stroke="url(#grad-shield)" stroke-width="2.4"/>
+    <circle cx="24" cy="26" r="4" fill="#050510" stroke="#00E8FF" stroke-width="1.4"/>
+    <circle cx="56" cy="26" r="4" fill="#050510" stroke="#FF22AA" stroke-width="1.4"/>
+    <circle cx="40" cy="46" r="4" fill="#050510" stroke="#7C3AED" stroke-width="1.4"/>
+    <path d="M28 26 L52 26" stroke="url(#grad-node)" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M26 30 L38 42" stroke="url(#grad-node)" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M54 30 L42 42" stroke="url(#grad-node)" stroke-width="1.4" stroke-linecap="round"/>
+    <rect x="34" y="18" width="12" height="9" rx="2" fill="#050510" stroke="#00E8FF" stroke-width="1.2"/>
+    <path d="M38 18 C38 14 42 14 42 18" stroke="#00E8FF" stroke-width="1.2" fill="none"/>
+  </g>
+  <g transform="translate(130,42)">
+    <text x="0" y="0" font-family="monospace" font-size="20" fill="#F9FAFB" letter-spacing="0.06em">LiveySupplyChain</text>
+    <text x="0" y="22" font-family="monospace" font-size="10" fill="#9CA3AF" letter-spacing="0.18em" text-transform="uppercase">L A R A V E L · D E F E N S E</text>
+    <text x="220" y="-6" font-family="monospace" font-size="9" fill="#FF22AA">™</text>
+  </g>
+  <line x1="130" y1="82" x2="310" y2="82" stroke="url(#grad-node)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4" opacity="0.7"/>
+</svg>
+```
+
+### 🖥️ 7.2 Livey Dashboard (`livey_supply_dashboard.html`)
+
+Use this HTML to visualize the `reports/livey_supply_report.json` generated by the scanner.
+
+*(Full HTML/JS dashboard code available in the implementation repository)*
+
+---
+
+## 8. Conclusion
 
 Defending Laravel from supply-chain attacks isn't paranoia; it's acknowledging that our chain depends on hundreds of strangers.
 
