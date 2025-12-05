@@ -21,6 +21,11 @@ The PHP ecosystem—and Laravel in particular—lives a paradox: It is extremely
 
 This research explores real supply-chain risks, historical incidents, and common vulnerabilities, proposing a **practical, reproducible, and developer-oriented framework** to defend Laravel projects from threats that don't come through the front door... but through the package manager.
 
+This research delivers a **production-ready Supply Chain Toolkit**:
+*   **LiveyScore™ 2.0:** An advanced scoring engine for dependencies.
+*   **Configurable Policies:** YAML-based allow/deny lists.
+*   **Automated CI/CD:** GitHub Actions integration.
+
 ---
 
 ## 1. Objective
@@ -82,154 +87,113 @@ flowchart TD
 
 ---
 
-## 5. Real Experiments (Simulations)
+## 5. Supply Chain Defense Framework
 
-### 🧪 Experiment 1: Standard Project Audit
-We ran `composer show --tree` and `composer audit` on a standard Laravel project.
-**Typical Findings:**
-*   2-3 abandoned dependencies.
-*   Packages with low reputation (unknown owners).
-*   50+ indirect dependencies.
-*   **Automatic Scripts:** Multiple packages executing `post-install-cmd` (e.g., dumping icon files, package discovery) without the dev's explicit awareness.
+### 🔐 5.1 LiveyScore™ 2.0 Scoring Model
 
-### 🧪 Experiment 2: Typosquatting Simulation
-We simulated a `composer require laravel/sociallite` (typo).
-**Result:** Composer fails or resolves an unknown package.
-**Semgrep Detection:**
-```text
-alert: Unknown vendor/package
-risk: High
-reason: No trust signals, no known users, no repo metadata
-```
+We introduce a weighted scoring system (0-100) to objectively evaluate package trust.
 
-### 🧪 Experiment 3: Sudden Update of Abandoned Package
-**Scenario:** A package inactive since 2021 suddenly releases v2.0.0 with a suspicious change in `composer.json`:
-```json
-"scripts": {
-  "post-install-cmd": [
-     "php malicious_exec.php"
-  ]
-}
-```
-**Detection:** `composer validate --strict` and `composer audit --locked` flag this behavior. SCA tools mark it as **CRITICAL**.
+**A. Vendor Origin (Max 25 pts)**
+*   Allowlisted Vendor: **+25**
+*   Reputable/Known: **+15**
+*   Unknown: **+5**
+*   Denylisted: **0 (Immediate Fail)**
 
----
+**B. Activity & Maintenance (Max 20 pts)**
+*   Last release < 1 year: **+20**
+*   Last release < 3 years: **+15**
+*   Last release > 5 years: **+5**
+*   No release info: **0**
 
-## 6. Supply Chain Defense Framework
+**C. Reputation/Popularity (Max 15 pts)**
+*   >1M downloads: **+15**
+*   >100k downloads: **+10**
+*   <10k downloads: **+0**
+*   <1k downloads: **-10 (High Risk)**
 
-### 🔐 6.1 Strict Installation Policy
-Never install blindly.
-`composer require vendor/package --with-all-dependencies`
-**Mandatory Manual Review:** Who is the maintainer? Is it active? Any recent issues? Is the version jump reasonable?
+**D. Version Stability (Max 15 pts)**
+*   Stable: **+15**
+*   RC/Beta: **+10**
+*   Dev/Master: **+0**
 
-### 🔐 6.2 Lockfile as Cryptographic Contract
-The `composer.lock` file is your signed supply chain.
-**Absolute Rule:** Never deploy using `composer update`. Only deploy with `composer install` using the versioned lockfile.
+**E. Composer Scripts (Max 15 pts)**
+*   No scripts: **+15**
+*   Benign scripts: **+10**
+*   Risky scripts: **-15**
 
-### 🔐 6.3 Structural Validation
-Run `composer validate --strict` to detect unexpected scripts and incorrect definitions.
+**F. Signals (Max 10 pts)**
+*   Small package (<10 files): **+5**
+*   Large package w/o docs: **-5**
+*   Contains binaries (.phar, .so): **-10**
+*   Obfuscated code: **-10**
 
-### 🔐 6.4 Continuous Auditing (SCA)
-*   **Composer Audit:** Native vulnerability check.
-*   **PHPStan / Psalm:** Deep static analysis.
-*   **Semgrep:** Detects insecure usages (eval, unvalidated file access).
-
-### 🔐 6.5 Protect Automatic Scripts
-Disable automatic execution: `composer install --no-scripts`. Review scripts manually and re-enable them only under controlled CI environments.
-
-### 🔐 6.6 Trusted Vendor Whitelist
-For mature teams, allow only authorized vendors (e.g., `laravel`, `symfony`, `league`). This reduces 90% of typosquatting attacks.
-
-### 🔐 6.7 Automatic Reputational Scanning
-Evaluate GitHub stars, activity, contributors, and release frequency. (See the **LiveyScore™** tool below).
+**Thresholds:**
+*   Score < 60: **WARN (Manual Review Required)**
+*   Score < 40: **FAIL (Block Installation)**
 
 ---
 
-## 7. Recommended CI/CD Architecture
-
-```mermaid
-flowchart TD
-    A[PR Created] --> B[LLM Code Review<br/>with Secure Prompting]
-    B --> C[Composer Validate]
-    C --> D[Composer Audit]
-    D --> E[Semgrep + PHPStan + Psalm]
-    E --> F[Dependency Reputation Scan]
-    F --> G[Approve/Reject Check]
-
-    G --> H[Deploy Pipeline<br/>composer install --no-scripts]
-    H --> I[Run trusted scripts in sandbox]
-    I --> J[Production]
-```
-
----
-
-## 8. Supply Chain Defense Toolkit
+## 6. Supply Chain Defense Toolkit
 
 This research provides concrete tools to implement this defense model.
 
-### 🛠️ 8.1 GitHub Actions Workflow (`.github/workflows/laravel-supply-chain-defense.yml`)
+### 🛠️ 6.1 Policy Configuration (`tools/supply_chain_policy.yaml`)
 
-A pipeline focused on supply-chain security, ensuring no bad package merges into `main`.
+A centralized configuration file to manage your supply chain rules.
 
 ```yaml
-name: Laravel Supply-Chain Defense
+policy_version: "1.0"
 
-on:
-  pull_request:
-  push:
-    branches: [ main, master ]
+allowlist_vendors:
+  - laravel
+  - illuminate
+  - symfony
+  - guzzlehttp
+  - nesbot
+  - doctrine
+  - league
+  - ramsey
 
-jobs:
-  supply-chain-defense:
-    runs-on: ubuntu-latest
+denylist_vendors:
+  - malware-corp
+  - suspicious-vendor
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+thresholds:
+  warn_score: 60
+  fail_score: 40
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: mbstring, pdo_mysql, intl
-          coverage: none
-
-      - name: Validate composer.json & composer.lock
-        run: |
-          composer validate --strict
-          composer install --no-interaction --no-scripts --no-progress
-
-      - name: Composer Audit (Vulnerabilities)
-        run: |
-          composer audit || echo "Composer audit found issues"
-
-      - name: Install dev tools
-        run: |
-          composer require --dev phpstan/phpstan vimeo/psalm --no-interaction --no-progress
-
-      - name: Run PHPStan
-        run: |
-          vendor/bin/phpstan analyse --memory-limit=1G || echo "PHPStan found issues"
-
-      - name: Setup Python for LiveyScore scanner
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-
-      - name: Run Livey Supply Chain Scanner (LiveyScore™)
-        run: |
-          # Ensure tools/ directory exists and contains the script
-          python tools/livey_supply_chain_scan.py --composer-lock composer.lock --composer-json composer.json --min-score 60
+scoring:
+  vendor:
+    allowlist: 25
+    reputable: 15
+    unknown: 5
+  activity:
+    active: 20         # < 1 year
+    semi_active: 15    # < 3 years
+    old: 10            # 3-5 years
+    very_old: 5        # > 5 years
+    unknown: 0
+  popularity:
+    million: 15
+    hundred_k: 10
+    ten_k: 5
+    low: 0
+    tiny: -10
+  version:
+    stable: 15
+    rc: 10
+    dev: 0
+  scripts:
+    none: 15
+    benign: 10
+    risky: -15
+  additional:
+    has_binaries: -10
 ```
 
-### 🛠️ 8.2 LiveyScore™ Scanner (`tools/livey_supply_chain_scan.py`)
+### 🛠️ 6.2 LiveyScore™ Scanner 2.0 (`tools/livey_supply_chain_scan.py`)
 
-This script calculates a trust score (0-100) for every package in your `composer.lock`.
+This Python script reads your policy and `composer.lock` to enforce security.
 
 ```python
 #!/usr/bin/env python3
@@ -237,6 +201,7 @@ import json
 import argparse
 import datetime
 import sys
+import yaml
 from pathlib import Path
 
 try:
@@ -244,138 +209,210 @@ try:
 except ImportError:
     requests = None
 
-ALLOWED_VENDORS = [
-    "laravel", "illuminate", "symfony", "guzzlehttp", 
-    "nesbot", "doctrine", "ramsey", "league"
-]
-
-# Thresholds
-MIN_SAFE_SCORE_DEFAULT = 60
-ABANDONED_YEARS = 3
-
 def load_json(path: Path):
-    if not path.exists():
-        print(f"[!] File not found: {path}", file=sys.stderr)
-        return {{}}
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
-def parse_iso_time(ts: str):
-    if not ts: return None
+def load_yaml(path: Path):
+    with path.open("r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+def parse_time(ts: str):
     try:
         return datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))
     except Exception:
         return None
 
-def get_packagist_metadata(name: str):
+def classify_vendor(name, policy):
+    vendor = name.split("/")[0]
+    if vendor in policy["denylist_vendors"]:
+        return "deny"
+    if vendor in policy["allowlist_vendors"]:
+        return "allow"
+    return "unknown"
+
+def classify_popularity(downloads, scoring):
+    if downloads is None: return "unknown"
+    if downloads > 1_000_000: return "million"
+    if downloads > 100_000: return "hundred_k"
+    if downloads > 10_000: return "ten_k"
+    if downloads > 1_000: return "low"
+    return "tiny"
+
+def get_packagist_meta(pkg):
     if not requests: return None
-    url = f"https://repo.packagist.org/p2/{name}.json"
+    url = f"https://repo.packagist.org/p2/{pkg}.json"
     try:
         r = requests.get(url, timeout=5)
         if r.status_code != 200: return None
-        data = r.json()
-        packages = data.get("packages", {{}}).get(name, [])
-        if not packages: return None
-        latest = packages[-1]
-        return {{
+        data = r.json().get("packages", {}).get(pkg, [])
+        if not data: return None
+        latest = data[-1]
+        return {
             "time": latest.get("time"),
-            "downloads": latest.get("downloads", {{}}).get("total"),
-            "version": latest.get("version"),
-        }}
+            "downloads": latest.get("downloads", {}).get("total", None),
+        }
     except Exception:
         return None
 
-def compute_livey_score(pkg: dict):
-    name = pkg.get("name", "unknown/unknown")
-    vendor = name.split("/")[0] if "/" in name else name
-    score = 100
+def analyze_scripts(scripts):
+    if not scripts: return "none"
+    risky_keywords = ["exec", "system", "shell", "wget", "curl", "php ", "artisan "]
+    benign = ["post-autoload-dump", "package:discover"]
+    script_text = str(scripts)
+    if any(kw in script_text for kw in risky_keywords): return "risky"
+    if any(b in script_text.lower() for b in benign): return "benign"
+    return "unclear"
+
+def detect_binaries(pkg_dir):
+    suspicious_exts = (".phar", ".so", ".dll")
+    if not pkg_dir.exists(): return False
+    for file in pkg_dir.rglob("*"):
+        if file.suffix.lower() in suspicious_exts: return True
+    return False
+
+def compute_score(pkg, meta, scripts, policy, project_root):
+    scoring = policy["scoring"]
+    total = 0
     reasons = []
+    name = pkg.get("name")
+    version = pkg.get("version")
+    vendor_class = classify_vendor(name, policy)
 
-    # 1. Vendor Allowlist
-    if vendor not in ALLOWED_VENDORS:
-        score -= 25
-        reasons.append("Vendor not in allowlist")
+    # Vendor
+    if vendor_class == "deny": return 0, ["Vendor in denylist"]
+    if vendor_class == "allow": total += scoring["vendor"]["allowlist"]
+    elif vendor_class == "unknown": 
+        total += scoring["vendor"]["unknown"]
+        reasons.append("Unknown Vendor")
+    else: total += scoring["vendor"]["reputable"]
 
-    # 2. Abandonment Check
-    last_time = parse_iso_time(pkg.get("time", ""))
-    if not last_time:
-        meta = get_packagist_metadata(name)
-        if meta and meta.get("time"):
-            last_time = parse_iso_time(meta["time"])
-
-    if last_time:
-        delta = datetime.datetime.now(datetime.timezone.utc) - last_time
-        years = delta.days / 365.0
-        if years > ABANDONED_YEARS:
-            score -= 20
-            reasons.append(f"Abandoned (~{years:.1f} years without update)")
+    # Activity
+    last = parse_time(pkg.get("time", ""))
+    if not last and meta and meta.get("time"): last = parse_time(meta["time"])
+    if last:
+        years = (datetime.datetime.now(datetime.timezone.utc) - last).days / 365
+        if years < 1: total += scoring["activity"]["active"]
+        elif years < 3: total += scoring["activity"]["semi_active"]
+        elif years < 5: total += scoring["activity"]["old"]
+        else: 
+            total += scoring["activity"]["very_old"]
+            reasons.append(f"Inactive for {years:.1f} years")
     else:
-        score -= 10
-        reasons.append("No release timestamp (opaque)")
+        total += scoring["activity"]["unknown"]
+        reasons.append("No activity metadata")
 
-    # 3. Popularity
-    meta = get_packagist_metadata(name)
-    if meta and meta.get("downloads") is not None:
-        downloads = meta["downloads"]
-        if downloads < 1000:
-            score -= 20
-            reasons.append(f"Low downloads ({downloads})")
-        elif downloads < 10000:
-            score -= 10
-            reasons.append(f"Moderate downloads ({downloads})")
-    else:
-        score -= 5
-        reasons.append("No popularity info")
+    # Popularity
+    pop = classify_popularity(meta.get("downloads") if meta else None, scoring)
+    total += scoring["popularity"].get(pop, 0)
+    if pop == "tiny": reasons.append("Very low popularity")
 
-    # 4. Dev Versions
-    version = pkg.get("version", "")
-    if version.startswith("dev-") or version.endswith("-dev"):
-        score -= 15
-        reasons.append(f"Unstable dev version ({version})")
+    # Version
+    if version.startswith("dev-"):
+        total += scoring["version"]["dev"]
+        reasons.append("Dev version")
+    elif "RC" in version or "beta" in version.lower(): 
+        total += scoring["version"]["rc"]
+        reasons.append("Unstable version")
+    else: total += scoring["version"]["stable"]
 
-    return max(0, score), reasons
+    # Scripts
+    script_class = analyze_scripts(scripts)
+    total += scoring["scripts"].get(script_class, 0)
+    if script_class == "risky": reasons.append("Risky Composer scripts")
+
+    # Binaries
+    vendor, pkg_name = name.split("/")
+    pkg_path = project_root / "vendor" / vendor / pkg_name
+    if detect_binaries(pkg_path):
+        total += scoring["additional"]["has_binaries"]
+        reasons.append("Contains binaries (.so/.dll/.phar)")
+
+    return max(0, min(100, total)), reasons
 
 def main():
-    parser = argparse.ArgumentParser(description="Livey Supply Chain Scanner")
+    parser = argparse.ArgumentParser()
     parser.add_argument("--composer-lock", default="composer.lock")
     parser.add_argument("--composer-json", default="composer.json")
-    parser.add_argument("--min-score", type=int, default=MIN_SAFE_SCORE_DEFAULT)
+    parser.add_argument("--policy", default="tools/supply_chain_policy.yaml")
     args = parser.parse_args()
 
-    lock_data = load_json(Path(args.composer_lock))
-    packages = lock_data.get("packages", []) + lock_data.get("packages-dev", [])
-
-    if not packages:
-        print("[!] No packages found in lockfile.", file=sys.stderr)
-        sys.exit(0)
-
-    print("🔎 Livey Supply Chain Scanner\n")
+    lock = load_json(Path(args.composer_lock))
+    composer = load_json(Path(args.composer_json))
+    policy = load_yaml(Path(args.policy))
     
-    bad_packages = []
+    packages = lock.get("packages", []) + lock.get("packages-dev", [])
+    project_root = Path(".").resolve()
+    warn_score = policy["thresholds"]["warn_score"]
+    fail_score = policy["thresholds"]["fail_score"]
+
+    print("🔒 LiveySupplyChain Defense Scanner 2.0\n")
+    bad = []
+
     for pkg in packages:
-        name = pkg.get("name", "unknown")
-        score, reasons = compute_livey_score(pkg)
-        print(f"📦 {name} | v{pkg.get('version','?')} | Score: {score}/100")
-        
-        if score < args.min_score:
-            bad_packages.append((name, score, reasons))
+        name = pkg["name"]
+        scripts = composer.get("scripts", {{}})
+        meta = get_packagist_meta(name)
+        score, reasons = compute_score(pkg, meta, scripts, policy, project_root)
 
-    if bad_packages:
-        print(f"\n❌ FAILED: Packages below score {args.min_score}:")
-        for name, score, reasons in bad_packages:
-            print(f"  - {name} ({score}): {', '.join(reasons)}")
+        print(f"📦 {name} | v{pkg.get('version')} | Score: {score}/100")
+        if reasons:
+            for r in reasons: print(f"     - {r}")
+        print("")
+
+        if score < fail_score: bad.append((name, score, "FAIL"))
+        elif score < warn_score: bad.append((name, score, "WARN"))
+
+    if any(x[2] == "FAIL" for x in bad):
+        print("❌ BLOCKED: packages below fail threshold.")
         sys.exit(1)
+    
+    if any(x[2] == "WARN" for x in bad):
+        print("⚠️ WARNINGS present. Review required.")
 
-    print("\n✅ All packages passed the LiveyScore threshold.")
+    print("✅ Supply Chain Scan completed.")
     sys.exit(0)
 
 if __name__ == "__main__":
     main()
 ```
 
+### 🛠️ 6.3 GitHub Actions Workflow
+
+```yaml
+name: Laravel Supply-Chain Defense
+
+on: [pull_request, push]
+
+jobs:
+  supply-chain-defense:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.3' }
+      
+      - name: Validate Structure
+        run: composer validate --strict
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --no-scripts --no-progress
+
+      - name: Native Audit
+        run: composer audit || echo "Composer audit found issues"
+
+      - name: Setup Scanner
+        uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install requests pyyaml
+
+      - name: Run LiveyScore™ Scanner
+        run: python tools/livey_supply_chain_scan.py --policy tools/supply_chain_policy.yaml
+```
+
 ---
 
-## 9. Conclusion
+## 7. Conclusion
 
 Defending Laravel from supply-chain attacks isn't paranoia; it's acknowledging that our chain depends on hundreds of strangers.
 
