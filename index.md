@@ -6,7 +6,7 @@ permalink: /
 
 <section class="hero">
   <div class="hero-kicker">S1BGr0up.inc · Open Intelligence Division</div>
-  <h1>Engineering systems that break closed chains.</h1>
+  <h1><span id="typewriter-text" class="hidden" data-text="Engineering systems that break closed chains."></span></h1>
   <p class="hero-sub">
     I’m Livey, an Open Intelligence Engineer focused on cybersecurity, reverse engineering, AI-assisted tooling,
     and Linux performance architecture. I design frameworks, workflows, and tools that turn complexity into leverage.

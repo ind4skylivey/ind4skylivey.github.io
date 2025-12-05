@@ -373,10 +373,69 @@ pre,code{font-family:"JetBrains Mono",monospace;}
 }
 #terminal-input:focus{outline:none;border-color:var(--accent-2);}
 
-@media (max-width:720px){
-  .nav{flex-direction:column;align-items:flex-start;}
-  nav a{margin-left:0;margin-right:16px;}
-  .hero{padding:26px 20px;}
+/* --- INTERACTIVE FEATURES --- */
+
+/* 1. Typewriter Effect */
+#typewriter-text {
+  border-right: 3px solid var(--red-team);
+  padding-right: 4px;
+  animation: blinkCursor 0.8s step-end infinite;
+}
+#typewriter-text.hidden {
+  border-right: none;
+}
+#typewriter-text.typing-done {
+  border-right: 3px solid transparent; /* Stop blinking but keep space */
+  animation: none;
+}
+@keyframes blinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--red-team); }
+}
+
+/* 2. Neon Reading Progress Bar */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--red-team);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px var(--red-team);
+}
+
+/* 3. Copy Code Button */
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  opacity: 0; /* Hidden by default */
+}
+pre:hover .copy-code-btn {
+  opacity: 1; /* Show on hover */
+}
+.copy-code-btn:hover {
+  background: var(--red-team);
+  color: #fff;
+  border-color: var(--red-team);
+  box-shadow: 0 0 8px rgba(255, 0, 85, 0.5);
+}
+.copy-code-btn.copied {
+  background: var(--accent-2); /* Cyan for success */
+  border-color: var(--accent-2);
+  color: #050510;
 }
 
 .hero-kicker{
