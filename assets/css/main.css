@@ -1,13 +1,13 @@
 :root{
-  --bg:#020305; /* Even darker */
-  --panel:#06070a; /* Even darker */
-  --panel-soft:#090b14;
+  --bg:#0A0305; /* Very dark, subtle hint of red */
+  --panel:#10090C; /* Very dark, subtle hint of red-purple */
+  --panel-soft:#0b0d14;
   --text:#f2f3ff;
   --muted:#9fa4c7;
   --accent:#b44bff;
   --accent-soft:rgba(180,75,255,.2);
   --accent-2:#00f2c3;
-  --red-team:#ff003c; /* Keep the red definition */
+  --red-team:#ff003c;
   --border:#272a3f;
   --radius:18px;
   --shadow-soft:0 18px 60px rgba(0,0,0,.55);
@@ -28,10 +28,10 @@ body.bg{
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 18% 0%, rgba(255,0,60,.45), transparent 50%), /* More intense Red */
-    radial-gradient(circle at 80% 10%, rgba(0,242,195,.18), transparent 55%), /* Cyan */
-    radial-gradient(circle at 50% 90%, rgba(255,0,60,.25), transparent 60%), /* Another Red, replacing purple */
-    radial-gradient(circle at calc(var(--pointer-x)*100%) calc(var(--pointer-y)*100%), rgba(255,0,60,.3), transparent 45%); /* Pointer Red */
+    radial-gradient(circle at 18% 0%, rgba(255,0,60,.25), transparent 55%), /* Softer Red */
+    radial-gradient(circle at 80% 10%, rgba(0,242,195,.12), transparent 58%), /* Cyan (original intensity) */
+    radial-gradient(circle at 50% 90%, rgba(180,75,255,.12), transparent 60%), /* Subtle Purple again (replacing previous red) */
+    radial-gradient(circle at calc(var(--pointer-x)*100%) calc(var(--pointer-y)*100%), rgba(255,0,60,.18), transparent 45%); /* Pointer Red (original intensity) */
   filter:blur(40px);
   opacity:.9;
   mix-blend-mode:screen;
@@ -70,10 +70,10 @@ nav a:hover{color:var(--text);}
   margin-top:28px;
   padding:40px 32px;
   border-radius:var(--radius);
-  background:radial-gradient(circle at 0% 0%, rgba(255,0,60,.28), transparent 55%), /* Red gradient */
-             radial-gradient(circle at 100% 0%, rgba(0,242,195,.16), transparent 50%), /* Cyan */
-             linear-gradient(135deg,rgba(5,6,10,.96),rgba(5,6,10,.92)); /* Dark gradient */
-  border:1px solid var(--border); /* Using border var now */
+  background:radial-gradient(circle at 0% 0%, rgba(255,0,60,.20), transparent 60%), /* Softer Red in Hero */
+             radial-gradient(circle at 100% 0%, rgba(0,242,195,.12), transparent 55%), /* Cyan (original intensity) */
+             linear-gradient(135deg,rgba(5,6,10,.96),rgba(5,6,10,.92));
+  border:1px solid var(--border);
   box-shadow:var(--shadow-soft);
   position:relative;
   overflow:hidden;
@@ -87,9 +87,9 @@ nav a:hover{color:var(--text);}
   width:340px;
   height:340px;
   border-radius:50%;
-  background:conic-gradient(from 220deg,var(--red-team),var(--accent-2),var(--red-team)); /* Conic uses red-team */
-  opacity:.25; /* Increased opacity */
-  filter:blur(28px); /* Increased blur for softer glow */
+  background:conic-gradient(from 220deg,var(--red-team),var(--accent-2),var(--red-team));
+  opacity:.20; /* Reduced opacity */
+  filter:blur(22px); /* Slightly less blur */
   mix-blend-mode:screen;
 }
 
