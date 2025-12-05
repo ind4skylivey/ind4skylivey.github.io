@@ -79,6 +79,126 @@ document.addEventListener('DOMContentLoaded', () => {
         button.innerText = 'ERROR';
       });
     });
-  });
+  });  // --- 4. COMMAND PALETTE (HUD) ---
+  const cmdOverlay = document.getElementById('cmd-palette-overlay');
+  const cmdInput = document.getElementById('cmd-input');
+  const cmdResults = document.getElementById('cmd-results');
+  
+  if (cmdOverlay && cmdInput && cmdResults) {
+    
+    // Command Definitions
+    const commands = [
+      { id: 'home', label: 'Go to Home', icon: '🏠', action: () => window.location.href = '/' },
+      { id: 'projects', label: 'View Projects', icon: '🚀', action: () => window.location.href = '/projects/' },
+      { id: 'research', label: 'Access Research Logs', icon: '🧪', action: () => window.location.href = '/research/' },
+      { id: 'blog', label: 'Read Lab Notes', icon: '📝', action: () => window.location.href = '/blog/' },
+      { id: 'about', label: 'Who is Livey?', icon: '👤', action: () => window.location.href = '/about/' },
+      { id: 'contact', label: 'Open Comms / Contact', icon: '📡', action: () => window.location.href = '/contact/' },
+      { id: 'terminal', label: 'Launch Web Terminal', icon: '💻', action: () => window.location.href = '/terminal/' },
+      { id: 'github', label: 'View Source (GitHub)', icon: '🐙', action: () => window.open('https://github.com/ind4skylivey', '_blank') },
+      { id: 'status', label: 'System Status Check', icon: '🟢', action: () => alert('SYSTEM INTEGRITY: 100%\nNET: SECURE\nOP-SEC: ACTIVE') }
+    ];
+
+    let activeIndex = 0;
+    let filteredCommands = [...commands];
+
+    // Render List
+    function renderCommands() {
+      cmdResults.innerHTML = '';
+      
+      if (filteredCommands.length === 0) {
+        const div = document.createElement('div');
+        div.className = 'cmd-item';
+        div.style.cursor = 'default';
+        div.innerHTML = '<span style="opacity:0.5">No commands found.</span>';
+        cmdResults.appendChild(div);
+        return;
+      }
+
+      filteredCommands.forEach((cmd, index) => {
+        const div = document.createElement('div');
+        div.className = `cmd-item ${index === activeIndex ? 'selected' : ''}`;
+        div.onclick = () => {
+          cmd.action();
+          togglePalette(false);
+        };
+        div.innerHTML = `
+          <div style="display:flex; align-items:center;">
+            <span class="cmd-icon">${cmd.icon}</span>
+            <span>${cmd.label}</span>
+          </div>
+          <span class="cmd-shortcut">↵</span>
+        `;
+        cmdResults.appendChild(div);
+      });
+      
+      // Ensure selected item is in view
+      const selected = cmdResults.querySelector('.selected');
+      if (selected) {
+        selected.scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    // Toggle Visibility
+    function togglePalette(show) {
+      if (show) {
+        cmdOverlay.classList.add('visible');
+        cmdInput.value = '';
+        filteredCommands = [...commands];
+        activeIndex = 0;
+        renderCommands();
+        setTimeout(() => cmdInput.focus(), 50);
+      } else {
+        cmdOverlay.classList.remove('visible');
+      }
+    }
+
+    // Global Keyboard Listener
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const isVisible = cmdOverlay.classList.contains('visible');
+        togglePalette(!isVisible);
+      }
+      if (e.key === 'Escape' && cmdOverlay.classList.contains('visible')) {
+        togglePalette(false);
+      }
+    });
+
+    // Input Listener (Filtering & Navigation)
+    cmdInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIndex = (activeIndex + 1) % filteredCommands.length;
+        renderCommands();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIndex = (activeIndex - 1 + filteredCommands.length) % filteredCommands.length;
+        renderCommands();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (filteredCommands[activeIndex]) {
+          filteredCommands[activeIndex].action();
+          togglePalette(false);
+        }
+      }
+    });
+
+    cmdInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      filteredCommands = commands.filter(cmd => 
+        cmd.label.toLowerCase().includes(query)
+      );
+      activeIndex = 0;
+      renderCommands();
+    });
+
+    // Close on outside click
+    cmdOverlay.addEventListener('click', (e) => {
+      if (e.target === cmdOverlay) {
+        togglePalette(false);
+      }
+    });
+  }
 
 });

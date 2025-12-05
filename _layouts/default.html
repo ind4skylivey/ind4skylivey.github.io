@@ -42,7 +42,26 @@
         </p>
       </div>
     </footer>
-    <script src="/assets/js/main.js?v=1"></script>
+
+    <!-- Command Palette Overlay -->
+    <div id="cmd-palette-overlay">
+      <div class="cmd-palette">
+        <div class="cmd-header">
+          <span class="cmd-prompt">&gt;</span>
+          <input type="text" id="cmd-input" placeholder="Type a command..." autocomplete="off">
+        </div>
+        <div id="cmd-results" class="cmd-results">
+          <!-- Commands injected by JS -->
+        </div>
+        <div class="cmd-footer">
+          <span>Navigate: <span class="cmd-key">↑↓</span></span>
+          <span>Select: <span class="cmd-key">Enter</span></span>
+          <span>Close: <span class="cmd-key">Esc</span></span>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/main.js?v=2"></script>
     <script>
       // Boot sequence fade out
       window.addEventListener('load', function () {
