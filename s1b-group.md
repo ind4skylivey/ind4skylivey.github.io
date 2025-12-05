@@ -43,14 +43,14 @@ permalink: /s1b-group/
   <div class="card feature-card">
     <div class="feature-content">
       <h3>Int3rceptor</h3>
-      <span class="pill pill-alert">Classified</span>
+      <span class="pill">Open Source</span>
       <p>
-        <strong>Int3rceptor</strong> is our flagship offensive orchestration engine. It automates the entire kill chain simulation—from reconnaissance to exploitation—within a controlled environment.
+        <strong>Int3rceptor</strong> is a Rust-powered HTTP/HTTPS intercepting proxy designed for penetration testing. It serves as a modern, performance-focused alternative to traditional tools, featuring a Vue.js UI for real-time traffic analysis.
       </p>
       <ul class="list-dots">
-        <li><strong>Stealth Mode:</strong> Operates with minimal noise to evade standard detection.</li>
-        <li><strong>Adaptive Payloads:</strong> Dynamically generates payloads based on target architecture.</li>
-        <li><strong>Status:</strong> Private. Available only for authorized Red Team engagements.</li>
+        <li><strong>Core:</strong> High-performance Rust backend (Tokio, Hyper, Axum).</li>
+        <li><strong>Interface:</strong> Modern Vue.js + TypeScript frontend.</li>
+        <li><strong>Access:</strong> <a href="https://github.com/S1b-Team/int3rceptor">View on GitHub</a></li>
       </ul>
     </div>
   </div>
