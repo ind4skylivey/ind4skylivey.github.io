@@ -10,53 +10,95 @@ permalink: /research/laravel-supply-chain-defense/
 
 ---
 
-> **PROJECT STATUS:** `ACTIVE` 🟢
-> **STACK:** PHP / Laravel · **TOOLING:** Composer
-> **FOCUS:** Supply Chain Security · Dependency Analysis · SCA
-> ![LiveySupplyChain](https://img.shields.io/badge/LiveySupplyChain-Defense-00e8ff?style=flat-square&logo=laravel&logoColor=white)
+<div class="card" style="margin-bottom: 2rem; border-color: rgba(0, 242, 195, 0.3);">
+  <div class="tags" style="margin-bottom: 12px;">
+    <span class="pill" style="color: #00f2c3; border-color: rgba(0, 242, 195, 0.5);">STATUS: ACTIVE 🟢</span>
+    <span class="pill">PHP / Laravel</span>
+    <span class="pill">Composer</span>
+    <span class="pill">Supply Chain Security</span>
+  </div>
+  <img src="https://img.shields.io/badge/LiveySupplyChain-Defense-00e8ff?style=flat-square&logo=laravel&logoColor=white" alt="LiveySupplyChain">
+</div>
 
-### ⚡ TL;DR
-
-The PHP ecosystem—and Laravel in particular—lives a paradox: It is extremely productive but deeply dependent on third parties. Hundreds of packages, thousands of versions, millions of installs. Each `composer update` opens the door to thousands of actors you don't control.
-
-This research explores real supply-chain risks, historical incidents, and common vulnerabilities, proposing a **practical, reproducible, and developer-oriented framework** to defend Laravel projects from threats that don't come through the front door... but through the package manager.
-
-This research delivers a **production-ready Supply Chain Toolkit**:
-*   **LiveyScore™ 2.0:** An advanced scoring engine for dependencies.
-*   **Configurable Policies:** YAML-based allow/deny lists.
-*   **Livey Dashboard:** HTML/JS visualization of your supply chain health.
-*   **Automated CI/CD:** GitHub Actions integration.
+<div class="card">
+  <h3 style="color: var(--accent-2);">⚡ TL;DR</h3>
+  <p>
+    The PHP ecosystem—and Laravel in particular—lives a paradox: It is extremely productive but deeply dependent on third parties. Hundreds of packages, thousands of versions, millions of installs. Each <code>composer update</code> opens the door to thousands of actors you don't control.
+  </p>
+  <p>
+    This research explores real supply-chain risks, historical incidents, and common vulnerabilities, proposing a <strong>practical, reproducible, and developer-oriented framework</strong> to defend Laravel projects from threats that don't come through the front door... but through the package manager.
+  </p>
+  <p style="margin-top: 1rem; margin-bottom: 0.5rem; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);">Deliverables:</p>
+  <div class="tags">
+    <span class="pill">LiveyScore™ 2.0</span>
+    <span class="pill">Configurable Policies</span>
+    <span class="pill">Livey Dashboard</span>
+    <span class="pill">Automated CI/CD</span>
+  </div>
+</div>
 
 ---
 
-## 1. Objective
+## 1. Objective & Context
 
-*   **Evaluate real risks** within the Composer/Packagist ecosystem.
-*   **Model relevant threats** for Laravel projects.
-*   **Design a viable secure pipeline** for small teams, freelancers, and independent studios.
-*   **Create a set of practices** to mitigate: malicious packages, typosquatting, abandoned dependencies, insecure updates, and compromised third-party builds.
+<div class="grid">
+<div class="card">
+  <h3>🎯 Objective</h3>
+  <ul class="list-dots">
+    <li><strong>Evaluate real risks</strong> within the Composer/Packagist ecosystem.</li>
+    <li><strong>Model relevant threats</strong> for Laravel projects.</li>
+    <li><strong>Design a viable secure pipeline</strong> for small teams.</li>
+    <li><strong>Create a set of practices</strong> to mitigate malicious packages and insecure updates.</li>
+  </ul>
+</div>
 
----
-
-## 2. Context: Why is Laravel Especially Vulnerable?
-
-Laravel encourages modularity. Authentication, logs, queues, mails, helpers, debugging, macros, event watching... everything is solved with packages.
-
-The problem isn't Laravel; it's the **density of dependencies**. A typical project includes 50-100 direct packages, which in turn depend on 200-400 indirect ones. This creates an attack surface comparable to ecosystems like npm, but with less media visibility regarding supply-chain attacks.
+<div class="card">
+  <h3>⚠️ Why Laravel?</h3>
+  <p>
+    Laravel encourages modularity. Authentication, logs, queues... everything is a package. The problem isn't Laravel; it's the <strong>density of dependencies</strong>.
+  </p>
+  <p>
+    A typical project includes 50-100 direct packages, which in turn depend on 200-400 indirect ones. This creates a massive attack surface with less visibility than npm.
+  </p>
+</div>
+</div>
 
 ---
 
 ## 3. Threat Model: Laravel/Composer Ecosystem
 
-1.  **Typosquatting:** Attackers create nearly identical packages (e.g., `illuminate/supp0rt`, `laravel/sociallite`) hoping for a typo in `composer require`.
-2.  **Compromised Maintainers:** If a maintainer's account with thousands of downloads is compromised, a malicious update can be published instantly.
-3.  **"Miraculous" Updates:** An abandoned package receiving a sudden update after 3 years of inactivity is a major red flag.
-4.  **Dangerous Indirect Dependencies:** Your project might depend on a package that depends on another that is compromised.
-5.  **Malicious Composer Scripts:** Composer automatically executes scripts (`post-install-cmd`, `pre-update-cmd`). A malicious package can run code on your machine before you even notice it exists.
+<div class="card">
+  <h3>🚨 Key Threats</h3>
+  <div class="grid">
+    <div>
+      <h4 style="color: var(--accent);">1. Typosquatting</h4>
+      <p style="font-size: 13px;">Attackers create <code>illuminate/supp0rt</code> hoping for a typo.</p>
+    </div>
+    <div>
+      <h4 style="color: var(--accent);">2. Compromised Maintainers</h4>
+      <p style="font-size: 13px;">Trusted accounts hijacked to push malicious updates.</p>
+    </div>
+    <div>
+      <h4 style="color: var(--accent);">3. "Miraculous" Updates</h4>
+      <p style="font-size: 13px;">Abandoned packages suddenly updating after years.</p>
+    </div>
+    <div>
+      <h4 style="color: var(--accent);">4. Transitive Threats</h4>
+      <p style="font-size: 13px;">Deep dependencies compromised without your knowledge.</p>
+    </div>
+    <div>
+      <h4 style="color: var(--accent);">5. Malicious Scripts</h4>
+      <p style="font-size: 13px;"><code>post-install-cmd</code> executing malware on <code>composer require</code>.</p>
+    </div>
+  </div>
+</div>
 
 ---
 
 ## 4. Architecture of Risk
+
+<div class="card">
+<div style="text-align: center; padding: 20px;">
 
 ```mermaid
 flowchart TD
@@ -86,6 +128,9 @@ flowchart TD
     C -.-> X2
 ```
 
+</div>
+</div>
+
 ---
 
 ## 5. Supply Chain Defense Framework
@@ -94,43 +139,75 @@ flowchart TD
 
 We introduce a weighted scoring system (0-100) to objectively evaluate package trust.
 
-**A. Vendor Origin (Max 25 pts)**
-*   Allowlisted Vendor: **+25**
-*   Reputable/Known: **+15**
-*   Unknown: **+5**
-*   Denylisted: **0 (Immediate Fail)**
+<div class="grid">
 
-**B. Activity & Maintenance (Max 20 pts)**
-*   Last release < 1 year: **+20**
-*   Last release < 3 years: **+15**
-*   Last release > 5 years: **+5**
-*   No release info: **0**
+<div class="card">
+  <h4 style="color:var(--accent-2)">A. Vendor Origin (Max 25)</h4>
+  <ul class="list-dots">
+    <li>Allowlisted Vendor: <strong>+25</strong></li>
+    <li>Reputable/Known: <strong>+15</strong></li>
+    <li>Unknown: <strong>+5</strong></li>
+    <li>Denylisted: <strong>0 (Fail)</strong></li>
+  </ul>
+</div>
 
-**C. Reputation/Popularity (Max 15 pts)**
-*   >1M downloads: **+15**
-*   >100k downloads: **+10**
-*   <10k downloads: **+0**
-*   <1k downloads: **-10 (High Risk)**
+<div class="card">
+  <h4 style="color:var(--accent-2)">B. Activity (Max 20)</h4>
+  <ul class="list-dots">
+    <li>Last release &lt; 1 yr: <strong>+20</strong></li>
+    <li>Last release &lt; 3 yrs: <strong>+15</strong></li>
+    <li>Last release &gt; 5 yrs: <strong>+5</strong></li>
+    <li>No release info: <strong>0</strong></li>
+  </ul>
+</div>
 
-**D. Version Stability (Max 15 pts)**
-*   Stable: **+15**
-*   RC/Beta: **+10**
-*   Dev/Master: **+0**
+<div class="card">
+  <h4 style="color:var(--accent-2)">C. Popularity (Max 15)</h4>
+  <ul class="list-dots">
+    <li>&gt;1M downloads: <strong>+15</strong></li>
+    <li>&gt;100k downloads: <strong>+10</strong></li>
+    <li>&lt;10k downloads: <strong>+0</strong></li>
+    <li>&lt;1k downloads: <strong>-10 (Risk)</strong></li>
+  </ul>
+</div>
 
-**E. Composer Scripts (Max 15 pts)**
-*   No scripts: **+15**
-*   Benign scripts: **+10**
-*   Risky scripts: **-15**
+<div class="card">
+  <h4 style="color:var(--accent-2)">D. Stability (Max 15)</h4>
+  <ul class="list-dots">
+    <li>Stable: <strong>+15</strong></li>
+    <li>RC/Beta: <strong>+10</strong></li>
+    <li>Dev/Master: <strong>+0</strong></li>
+  </ul>
+</div>
 
-**F. Signals (Max 10 pts)**
-*   Small package (<10 files): **+5**
-*   Large package w/o docs: **-5**
-*   Contains binaries (.phar, .so): **-10**
-*   Obfuscated code: **-10**
+<div class="card">
+  <h4 style="color:var(--accent-2)">E. Scripts (Max 15)</h4>
+  <ul class="list-dots">
+    <li>No scripts: <strong>+15</strong></li>
+    <li>Benign scripts: <strong>+10</strong></li>
+    <li>Risky scripts: <strong>-15</strong></li>
+  </ul>
+</div>
 
-**Thresholds:**
-*   Score < 60: **WARN (Manual Review Required)**
-*   Score < 40: **FAIL (Block Installation)**
+<div class="card">
+  <h4 style="color:var(--accent-2)">F. Signals (Max 10)</h4>
+  <ul class="list-dots">
+    <li>Small package: <strong>+5</strong></li>
+    <li>Large w/o docs: <strong>-5</strong></li>
+    <li>Binaries (.phar, .so): <strong>-10</strong></li>
+    <li>Obfuscated: <strong>-10</strong></li>
+  </ul>
+</div>
+
+</div>
+
+<div class="card" style="margin-top: 20px; border-color: var(--accent-2);">
+  <h4>🏁 Thresholds</h4>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <span class="pill" style="color: #ffb02e; border-color: #ffb02e;">Score &lt; 60: WARN (Manual Review)</span>
+    <span class="pill" style="color: #ff2e2e; border-color: #ff2e2e;">Score &lt; 40: FAIL (Block)</span>
+  </div>
+</div>
 
 ---
 
@@ -138,9 +215,12 @@ We introduce a weighted scoring system (0-100) to objectively evaluate package t
 
 This research provides concrete tools to implement this defense model.
 
-### 🛠️ 6.1 Policy Configuration (`tools/supply_chain_policy.yaml`)
+### 🛠️ 6.1 Policy Configuration
 
 A centralized configuration file to manage your supply chain rules.
+
+<div class="terminal-wrapper">
+<div class="term-line" style="color: var(--muted); margin-bottom: 10px;">// tools/supply_chain_policy.yaml</div>
 
 ```yaml
 policy_version: "1.0"
@@ -191,10 +271,14 @@ scoring:
   additional:
     has_binaries: -10
 ```
+</div>
 
-### 🛠️ 6.2 LiveyScore™ Scanner 2.0 (`tools/livey_supply_chain_scan.py`)
+### 🛠️ 6.2 LiveyScore™ Scanner 2.0
 
 This Python script reads your policy and `composer.lock` to enforce security. Includes JSON reporting for the dashboard.
+
+<div class="terminal-wrapper">
+<div class="term-line" style="color: var(--muted); margin-bottom: 10px;">// tools/livey_supply_chain_scan.py</div>
 
 ```python
 #!/usr/bin/env python3
@@ -401,8 +485,12 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+</div>
 
 ### 🛠️ 6.3 GitHub Actions Workflow
+
+<div class="terminal-wrapper">
+<div class="term-line" style="color: var(--muted); margin-bottom: 10px;">// .github/workflows/supply-chain.yml</div>
 
 ```yaml
 name: Laravel Supply-Chain Defense
@@ -441,16 +529,19 @@ jobs:
           name: supply-chain-report
           path: reports/livey_supply_report.json
 ```
+</div>
+
 
 ---
 
 ## 7. Visualization & Dashboard
 
-To make supply chain data consumable for humans, we provide a standalone HTML dashboard that visualizes the JSON output from the scanner.
+To make supply chain data consumable for humans, we provide a standalone HTML dashboard.
 
 ### 🎨 7.1 LiveySupplyChain™ Logo (SVG)
 
-Save this as `assets/livey_supplychain_logo.svg`:
+<div class="terminal-wrapper">
+<div class="term-line" style="color: var(--muted); margin-bottom: 10px;">// assets/livey_supplychain_logo.svg</div>
 
 ```xml
 <svg width="360" height="120" viewBox="0 0 360 120" xmlns="http://www.w3.org/2000/svg">
@@ -492,10 +583,9 @@ Save this as `assets/livey_supplychain_logo.svg`:
   <line x1="130" y1="82" x2="310" y2="82" stroke="url(#grad-node)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 4" opacity="0.7"/>
 </svg>
 ```
+</div>
 
-### 🖥️ 7.2 Livey Dashboard (`livey_supply_dashboard.html`)
-
-Use this HTML to visualize the `reports/livey_supply_report.json` generated by the scanner.
+### 🖥️ 7.2 Livey Dashboard
 
 *(Full HTML/JS dashboard code available in the implementation repository)*
 
@@ -503,12 +593,17 @@ Use this HTML to visualize the `reports/livey_supply_report.json` generated by t
 
 ## 8. Conclusion
 
-Defending Laravel from supply-chain attacks isn't paranoia; it's acknowledging that our chain depends on hundreds of strangers.
-
-**Key Takeaways:**
-*   **Composer is powerful but dangerous** without discipline.
-*   **The biggest risk** is often in indirect dependencies.
-*   **Effective defense** doesn't need a massive team, just a reproducible, automated pipeline.
-*   **Laravel is secure;** the ecosystem around it needs vigilance.
-
-**Hardening Composer is hardening your application.**
+<div class="card">
+  <p>
+    Defending Laravel from supply-chain attacks isn't paranoia; it's acknowledging that our chain depends on hundreds of strangers.
+  </p>
+  <ul class="list-dots">
+    <li><strong>Composer is powerful but dangerous</strong> without discipline.</li>
+    <li><strong>The biggest risk</strong> is often in indirect dependencies.</li>
+    <li><strong>Effective defense</strong> doesn't need a massive team, just a reproducible, automated pipeline.</li>
+  </ul>
+  <br>
+  <div style="text-align: center;">
+    <span class="pill" style="border-color: var(--accent-2); color: var(--accent-2);">Hardening Composer is hardening your application.</span>
+  </div>
+</div>

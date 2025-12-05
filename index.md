@@ -24,6 +24,39 @@ permalink: /
 <section class="section">
   <div class="section-header">
     <div>
+      <h2 style="color: var(--accent-2);">Featured Research</h2>
+      <p class="section-sub">Latest in-depth analysis and defense frameworks.</p>
+    </div>
+  </div>
+  <div class="card" style="border-color: rgba(0, 242, 195, 0.4); background: linear-gradient(180deg, rgba(13,15,24,1) 0%, rgba(0,242,195,0.03) 100%);">
+    <div class="tags" style="margin-bottom: 12px;">
+      <span class="pill" style="color: #00f2c3; border-color: rgba(0, 242, 195, 0.5);">STATUS: ACTIVE 🟢</span>
+      <span class="pill">PHP / Laravel</span>
+      <span class="pill">Supply Chain Security</span>
+    </div>
+    <h3 style="font-size: 24px; margin-bottom: 10px;">
+      <a href="/research/laravel-supply-chain-defense/" style="text-decoration: none; color: var(--text);">Laravel Supply-Chain Defense</a>
+    </h3>
+    <p style="max-width: 800px; margin-bottom: 16px;">
+      A practical defense model for the Composer ecosystem. Strategies for hardening PHP/Laravel projects against dependency confusion, trojanized packages, and maintainer compromise.
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 24px;">
+      <ul class="list-dots" style="margin-top: 0;">
+        <li>LiveyScore™ 2.0 Scoring Engine</li>
+        <li>Policy-based Allow/Deny Lists</li>
+      </ul>
+      <ul class="list-dots" style="margin-top: 0;">
+        <li>Automated CI/CD Integration</li>
+        <li>Visual Threat Dashboard</li>
+      </ul>
+    </div>
+    <a class="btn" href="/research/laravel-supply-chain-defense/">Read Full Research &rarr;</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
       <h2>What I Build</h2>
       <p class="section-sub">Systems, frameworks, and tools for developers, researchers, and security teams.</p>
     </div>
