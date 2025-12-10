@@ -1,14 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     {% include head.html %}
     <title>{{ page.title }} | {{ site.title }}</title>
   </head>
   <body class="bg">
     <div id="reading-progress"></div>
     <div class="bg-overlay"></div>
+    <div class="bg-particles"></div>
     <div id="boot-sequence" class="boot-sequence">
       <div class="boot-line">Initializing Livey CyberDeck...</div>
       <div class="boot-line">Loading intelligence modules...</div>
@@ -32,13 +33,18 @@
         </nav>
       </div>
     </header>
-    <main class="container main">
-      {{ content }}
-    </main>
+    <main class="container main">{{ content }}</main>
     <footer class="site-footer">
       <div class="container">
-        <p>© {{ "now" | date: "%Y" }} Livey — Engineered by <a href="https://github.com/S1b-Team" target="_blank" rel="noopener">S1BGr0up.inc</a> · Open Intelligence<br>
-        <span class="footer-quote">"Open intelligence is ethical intelligence."</span>
+        <p>
+          © {{ "now" | date: "%Y" }} Livey — Engineered by
+          <a href="https://github.com/S1b-Team" target="_blank" rel="noopener"
+            >S1BGr0up.inc</a
+          >
+          · Open Intelligence<br />
+          <span class="footer-quote"
+            >"Open intelligence is ethical intelligence."</span
+          >
         </p>
       </div>
     </footer>
@@ -48,7 +54,12 @@
       <div class="cmd-palette">
         <div class="cmd-header">
           <span class="cmd-prompt">&gt;</span>
-          <input type="text" id="cmd-input" placeholder="Type a command..." autocomplete="off">
+          <input
+            type="text"
+            id="cmd-input"
+            placeholder="Type a command..."
+            autocomplete="off"
+          />
         </div>
         <div id="cmd-results" class="cmd-results">
           <!-- Commands injected by JS -->
@@ -64,11 +75,11 @@
     <script src="/assets/js/main.js?v=2"></script>
     <script>
       // Boot sequence fade out
-      window.addEventListener('load', function () {
-        const boot = document.getElementById('boot-sequence');
+      window.addEventListener("load", function () {
+        const boot = document.getElementById("boot-sequence");
         if (boot) {
           setTimeout(() => {
-            boot.classList.add('boot-hide');
+            boot.classList.add("boot-hide");
           }, 1800);
           setTimeout(() => {
             boot.remove();
@@ -77,78 +88,114 @@
       });
 
       // Neon pathways (pointer-reactive glow)
-      document.addEventListener('mousemove', function(e){
+      document.addEventListener("mousemove", function (e) {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
-        document.documentElement.style.setProperty('--pointer-x', x.toString());
-        document.documentElement.style.setProperty('--pointer-y', y.toString());
+        document.documentElement.style.setProperty("--pointer-x", x.toString());
+        document.documentElement.style.setProperty("--pointer-y", y.toString());
       });
 
       // Intelligence Briefing toggle on blog
-      document.addEventListener('DOMContentLoaded', function(){
-        const toggle = document.getElementById('briefing-toggle');
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("briefing-toggle");
         if (toggle) {
-          toggle.addEventListener('click', function(){
-            document.body.classList.toggle('briefing-mode');
-            if (document.body.classList.contains('briefing-mode')) {
-              toggle.textContent = 'Exit Intelligence Briefing Mode';
+          toggle.addEventListener("click", function () {
+            document.body.classList.toggle("briefing-mode");
+            if (document.body.classList.contains("briefing-mode")) {
+              toggle.textContent = "Exit Intelligence Briefing Mode";
             } else {
-              toggle.textContent = 'Enter Intelligence Briefing Mode';
+              toggle.textContent = "Enter Intelligence Briefing Mode";
             }
           });
         }
 
         // Simple research terminal
-        const term = document.getElementById('research-terminal');
-        const input = document.getElementById('terminal-input');
+        const term = document.getElementById("research-terminal");
+        const input = document.getElementById("terminal-input");
         if (term && input) {
-          const output = document.getElementById('terminal-output');
+          const output = document.getElementById("terminal-output");
           const printLine = (html) => {
-            const div = document.createElement('div');
-            div.className = 'term-line';
+            const div = document.createElement("div");
+            div.className = "term-line";
             div.innerHTML = html;
             output.appendChild(div);
             output.scrollTop = output.scrollHeight;
           };
           const commands = {
             help: () => {
-              printLine('Available commands:');
-              printLine('- <span class="term-cmd">about</span>        → Go to About');
-              printLine('- <span class="term-cmd">projects</span>     → View Projects');
-              printLine('- <span class="term-cmd">research</span>     → Research & Security');
-              printLine('- <span class="term-cmd">blog</span>         → Lab Logs');
-              printLine('- <span class="term-cmd">ai</span>           → AI & tooling focus');
-              printLine('- <span class="term-cmd">philosophy</span>   → Core principles');
-              printLine('- <span class="term-cmd">contact</span>      → Contact info');
-              printLine('- <span class="term-cmd">clear</span>        → Clear terminal');
+              printLine("Available commands:");
+              printLine(
+                '- <span class="term-cmd">about</span>        → Go to About'
+              );
+              printLine(
+                '- <span class="term-cmd">projects</span>     → View Projects'
+              );
+              printLine(
+                '- <span class="term-cmd">research</span>     → Research & Security'
+              );
+              printLine(
+                '- <span class="term-cmd">blog</span>         → Lab Logs'
+              );
+              printLine(
+                '- <span class="term-cmd">ai</span>           → AI & tooling focus'
+              );
+              printLine(
+                '- <span class="term-cmd">philosophy</span>   → Core principles'
+              );
+              printLine(
+                '- <span class="term-cmd">contact</span>      → Contact info'
+              );
+              printLine(
+                '- <span class="term-cmd">clear</span>        → Clear terminal'
+              );
             },
-            about: () => { window.location.href = '/about/'; },
-            projects: () => { window.location.href = '/projects/'; },
-            research: () => { window.location.href = '/research/'; },
-            blog: () => { window.location.href = '/blog/'; },
-            contact: () => { window.location.href = '/contact/'; },
+            about: () => {
+              window.location.href = "/about/";
+            },
+            projects: () => {
+              window.location.href = "/projects/";
+            },
+            research: () => {
+              window.location.href = "/research/";
+            },
+            blog: () => {
+              window.location.href = "/blog/";
+            },
+            contact: () => {
+              window.location.href = "/contact/";
+            },
             ai: () => {
-              printLine('AI & Tooling: local-first models, secure pipelines, and copilots for reverse engineering, Laravel, Python, and Rust.');
+              printLine(
+                "AI & Tooling: local-first models, secure pipelines, and copilots for reverse engineering, Laravel, Python, and Rust."
+              );
             },
             philosophy: () => {
-              printLine('Core principles: open systems, ethical hacking, automation as amplification, and tools as extensions of thought.');
+              printLine(
+                "Core principles: open systems, ethical hacking, automation as amplification, and tools as extensions of thought."
+              );
             },
-            clear: () => { output.innerHTML = ''; }
+            clear: () => {
+              output.innerHTML = "";
+            },
           };
-          printLine('Livey Research Terminal v1.0');
-          printLine('Type <span class="term-cmd">help</span> to list commands.');
-          input.addEventListener('keydown', function(ev){
-            if (ev.key === 'Enter') {
+          printLine("Livey Research Terminal v1.0");
+          printLine(
+            'Type <span class="term-cmd">help</span> to list commands.'
+          );
+          input.addEventListener("keydown", function (ev) {
+            if (ev.key === "Enter") {
               const value = input.value.trim();
               if (!value) return;
-              printLine('&gt; ' + value);
+              printLine("&gt; " + value);
               const cmd = value.toLowerCase();
               if (commands[cmd]) {
                 commands[cmd]();
               } else {
-                printLine('Unknown command. Type <span class="term-cmd">help</span>.');
+                printLine(
+                  'Unknown command. Type <span class="term-cmd">help</span>.'
+                );
               }
-              input.value = '';
+              input.value = "";
             }
           });
         }

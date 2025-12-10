@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // --- 1. TYPEWRITER EFFECT ---
   const typeWriterElement = document.getElementById('typewriter-text');
   if (typeWriterElement) {
     const text = typeWriterElement.getAttribute('data-text');
     typeWriterElement.innerText = ''; // Clear initial text
     typeWriterElement.classList.remove('hidden'); // Show cursor
-    
+
     let i = 0;
     const speed = 30; // typing speed in ms
 
@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercent = (scrollTop / scrollHeight) * 100;
-      
+
       progressBar.style.width = scrollPercent + '%';
-      
+
       // Optional: Glow intensity based on completion
       if (scrollPercent > 99) {
         progressBar.style.boxShadow = "0 0 20px var(--red-team)";
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 3. COPY CODE BUTTONS ---
   // Find all code blocks wrapped in pre
   const codeBlocks = document.querySelectorAll('pre');
-  
+
   codeBlocks.forEach((block) => {
     // Create the button container
     const button = document.createElement('button');
@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       // Get the code text
       const code = block.querySelector('code').innerText;
-      
+
       // Copy to clipboard
       navigator.clipboard.writeText(code).then(() => {
         // Success feedback
         button.innerText = 'COPIED';
         button.classList.add('copied');
-        
+
         // Reset after 2 seconds
         setTimeout(() => {
           button.innerText = 'COPY';
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cmdOverlay = document.getElementById('cmd-palette-overlay');
   const cmdInput = document.getElementById('cmd-input');
   const cmdResults = document.getElementById('cmd-results');
-  
+
   if (cmdOverlay && cmdInput && cmdResults) {
-    
+
     // Command Definitions
     const commands = [
       { id: 'home', label: 'Go to Home', icon: '🏠', action: () => window.location.href = '/' },
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render List
     function renderCommands() {
       cmdResults.innerHTML = '';
-      
+
       if (filteredCommands.length === 0) {
         const div = document.createElement('div');
         div.className = 'cmd-item';
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         cmdResults.appendChild(div);
       });
-      
+
       // Ensure selected item is in view
       const selected = cmdResults.querySelector('.selected');
       if (selected) {
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cmdInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase();
-      filteredCommands = commands.filter(cmd => 
+      filteredCommands = commands.filter(cmd =>
         cmd.label.toLowerCase().includes(query)
       );
       activeIndex = 0;
@@ -198,6 +198,67 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === cmdOverlay) {
         togglePalette(false);
       }
+    });
+  }
+
+  // --- 5. SCROLL REVEAL ANIMATION ---
+  const revealElements = document.querySelectorAll('.card, .hero, .section h2, .section-sub');
+
+  // Add initial reveal class
+  revealElements.forEach(el => el.classList.add('reveal'));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // --- 6. 3D TILT EFFECT FOR CARDS ---
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+      const rotateY = ((x - centerX) / centerX) * 5;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+  });
+
+  // --- 7. GLITCH TEXT INITIALIZATION ---
+  // Automatically add data-text attribute to card titles for the CSS glitch effect
+  const cardTitles = document.querySelectorAll('.card h3 a');
+  cardTitles.forEach(title => {
+    title.parentElement.classList.add('glitch-hover');
+    title.parentElement.setAttribute('data-text', title.innerText);
+  });
+
+  // --- 8. BACKGROUND PARALLAX ---
+  const bgParticles = document.querySelector('.bg-particles');
+  if (bgParticles) {
+    document.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth - e.pageX * 2) / 100;
+      const y = (window.innerHeight - e.pageY * 2) / 100;
+      bgParticles.style.transform = `translate(${x}px, ${y}px)`;
     });
   }
 
