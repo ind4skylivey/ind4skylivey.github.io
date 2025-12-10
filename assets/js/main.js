@@ -262,4 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- 9. SKILL BAR ANIMATION ---
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.getAttribute('data-width');
+        fill.style.width = width;
+        skillObserver.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  skillFills.forEach(fill => {
+    fill.style.width = '0%'; // Start at 0
+    skillObserver.observe(fill);
+  });
+
 });
