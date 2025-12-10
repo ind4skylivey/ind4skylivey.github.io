@@ -4,11 +4,11 @@ title: "Home"
 permalink: /
 ---
 
-<section class="hero">
+<section class="hero reveal">
   <div class="hero-kicker">S1BGr0up.inc · Open Intelligence Division</div>
   <h1><span id="typewriter-text" class="hidden" data-text="Engineering systems that break closed chains."></span></h1>
   <p class="hero-sub">
-    I’m Livey, an Open Intelligence Engineer focused on cybersecurity, reverse engineering, AI-assisted tooling,
+    I’m iLivey, an Open Intelligence Engineer focused on cybersecurity, reverse engineering, AI-assisted tooling,
     and Linux performance architecture. I design frameworks, workflows, and tools that turn complexity into leverage.
   </p>
   <div class="hero-inline">
@@ -21,20 +21,20 @@ permalink: /
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-header">
     <div>
       <h2 style="color: var(--accent-2);">Featured Research</h2>
       <p class="section-sub">Latest in-depth analysis and defense frameworks.</p>
     </div>
   </div>
-  <div class="card" style="border-color: rgba(0, 242, 195, 0.4); background: linear-gradient(180deg, rgba(13,15,24,1) 0%, rgba(0,242,195,0.03) 100%);">
+  <div class="card glass-panel" style="border-color: rgba(0, 242, 195, 0.4); background: linear-gradient(180deg, rgba(13,15,24,0.8) 0%, rgba(0,242,195,0.05) 100%);">
     <div class="tags" style="margin-bottom: 12px;">
       <span class="pill" style="color: #00f2c3; border-color: rgba(0, 242, 195, 0.5);">STATUS: ACTIVE 🟢</span>
       <span class="pill">PHP / Laravel</span>
       <span class="pill">Supply Chain Security</span>
     </div>
-    <h3 style="font-size: 24px; margin-bottom: 10px;">
+    <h3 class="glitch-hover" data-text="Laravel Supply-Chain Defense" style="font-size: 24px; margin-bottom: 10px;">
       <a href="/research/laravel-supply-chain-defense/" style="text-decoration: none; color: var(--text);">Laravel Supply-Chain Defense</a>
     </h3>
     <p style="max-width: 800px; margin-bottom: 16px;">
@@ -54,7 +54,7 @@ permalink: /
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-header">
     <div>
       <h2>What I Build</h2>
@@ -82,7 +82,7 @@ permalink: /
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-header">
     <div>
       <h2>Project Spotlight</h2>
@@ -90,12 +90,13 @@ permalink: /
     </div>
   </div>
 
-  {% assign spotlights = site.projects | where: "featured", true %}
-  {% if spotlights.size > 0 %}
+{% assign spotlights = site.projects | where: "featured", true %}
+{% if spotlights.size > 0 %}
+
   <div class="grid">
     {% for spotlight in spotlights %}
     <div class="card">
-      <h3><a href="{{ spotlight.url }}">{{ spotlight.title }}</a></h3>
+      <h3 class="glitch-hover" data-text="{{ spotlight.title }}"><a href="{{ spotlight.url }}">{{ spotlight.title }}</a></h3>
       <p>{{ spotlight.description }}</p>
       {% if spotlight.repo %}<p><a href="{{ spotlight.repo }}" target="_blank" rel="noopener">View repository ↗</a></p>{% endif %}
     </div>
@@ -106,7 +107,7 @@ permalink: /
   {% endif %}
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-header">
     <div>
       <h2>Core Philosophy</h2>
@@ -145,7 +146,7 @@ permalink: /
   </div>
 </section>
 
-<section class="section">
+<section class="section reveal">
   <div class="section-header">
     <div>
       <h2>Lab Logs</h2>
@@ -155,7 +156,8 @@ permalink: /
   <div class="grid">
     {% for post in site.posts limit: 3 %}
     <div class="card">
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      <div style="margin-bottom: 8px; font-size: 11px; color: var(--accent-2);">LOG: {{ post.date | date: "%Y.%m.%d" }}</div>
+      <h3 class="glitch-hover" data-text="{{ post.title }}"><a href="{{ post.url }}">{{ post.title }}</a></h3>
       <p>{{ post.excerpt | strip_html | truncate: 130 }}</p>
     </div>
     {% endfor %}
