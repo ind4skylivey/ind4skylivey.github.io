@@ -46,13 +46,13 @@ permalink: /contact/
       </div>
     </div>
 
-    <!-- Visual / Quote -->
-    <div class="glass-panel reveal" style="padding: 24px; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-      <div style="font-size: 48px; margin-bottom: 16px;">📡</div>
-      <blockquote style="font-style: italic; color: var(--muted); border-left: none; padding: 0;">
-        "Every signal carries a story.<br>
-        Every command reveals a soul.<br>
-        Reach out — and step into the realm where code, identity, and consciousness intertwine."
+    <!-- Visual / Video -->
+    <div class="glass-panel reveal" style="padding: 12px; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
+      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);">
+        <source src="/assets/media/contact-video.mp4" type="video/mp4">
+      </video>
+      <blockquote style="font-style: italic; color: var(--muted); border-left: none; padding: 16px 0 0 0; font-size: 13px;">
+        "Every signal carries a story. Reach out — and step into the realm where code, identity, and consciousness intertwine."
       </blockquote>
     </div>
 
