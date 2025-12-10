@@ -202,10 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 5. SCROLL REVEAL ANIMATION ---
-  const revealElements = document.querySelectorAll('.card, .hero, .section h2, .section-sub');
+  // Auto-add reveal class to common elements
+  const autoRevealElements = document.querySelectorAll('.card, .hero, .section h2, .section-sub');
+  autoRevealElements.forEach(el => el.classList.add('reveal'));
 
-  // Add initial reveal class
-  revealElements.forEach(el => el.classList.add('reveal'));
+  // Select ALL reveal elements (including those manually added in HTML)
+  const allRevealElements = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -219,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rootMargin: "0px 0px -50px 0px"
   });
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  allRevealElements.forEach(el => revealObserver.observe(el));
 
   // --- 6. 3D TILT EFFECT FOR CARDS ---
   const cards = document.querySelectorAll('.card');
