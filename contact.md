@@ -4,89 +4,69 @@ title: "Contact"
 permalink: /contact/
 ---
 
-<div class="contact-terminal">
-  <div class="term-lights">
-    <span></span><span></span><span></span>
+<div class="contact-container">
+
+  <!-- Header -->
+  <div class="section-header reveal" style="margin-bottom: 40px;">
+    <div>
+      <h1 class="glitch-hover" data-text="Establish Uplink">Establish Uplink</h1>
+      <p class="section-sub">Encrypted channels open. Signal strength: 100%.</p>
+    </div>
   </div>
-  <p class="typing">connecting to livey://digital-realm...</p>
+
+  <div class="grid">
+
+    <!-- Contact Card -->
+    <div class="card reveal" style="grid-column: span 2;">
+      <h3 style="color: var(--accent-2);">Direct Comms</h3>
+      <p style="margin-bottom: 24px;">
+        Step into a space where development, security, and creative engineering blend together.
+        Reach out for collaborations, security audits, or just to share ideas.
+      </p>
+
+      <div class="list-dots">
+        <div style="margin-bottom: 12px;">
+          <strong style="color: var(--text);">Email:</strong>
+          <a href="mailto:ind4skylivey@proton.me" style="color: var(--accent); margin-left: 8px;">ind4skylivey@proton.me</a>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <strong style="color: var(--text);">GitHub:</strong>
+          <a href="https://github.com/ind4skylivey" target="_blank" style="color: var(--accent); margin-left: 8px;">github.com/ind4skylivey</a>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <strong style="color: var(--text);">Organization:</strong>
+          <a href="https://github.com/S1b-Team" target="_blank" style="color: var(--accent); margin-left: 8px;">S1b Gr0up</a>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="mailto:ind4skylivey@proton.me" class="btn">
+          INITIATE TRANSMISSION
+        </a>
+      </div>
+    </div>
+
+    <!-- Visual / Quote -->
+    <div class="glass-panel reveal" style="padding: 24px; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+      <div style="font-size: 48px; margin-bottom: 16px;">📡</div>
+      <blockquote style="font-style: italic; color: var(--muted); border-left: none; padding: 0;">
+        "Every signal carries a story.<br>
+        Every command reveals a soul.<br>
+        Reach out — and step into the realm where code, identity, and consciousness intertwine."
+      </blockquote>
+    </div>
+
+  </div>
+
+  <!-- Terminal Decor -->
+  <div class="reveal" style="margin-top: 60px;">
+    <div class="terminal-wrapper">
+      <div class="term-line"><span class="term-cmd">root@livey:~$</span> ./open_channel.sh --secure</div>
+      <div class="term-line">Establishing handshake... <span style="color: #0f0;">[OK]</span></div>
+      <div class="term-line">Encryption keys exchanged... <span style="color: #0f0;">[OK]</span></div>
+      <div class="term-line">Channel ready. Waiting for input...</div>
+      <div class="term-line"><span class="cursor">_</span></div>
+    </div>
+  </div>
+
 </div>
-
-<h1 class="contact-title">Contact</h1>
-
-<p class="contact-description">
-  Step into a space where development, security, anime energy, and creative engineering blend together.  
-  If you want to collaborate or reach the real me behind the code — this is your gateway.
-</p>
-
-<div class="contact-channels">
-  <h3>Official Contact Channels</h3>
-
-  <p><strong>Email:</strong>  
-    <a class="neon-link" href="mailto:ind4skylivey@proton.me">
-      ind4skylivey@proton.me
-    </a>
-  </p>
-
-  <p><strong>GitHub:</strong>  
-    <a class="neon-link" href="https://github.com/ind4skylivey" target="_blank">
-      github.com/ind4skylivey
-    </a>
-  </p>
-
-  <p><strong>Organization:</strong>  
-    <a class="neon-link" href="https://github.com/S1b-Team">
-      S1BGr0up.inc
-    </a>
-  </p>
-
-  <p><strong>Specialties:</strong><br>
-  Cybersecurity, Reverse Engineering, AI Development, PHP/Laravel, Python, Rust, Linux Systems.</p>
-</div>
-
-<blockquote class="contact-quote">
-  “Every signal carries a story.  
-  Every command reveals a soul.  
-  Reach out — and step into the realm where code, identity, and consciousness intertwine.”
-</blockquote>
-
-
-<h3 class="contact-portal-title">Contact Portal</h3>
-
-<p class="contact-description">
-  A more intimate doorway into my digital universe — where ideas ignite, projects are born, and curiosity is always welcome.
-  If you bring passion, creativity, or rebellion, you’ll fit right in.
-</p>
-
-
-<!-- VIDEO WITH TECH FRAME -->
-<div class="tech-frame">
-  <div class="tech-border"></div>
-  <video autoplay muted loop playsinline class="contact-video">
-    <source src="/assets/media/contact-video.mp4" type="video/mp4">
-  </video>
-</div>
-
-<!-- HOLOGRAM BUTTON -->
-<div class="contact-buttons">
-  <a href="mailto:ind4skylivey@proton.me" class="holo-btn">Initiate Contact</a>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const el = document.querySelector(".typing");
-  const text = el.textContent.trim();
-  el.textContent = "";
-  let i = 0;
-
-  function type() {
-    if (i < text.length) {
-      el.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 55);
-    } else {
-      el.style.borderRight = "none";
-    }
-  }
-  type();
-});
-</script>
