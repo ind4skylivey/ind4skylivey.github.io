@@ -15,6 +15,9 @@ permalink: /
     <span>// live mode enabled</span>
     <span class="cursor"></span>
   </div>
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 8px; opacity: 0.7;">
+    <span style="color: var(--accent-2); margin-right: 6px;">::</span> SYSTEM ACCESS: <span style="color: var(--text); border: 1px solid var(--border); padding: 1px 4px; border-radius: 4px;">[CTRL+K]</span> for command palette
+  </div>
   <div class="hero-actions">
     <a class="btn" href="/projects/">Explore Projects</a>
     <a class="btn btn-outline" href="/research/">View Research Logs</a>
