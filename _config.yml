@@ -1,4 +1,4 @@
-title: "Livey | Open Intelligence Engineer"
+title: "iLivey | Open Intelligence Engineer"
 description: "Engineering AI-powered frameworks, security tooling, and open systems."
 url: "https://ind4skylivey.github.io"
 author:
@@ -6,6 +6,7 @@ author:
   email: "ind4skylivey@proton.me"
   github_username: "ind4skylivey"
 signature: "Open intelligence is ethical intelligence."
+image: "/assets/others/ind4skylivey-site.png"
 markdown: kramdown
 plugins:
   - jekyll-feed
