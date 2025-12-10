@@ -48,7 +48,7 @@ permalink: /contact/
 
     <!-- Visual / Video -->
     <div class="glass-panel reveal" style="padding: 12px; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
-      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);">
+      <video id="contact-video" autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);">
         <source src="/assets/media/contact-video.mp4" type="video/mp4">
       </video>
       <blockquote style="font-style: italic; color: var(--muted); border-left: none; padding: 16px 0 0 0; font-size: 13px;">

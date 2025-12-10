@@ -282,4 +282,19 @@ document.addEventListener('DOMContentLoaded', () => {
     skillObserver.observe(fill);
   });
 
+  // --- 10. VIDEO HOVER AUDIO CONTROL ---
+  const contactVideo = document.getElementById('contact-video');
+  if (contactVideo) {
+    // Set initial volume to 50% to avoid blasting ears
+    contactVideo.volume = 0.5;
+
+    contactVideo.addEventListener('mouseenter', () => {
+      contactVideo.muted = false;
+    });
+
+    contactVideo.addEventListener('mouseleave', () => {
+      contactVideo.muted = true;
+    });
+  }
+
 });
