@@ -3,7 +3,7 @@ layout: default
 title: "The Singularity of SecOps: Local AI as a Force Multiplier"
 date: 2025-11-15 09:00:00 +0000
 categories: [AI, Security, Automation, Research]
-featured_image: /assets/media/ai-security-hero.png
+image: /assets/media/ai-security-hero.png
 ---
 
 <div class="reveal">
