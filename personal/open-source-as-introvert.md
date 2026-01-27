@@ -1,4 +1,13 @@
-### Building open-source as an introvert, by an introvert
+---
+layout: personal
+title: "Building Open Source as an Introvert"
+permalink: /personal/open-source-as-introvert/
+eyebrow: "Open Source"
+lead: "I maintain multiple GitHub projects without going to conferences, meetups or doing traditional networking. Here is how I build community being introverted."
+date: "January 27, 2026"
+---
+
+### Building Open Source as an Introvert, by an Introvert
 
 Alright, I'm just going to say it. I don't do networking. Like, at all. No conferences, no meetups, no "let's grab coffee" with random people, no cold emails. I know these things work for some people, but the idea of walking into a room full of strangers and making small talk for hours? I'd honestly rather stare at a wall. And somehow I've managed to build open-source projects that people actually use and even contribute to.
 
@@ -49,6 +58,7 @@ It takes longer but it's worth it. When someone forks and sends a PR, you don't 
 I try to write commit messages that are actually useful. Not "update" or "fix stuff." But "fix handle case where scaling resets after suspend fixes #47" or "feat add support for different Wayland compositors."
 
 This isn't me being pedantic. It's that when I'm looking at git history three months from now trying to remember when something broke, I don't want to be guessing.
+
 
 ### The projects speak for themselves
 

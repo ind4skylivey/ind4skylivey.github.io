@@ -1,7 +1,15 @@
-### Learning Thai because I got obsessed with GL dramas
+---
+layout: personal
+title: "Learning Thai Through GL Dramas"
+permalink: /personal/learning-thai/
+eyebrow: "Language Learning"
+lead: "How Thai GL dramas took me from casual viewer to language student — using Obsidian, Ling, AnkiDroid and lots of immersion."
+date: "January 27, 2026"
+---
+
+### Learning Thai Through GL Dramas
 
 Okay, I'm just going to say it. I started learning Thai because of GL dramas. Like, that's the actual reason. No deep story, no "I've always been fascinated by Thai culture," just pure drama obsession and this thought one day: what if I could understand this without subtitles?
-
 Seems kind of silly to admit, but honestly? It works. When I spend my entire day programming or staring at cybersecurity stuff, having something that actually makes me want to keep going at night matters.
 
 Before this I'd already collected a weird bunch of languages. Spanish is my native language, obviously. English I learned because I had to, work and all that. Japanese I took pretty seriously, got to an intermediate level, kanjis were a whole adventure. Tried Korean, didn't stick. Last year I started Swedish because I liked how it sounded. Now here we are with Thai. My brain apparently never has enough.

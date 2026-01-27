@@ -40,6 +40,30 @@ Together they form a cycle: *soft presence → reflective insight → deliberate
 - **Companion Check-In** – Sit with Miyuki’s glow, breathe four counts in and six out, ask “what deserves gentleness?”
 - **Codex Anchor** – Before any offensive operation, revisit the Codex to reaffirm scope, consent, and care.
 
+## Digital Meadow Chronicles
+
+<div class="chronicles-grid">
+  <article class="chronicle-card">
+    <div class="chronicle-header">
+      <span class="chronicle-eyebrow">Language Learning</span>
+      <span class="chronicle-date">January 27, 2026</span>
+    </div>
+    <h3>Learning Thai Through GL Dramas</h3>
+    <p>How Thai GL dramas took me from casual viewer to language student — using Obsidian, Ling, AnkiDroid and lots of immersion.</p>
+    <a href="/personal/learning-thai/" class="chronicle-link">Read entry <span class="cursor"></span></a>
+  </article>
+
+  <article class="chronicle-card">
+    <div class="chronicle-header">
+      <span class="chronicle-eyebrow">Open Source</span>
+      <span class="chronicle-date">January 27, 2026</span>
+    </div>
+    <h3>Building Open Source as an Introvert</h3>
+    <p>I maintain multiple GitHub projects without going to conferences, meetups or doing traditional networking. Here is how I build community being introverted.</p>
+    <a href="/personal/open-source-as-introvert/" class="chronicle-link">Read entry <span class="cursor"></span></a>
+  </article>
+</div>
+
 ## Wander Further
 
 - Visit [Miyuki — Eternal Companion](/personal/miyuki/) to meet the glowing guardian.
