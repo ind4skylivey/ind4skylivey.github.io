@@ -3,45 +3,575 @@ layout: default
 ---
 <article class="project">
   <header class="project-header">
-    {% if page.banner %}<img class="banner" src="{{ page.banner }}" alt="{{ page.title }} banner">{% endif %}
+    {% if page.banner %}
+    <div class="project-banner">
+      <img src="{{ page.banner }}" alt="{{ page.title }} banner">
+    </div>
+    {% endif %}
     
-    <div class="project-title-section">
-      <h1 class="project-title">{{ page.title }}</h1>
-      {% if page.version %}<span class="version-badge">v{{ page.version }}</span>{% endif %}
-      {% if page.status %}<span class="status-badge status-{{ page.status }}">{{ page.status }}</span>{% endif %}
+    <div class="project-title-wrapper">
+      <div class="project-title-section">
+        <h1 class="project-title">{{ page.title }}</h1>
+        {% if page.version %}
+        <span class="version-badge">v{{ page.version }}</span>
+        {% endif %}
+        {% if page.status %}
+        <span class="status-badge status-{{ page.status }}">{{ page.status | upcase }}</span>
+        {% endif %}
+      </div>
+      
+      {% if page.organization %}
+      <div class="project-org">
+        <i class="fas fa-building"></i>
+        <span>{{ page.organization }}</span>
+      </div>
+      {% endif %}
     </div>
     
-    {% if page.description %}<p class="project-lede">{{ page.description }}</p>{% endif %}
+    {% if page.description %}
+    <p class="project-lede">{{ page.description }}</p>
+    {% endif %}
     
-    <div class="project-meta">
+    <div class="project-actions">
       {% if page.repo %}
-      <a class="btn btn-primary" href="{{ page.repo }}" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-        </svg>
-        View Repository ↗
+      <a class="btn btn-github" href="{{ page.repo }}" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+        <span>View on GitHub</span>
+        <i class="fas fa-external-link-alt"></i>
       </a>
       {% endif %}
       {% if page.demo %}
-      <a class="btn btn-outline" href="{{ page.demo }}" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
-        </svg>
-        Live Demo ↗
+      <a class="btn btn-demo" href="{{ page.demo }}" target="_blank" rel="noopener">
+        <i class="fas fa-play-circle"></i>
+        <span>Live Demo</span>
+        <i class="fas fa-external-link-alt"></i>
       </a>
       {% endif %}
     </div>
 
     {% if page.tags %}
     <div class="tech-stack-section">
-      <h3 class="section-label">Technologies</h3>
+      <div class="section-header">
+        <i class="fas fa-layer-group"></i>
+        <h3>Tech Stack</h3>
+      </div>
       <div class="tech-badges">
         {% for tag in page.tags %}
-          <span class="tech-badge" data-tech="{{ tag | downcase }}">
-            <span class="tech-icon">{{ tag | slice: 0 }}</span>
-            {{ tag }}
-          </span>
+          {% assign tag_lower = tag | downcase %}
+          {% case tag_lower %}
+            {% when 'rust' %}
+              <span class="tech-badge tech-rust"><i class="fab fa-rust"></i> Rust</span>
+            {% when 'python' %}
+              <span class="tech-badge tech-python"><i class="fab fa-python"></i> Python</span>
+            {% when 'javascript' %}
+              <span class="tech-badge tech-javascript"><i class="fab fa-js"></i> JavaScript</span>
+            {% when 'php' %}
+              <span class="tech-badge tech-php"><i class="fab fa-php"></i> PHP</span>
+            {% when 'laravel' %}
+              <span class="tech-badge tech-laravel"><i class="fab fa-laravel"></i> Laravel</span>
+            {% when 'vue.js', 'vuejs' %}
+              <span class="tech-badge tech-vue"><i class="fab fa-vuejs"></i> Vue.js</span>
+            {% when 'react' %}
+              <span class="tech-badge tech-react"><i class="fab fa-react"></i> React</span>
+            {% when 'docker' %}
+              <span class="tech-badge tech-docker"><i class="fab fa-docker"></i> Docker</span>
+            {% when 'linux' %}
+              <span class="tech-badge tech-linux"><i class="fab fa-linux"></i> Linux</span>
+            {% when 'security' %}
+              <span class="tech-badge tech-security"><i class="fas fa-shield-alt"></i> Security</span>
+            {% when 'cybersecurity' %}
+              <span class="tech-badge tech-cyber"><i class="fas fa-user-secret"></i> Cybersecurity</span>
+            {% when 'zig' %}
+              <span class="tech-badge tech-zig"><i class="fas fa-bolt"></i> Zig</span>
+            {% when 'shell', 'bash' %}
+              <span class="tech-badge tech-shell"><i class="fas fa-terminal"></i> Shell</span>
+            {% when 'git' %}
+              <span class="tech-badge tech-git"><i class="fab fa-git-alt"></i> Git</span>
+            {% when 'github' %}
+              <span class="tech-badge tech-github"><i class="fab fa-github"></i> GitHub</span>
+            {% when 'css' %}
+              <span class="tech-badge tech-css"><i class="fab fa-css3-alt"></i> CSS3</span>
+            {% when 'html' %}
+              <span class="tech-badge tech-html"><i class="fab fa-html5"></i> HTML5</span>
+            {% when 'node.js', 'nodejs' %}
+              <span class="tech-badge tech-node"><i class="fab fa-node-js"></i> Node.js</span>
+            {% when 'npm' %}
+              <span class="tech-badge tech-npm"><i class="fab fa-npm"></i> npm</span>
+            {% when 'api' %}
+              <span class="tech-badge tech-api"><i class="fas fa-plug"></i> API</span>
+            {% when 'rest api' %}
+              <span class="tech-badge tech-api"><i class="fas fa-exchange-alt"></i> REST API</span>
+            {% when 'database' %}
+              <span class="tech-badge tech-database"><i class="fas fa-database"></i> Database</span>
+            {% when 'postgresql', 'postgres' %}
+              <span class="tech-badge tech-postgres"><i class="fas fa-database"></i> PostgreSQL</span>
+            {% when 'redis' %}
+              <span class="tech-badge tech-redis"><i class="fas fa-server"></i> Redis</span>
+            {% when 'nginx' %}
+              <span class="tech-badge tech-nginx"><i class="fas fa-server"></i> Nginx</span>
+            {% when 'terminal', 'cli' %}
+              <span class="tech-badge tech-terminal"><i class="fas fa-terminal"></i> Terminal</span>
+            {% when 'machine learning', 'ml' %}
+              <span class="tech-badge tech-ml"><i class="fas fa-brain"></i> ML</span>
+            {% when 'ai' %}
+              <span class="tech-badge tech-ai"><i class="fas fa-robot"></i> AI</span>
+            {% when 'blockchain' %}
+              <span class="tech-badge tech-blockchain"><i class="fas fa-link"></i> Blockchain</span>
+            {% when 'game' %}
+              <span class="tech-badge tech-game"><i class="fas fa-gamepad"></i> Game</span>
+            {% when 'rpg' %}
+              <span class="tech-badge tech-rpg"><i class="fas fa-dice-d20"></i> RPG</span>
+            {% when 'gaming' %}
+              <span class="tech-badge tech-gaming"><i class="fas fa-gamepad"></i> Gaming</span>
+            {% when 'wine' %}
+              <span class="tech-badge tech-wine"><i class="fas fa-wine-glass-alt"></i> Wine</span>
+            {% when 'proton' %}
+              <span class="tech-badge tech-proton"><i class="fas fa-atom"></i> Proton</span>
+            {% when 'steam' %}
+              <span class="tech-badge tech-steam"><i class="fab fa-steam"></i> Steam</span>
+            {% when 'discord' %}
+              <span class="tech-badge tech-discord"><i class="fab fa-discord"></i> Discord</span>
+            {% when 'markdown' %}
+              <span class="tech-badge tech-markdown"><i class="fab fa-markdown"></i> Markdown</span>
+            {% when 'jupyter' %}
+              <span class="tech-badge tech-jupyter"><i class="fas fa-book-open"></i> Jupyter</span>
+            {% when 'fastapi' %}
+              <span class="tech-badge tech-fastapi"><i class="fas fa-bolt"></i> FastAPI</span>
+            {% when 'flask' %}
+              <span class="tech-badge tech-flask"><i class="fas fa-flask"></i> Flask</span>
+            {% when 'django' %}
+              <span class="tech-badge tech-django"><i class="fab fa-python"></i> Django</span>
+            {% when 'bootstrap' %}
+              <span class="tech-badge tech-bootstrap"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+            {% when 'tailwind' %}
+              <span class="tech-badge tech-tailwind"><i class="fas fa-wind"></i> Tailwind</span>
+            {% when 'sass' %}
+              <span class="tech-badge tech-sass"><i class="fab fa-sass"></i> Sass</span>
+            {% when 'webpack' %}
+              <span class="tech-badge tech-webpack"><i class="fas fa-cube"></i> Webpack</span>
+            {% when 'vite' %}
+              <span class="tech-badge tech-vite"><i class="fas fa-bolt"></i> Vite</span>
+            {% when 'babel' %}
+              <span class="tech-badge tech-babel"><i class="fas fa-code"></i> Babel</span>
+            {% when 'eslint' %}
+              <span class="tech-badge tech-eslint"><i class="fas fa-check-circle"></i> ESLint</span>
+            {% when 'jest' %}
+              <span class="tech-badge tech-jest"><i class="fas fa-vial"></i> Jest</span>
+            {% when 'cypress' %}
+              <span class="tech-badge tech-cypress"><i class="fas fa-vial"></i> Cypress</span>
+            {% when 'kubernetes' %}
+              <span class="tech-badge tech-k8s"><i class="fas fa-dharmachakra"></i> Kubernetes</span>
+            {% when 'terraform' %}
+              <span class="tech-badge tech-terraform"><i class="fas fa-globe"></i> Terraform</span>
+            {% when 'ansible' %}
+              <span class="tech-badge tech-ansible"><i class="fas fa-cog"></i> Ansible</span>
+            {% when 'prometheus' %}
+              <span class="tech-badge tech-prometheus"><i class="fas fa-fire"></i> Prometheus</span>
+            {% when 'grafana' %}
+              <span class="tech-badge tech-grafana"><i class="fas fa-chart-area"></i> Grafana</span>
+            {% when 'aws' %}
+              <span class="tech-badge tech-aws"><i class="fab fa-aws"></i> AWS</span>
+            {% when 'google cloud', 'gcp' %}
+              <span class="tech-badge tech-gcp"><i class="fab fa-google"></i> GCP</span>
+            {% when 'azure' %}
+              <span class="tech-badge tech-azure"><i class="fab fa-microsoft"></i> Azure</span>
+            {% when 'digitalocean' %}
+              <span class="tech-badge tech-do"><i class="fab fa-digital-ocean"></i> DigitalOcean</span>
+            {% when 'heroku' %}
+              <span class="tech-badge tech-heroku"><i class="fas fa-cloud"></i> Heroku</span>
+            {% when 'netlify' %}
+              <span class="tech-badge tech-netlify"><i class="fas fa-cloud"></i> Netlify</span>
+            {% when 'vercel' %}
+              <span class="tech-badge tech-vercel"><i class="fas fa-triangle"></i> Vercel</span>
+            {% when 'firebase' %}
+              <span class="tech-badge tech-firebase"><i class="fas fa-fire"></i> Firebase</span>
+            {% when 'mongodb' %}
+              <span class="tech-badge tech-mongodb"><i class="fas fa-database"></i> MongoDB</span>
+            {% when 'mysql' %}
+              <span class="tech-badge tech-mysql"><i class="fas fa-database"></i> MySQL</span>
+            {% when 'sqlite' %}
+              <span class="tech-badge tech-sqlite"><i class="fas fa-database"></i> SQLite</span>
+            {% when 'elasticsearch' %}
+              <span class="tech-badge tech-elastic"><i class="fas fa-search"></i> Elasticsearch</span>
+            {% when 'graphql' %}
+              <span class="tech-badge tech-graphql"><i class="fas fa-project-diagram"></i> GraphQL</span>
+            {% when 'json' %}
+              <span class="tech-badge tech-json"><i class="fas fa-code"></i> JSON</span>
+            {% when 'xml' %}
+              <span class="tech-badge tech-xml"><i class="fas fa-code"></i> XML</span>
+            {% when 'yaml' %}
+              <span class="tech-badge tech-yaml"><i class="fas fa-file-code"></i> YAML</span>
+            {% when 'toml' %}
+              <span class="tech-badge tech-toml"><i class="fas fa-file-code"></i> TOML</span>
+            {% when 'vim' %}
+              <span class="tech-badge tech-vim"><i class="fas fa-code"></i> Vim</span>
+            {% when 'vscode' %}
+              <span class="tech-badge tech-vscode"><i class="fas fa-code"></i> VS Code</span>
+            {% when 'figma' %}
+              <span class="tech-badge tech-figma"><i class="fab fa-figma"></i> Figma</span>
+            {% when 'sketch' %}
+              <span class="tech-badge tech-sketch"><i class="fab fa-sketch"></i> Sketch</span>
+            {% when 'adobe' %}
+              <span class="tech-badge tech-adobe"><i class="fab fa-adobe"></i> Adobe</span>
+            {% when 'photoshop' %}
+              <span class="tech-badge tech-photoshop"><i class="fas fa-image"></i> Photoshop</span>
+            {% when 'illustrator' %}
+              <span class="tech-badge tech-illustrator"><i class="fas fa-pen-nib"></i> Illustrator</span>
+            {% when 'after effects' %}
+              <span class="tech-badge tech-ae"><i class="fas fa-film"></i> After Effects</span>
+            {% when 'premiere' %}
+              <span class="tech-badge tech-premiere"><i class="fas fa-video"></i> Premiere</span>
+            {% when 'blender' %}
+              <span class="tech-badge tech-blender"><i class="fas fa-cube"></i> Blender</span>
+            {% when 'unity' %}
+              <span class="tech-badge tech-unity"><i class="fab fa-unity"></i> Unity</span>
+            {% when 'unreal' %}
+              <span class="tech-badge tech-unreal"><i class="fas fa-gamepad"></i> Unreal</span>
+            {% when 'godot' %}
+              <span class="tech-badge tech-godot"><i class="fas fa-robot"></i> Godot</span>
+            {% when 'three.js' %}
+              <span class="tech-badge tech-three"><i class="fas fa-cube"></i> Three.js</span>
+            {% when 'd3.js' %}
+              <span class="tech-badge tech-d3"><i class="fas fa-chart-area"></i> D3.js</span>
+            {% when 'chart.js' %}
+              <span class="tech-badge tech-chart"><i class="fas fa-chart-bar"></i> Chart.js</span>
+            {% when 'webgl' %}
+              <span class="tech-badge tech-webgl"><i class="fas fa-cube"></i> WebGL</span>
+            {% when 'wasm' %}
+              <span class="tech-badge tech-wasm"><i class="fas fa-cube"></i> WebAssembly</span>
+            {% when 'electron' %}
+              <span class="tech-badge tech-electron"><i class="fab fa-electron"></i> Electron</span>
+            {% when 'tauri' %}
+              <span class="tech-badge tech-tauri"><i class="fas fa-window-maximize"></i> Tauri</span>
+            {% when 'flutter' %}
+              <span class="tech-badge tech-flutter"><i class="fas fa-paper-plane"></i> Flutter</span>
+            {% when 'react native' %}
+              <span class="tech-badge tech-react-native"><i class="fab fa-react"></i> React Native</span>
+            {% when 'ionic' %}
+              <span class="tech-badge tech-ionic"><i class="fas fa-mobile-alt"></i> Ionic</span>
+            {% when 'pwa' %}
+              <span class="tech-badge tech-pwa"><i class="fas fa-mobile-alt"></i> PWA</span>
+            {% when 'iot' %}
+              <span class="tech-badge tech-iot"><i class="fas fa-microchip"></i> IoT</span>
+            {% when 'embedded' %}
+              <span class="tech-badge tech-embedded"><i class="fas fa-microchip"></i> Embedded</span>
+            {% when 'arduino' %}
+              <span class="tech-badge tech-arduino"><i class="fas fa-microchip"></i> Arduino</span>
+            {% when 'raspberry pi' %}
+              <span class="tech-badge tech-raspberry"><i class="fas fa-microchip"></i> Raspberry Pi</span>
+            {% when 'mqtt' %}
+              <span class="tech-badge tech-mqtt"><i class="fas fa-broadcast-tower"></i> MQTT</span>
+            {% when '5g' %}
+              <span class="tech-badge tech-5g"><i class="fas fa-broadcast-tower"></i> 5G</span>
+            {% when 'networking' %}
+              <span class="tech-badge tech-networking"><i class="fas fa-network-wired"></i> Networking</span>
+            {% when 'http' %}
+              <span class="tech-badge tech-http"><i class="fas fa-globe"></i> HTTP</span>
+            {% when 'https' %}
+              <span class="tech-badge tech-https"><i class="fas fa-lock"></i> HTTPS</span>
+            {% when 'oauth' %}
+              <span class="tech-badge tech-oauth"><i class="fas fa-key"></i> OAuth</span>
+            {% when 'jwt' %}
+              <span class="tech-badge tech-jwt"><i class="fas fa-ticket-alt"></i> JWT</span>
+            {% when 'cors' %}
+              <span class="tech-badge tech-cors"><i class="fas fa-shield-alt"></i> CORS</span>
+            {% when 'csp' %}
+              <span class="tech-badge tech-csp"><i class="fas fa-shield-alt"></i> CSP</span>
+            {% when 'penetration testing' %}
+              <span class="tech-badge tech-pentest"><i class="fas fa-user-secret"></i> Pentesting</span>
+            {% when 'red team' %}
+              <span class="tech-badge tech-redteam"><i class="fas fa-user-ninja"></i> Red Team</span>
+            {% when 'blue team' %}
+              <span class="tech-badge tech-blueteam"><i class="fas fa-shield-alt"></i> Blue Team</span>
+            {% when 'threat hunting' %}
+              <span class="tech-badge tech-threat-hunt"><i class="fas fa-search"></i> Threat Hunting</span>
+            {% when 'incident response' %}
+              <span class="tech-badge tech-ir"><i class="fas fa-ambulance"></i> Incident Response</span>
+            {% when 'forensics' %}
+              <span class="tech-badge tech-forensics"><i class="fas fa-search"></i> Forensics</span>
+            {% when 'malware analysis' %}
+              <span class="tech-badge tech-malware"><i class="fas fa-virus"></i> Malware Analysis</span>
+            {% when 'reverse engineering' %}
+              <span class="tech-badge tech-re"><i class="fas fa-code"></i> Reverse Engineering</span>
+            {% when 'binary analysis' %}
+              <span class="tech-badge tech-binary"><i class="fas fa-microchip"></i> Binary Analysis</span>
+            {% when 'exploit development' %}
+              <span class="tech-badge tech-exploit"><i class="fas fa-bomb"></i> Exploit Dev</span>
+            {% when 'vulnerability research' %}
+              <span class="tech-badge tech-vuln"><i class="fas fa-bug"></i> Vuln Research</span>
+            {% when 'bug bounty' %}
+              <span class="tech-badge tech-bugbounty"><i class="fas fa-dollar-sign"></i> Bug Bounty</span>
+            {% when 'ctf' %}
+              <span class="tech-badge tech-ctf"><i class="fas fa-flag"></i> CTF</span>
+            {% when 'wargames' %}
+              <span class="tech-badge tech-wargames"><i class="fas fa-gamepad"></i> Wargames</span>
+            {% when 'hackthebox' %}
+              <span class="tech-badge tech-htb"><i class="fas fa-box"></i> Hack The Box</span>
+            {% when 'tryhackme' %}
+              <span class="tech-badge tech-thm"><i class="fas fa-graduation-cap"></i> TryHackMe</span>
+            {% when 'burp suite' %}
+              <span class="tech-badge tech-burp"><i class="fas fa-search"></i> Burp Suite</span>
+            {% when 'owasp zap' %}
+              <span class="tech-badge tech-zap"><i class="fas fa-bolt"></i> OWASP ZAP</span>
+            {% when 'nessus' %}
+              <span class="tech-badge tech-nessus"><i class="fas fa-shield-alt"></i> Nessus</span>
+            {% when 'openvas' %}
+              <span class="tech-badge tech-openvas"><i class="fas fa-shield-alt"></i> OpenVAS</span>
+            {% when 'nmap' %}
+              <span class="tech-badge tech-nmap"><i class="fas fa-network-wired"></i> Nmap</span>
+            {% when 'masscan' %}
+              <span class="tech-badge tech-masscan"><i class="fas fa-network-wired"></i> Masscan</span>
+            {% when 'shodan' %}
+              <span class="tech-badge tech-shodan"><i class="fas fa-search"></i> Shodan</span>
+            {% when 'censys' %}
+              <span class="tech-badge tech-censys"><i class="fas fa-search"></i> Censys</span>
+            {% when 'virustotal' %}
+              <span class="tech-badge tech-virustotal"><i class="fas fa-shield-virus"></i> VirusTotal</span>
+            {% when 'yara' %}
+              <span class="tech-badge tech-yara"><i class="fas fa-fingerprint"></i> YARA</span>
+            {% when 'sigma' %}
+              <span class="tech-badge tech-sigma"><i class="fas fa-file-code"></i> Sigma</span>
+            {% when 'osquery' %}
+              <span class="tech-badge tech-osquery"><i class="fas fa-search"></i> osquery</span>
+            {% when 'elastic' %}
+              <span class="tech-badge tech-elastic"><i class="fas fa-search"></i> Elastic</span>
+            {% when 'splunk' %}
+              <span class="tech-badge tech-splunk"><i class="fas fa-search"></i> Splunk</span>
+            {% when 'qradar' %}
+              <span class="tech-badge tech-qradar"><i class="fas fa-shield-alt"></i> QRadar</span>
+            {% when 'arcsight' %}
+              <span class="tech-badge tech-arcsight"><i class="fas fa-eye"></i> ArcSight</span>
+            {% when 'sentinel' %}
+              <span class="tech-badge tech-sentinel"><i class="fas fa-shield-alt"></i> Sentinel</span>
+            {% when 'carbon black' %}
+              <span class="tech-badge tech-carbon"><i class="fas fa-shield-alt"></i> Carbon Black</span>
+            {% when 'crowdstrike' %}
+              <span class="tech-badge tech-crowd"><i class="fas fa-crow"></i> CrowdStrike</span>
+            {% when 'palo alto' %}
+              <span class="tech-badge tech-paloalto"><i class="fas fa-fire"></i> Palo Alto</span>
+            {% when 'fortinet' %}
+              <span class="tech-badge tech-fortinet"><i class="fas fa-shield-alt"></i> Fortinet</span>
+            {% when 'cisco' %}
+              <span class="tech-badge tech-cisco"><i class="fas fa-network-wired"></i> Cisco</span>
+            {% when 'juniper' %}
+              <span class="tech-badge tech-juniper"><i class="fas fa-tree"></i> Juniper</span>
+            {% when 'f5' %}
+              <span class="tech-badge tech-f5"><i class="fas fa-shield-alt"></i> F5</span>
+            {% when 'imperva' %}
+              <span class="tech-badge tech-imperva"><i class="fas fa-shield-alt"></i> Imperva</span>
+            {% when 'akamai' %}
+              <span class="tech-badge tech-akamai"><i class="fas fa-globe"></i> Akamai</span>
+            {% when 'cloudflare' %}
+              <span class="tech-badge tech-cloudflare"><i class="fas fa-cloud"></i> Cloudflare</span>
+            {% when 'fastly' %}
+              <span class="tech-badge tech-fastly"><i class="fas fa-bolt"></i> Fastly</span>
+            {% when 'incapsula' %}
+              <span class="tech-badge tech-incapsula"><i class="fas fa-shield-alt"></i> Incapsula</span>
+            {% when 'sucuri' %}
+              <span class="tech-badge tech-sucuri"><i class="fas fa-shield-alt"></i> Sucuri</span>
+            {% when 'wordfence' %}
+              <span class="tech-badge tech-wordfence"><i class="fas fa-shield-alt"></i> Wordfence</span>
+            {% when 'malcare' %}
+              <span class="tech-badge tech-malcare"><i class="fas fa-shield-virus"></i> MalCare</span>
+            {% when 'bulletproof' %}
+              <span class="tech-badge tech-bulletproof"><i class="fas fa-shield-alt"></i> BulletProof</span>
+            {% when 'aios' %}
+              <span class="tech-badge tech-aios"><i class="fas fa-shield-alt"></i> All In One WP Security</span>
+            {% when 'ithemes' %}
+              <span class="tech-badge tech-ithemes"><i class="fas fa-shield-alt"></i> iThemes Security</span>
+            {% when 'cerber' %}
+              <span class="tech-badge tech-cerber"><i class="fas fa-dog"></i> Cerber</span>
+            {% when 'sitelock' %}
+              <span class="tech-badge tech-sitelock"><i class="fas fa-lock"></i> SiteLock</span>
+            {% when 'webARX' %}
+              <span class="tech-badge tech-webarx"><i class="fas fa-shield-alt"></i> WebARX</span>
+            {% when 'patchstack' %}
+              <span class="tech-badge tech-patchstack"><i class="fas fa-band-aid"></i> Patchstack</span>
+            {% when 'blogvault' %}
+              <span class="tech-badge tech-blogvault"><i class="fas fa-vault"></i> BlogVault</span>
+            {% when 'vaultpress' %}
+              <span class="tech-badge tech-vaultpress"><i class="fas fa-vault"></i> VaultPress</span>
+            {% when 'backupbuddy' %}
+              <span class="tech-badge tech-backupbuddy"><i class="fas fa-hdd"></i> BackupBuddy</span>
+            {% when 'updraftplus' %}
+              <span class="tech-badge tech-updraft"><i class="fas fa-cloud-upload-alt"></i> UpdraftPlus</span>
+            {% when 'duplicator' %}
+              <span class="tech-badge tech-duplicator"><i class="fas fa-copy"></i> Duplicator</span>
+            {% when 'all-in-one wp migration' %}
+              <span class="tech-badge tech-aiowpm"><i class="fas fa-exchange-alt"></i> All-in-One WP Migration</span>
+            {% when 'wpvivid' %}
+              <span class="tech-badge tech-wpvivid"><i class="fas fa-vivid"></i> WPvivid</span>
+            {% when 'boldgrid' %}
+              <span class="tech-badge tech-boldgrid"><i class="fas fa-th"></i> BoldGrid</span>
+            {% when 'wp time capsule' %}
+              <span class="tech-badge tech-wptc"><i class="fas fa-clock"></i> WP Time Capsule</span>
+            {% when 'blogvault' %}
+              <span class="tech-badge tech-blogvault2"><i class="fas fa-vault"></i> BlogVault</span>
+            {% when 'manageWP' %}
+              <span class="tech-badge tech-managewp"><i class="fas fa-tasks"></i> ManageWP</span>
+            {% when 'mainWP' %}
+              <span class="tech-badge tech-mainwp"><i class="fas fa-network-wired"></i> MainWP</span>
+            {% when 'infiniteWP' %}
+              <span class="tech-badge tech-infinitewp"><i class="fas fa-infinity"></i> InfiniteWP</span>
+            {% when 'iControlWP' %}
+              <span class="tech-badge tech-icwp"><i class="fas fa-sliders-h"></i> iControlWP</span>
+            {% when 'wp remote' %}
+              <span class="tech-badge tech-wpremote"><i class="fas fa-satellite-dish"></i> WP Remote</span>
+            {% when 'gosquared' %}
+              <span class="tech-badge tech-gosquared"><i class="fas fa-chart-line"></i> GoSquared</span>
+            {% when 'crazy egg' %}
+              <span class="tech-badge tech-crazyegg"><i class="fas fa-egg"></i> Crazy Egg</span>
+            {% when 'lucky orange' %}
+              <span class="tech-badge tech-luckyorange"><i class="fas fa-orange"></i> Lucky Orange</span>
+            {% when 'mouseflow' %}
+              <span class="tech-badge tech-mouseflow"><i class="fas fa-mouse"></i> Mouseflow</span>
+            {% when 'sessioncam' %}
+              <span class="tech-badge tech-sessioncam"><i class="fas fa-video"></i> SessionCam</span>
+            {% when 'smartlook' %}
+              <span class="tech-badge tech-smartlook"><i class="fas fa-eye"></i> Smartlook</span>
+            {% when 'fullstory' %}
+              <span class="tech-badge tech-fullstory"><i class="fas fa-book"></i> FullStory</span>
+            {% when 'heap' %}
+              <span class="tech-badge tech-heap"><i class="fas fa-layer-group"></i> Heap</span>
+            {% when 'amplitude' %}
+              <span class="tech-badge tech-amplitude"><i class="fas fa-wave-square"></i> Amplitude</span>
+            {% when 'kissmetrics' %}
+              <span class="tech-badge tech-kissmetrics"><i class="fas fa-chart-line"></i> Kissmetrics</span>
+            {% when 'woopra' %}
+              <span class="tech-badge tech-woopra"><i class="fas fa-users"></i> Woopra</span>
+            {% when 'chartbeat' %}
+              <span class="tech-badge tech-chartbeat"><i class="fas fa-heartbeat"></i> Chartbeat</span>
+            {% when 'parsely' %}
+              <span class="tech-badge tech-parsely"><i class="fas fa-leaf"></i> Parse.ly</span>
+            {% when 'simple analytics' %}
+              <span class="tech-badge tech-simpleanalytics"><i class="fas fa-chart-bar"></i> Simple Analytics</span>
+            {% when 'plausible' %}
+              <span class="tech-badge tech-plausible"><i class="fas fa-chart-line"></i> Plausible</span>
+            {% when 'fathom' %}
+              <span class="tech-badge tech-fathom"><i class="fas fa-anchor"></i> Fathom</span>
+            {% when 'matomo' %}
+              <span class="tech-badge tech-matomo"><i class="fas fa-chart-pie"></i> Matomo</span>
+            {% when 'open web analytics' %}
+              <span class="tech-badge tech-owa"><i class="fas fa-chart-bar"></i> Open Web Analytics</span>
+            {% when 'clicky' %}
+              <span class="tech-badge tech-clicky"><i class="fas fa-mouse-pointer"></i> Clicky</span>
+            {% when 'statcounter' %}
+              <span class="tech-badge tech-statcounter"><i class="fas fa-chart-bar"></i> StatCounter</span>
+            {% when 'histats' %}
+              <span class="tech-badge tech-histats"><i class="fas fa-chart-line"></i> Histats</span>
+            {% when 'revolvermaps' %}
+              <span class="tech-badge tech-revolvermaps"><i class="fas fa-globe"></i> RevolverMaps</span>
+            {% when 'flag counter' %}
+              <span class="tech-badge tech-flagcounter"><i class="fas fa-flag"></i> Flag Counter</span>
+            {% when 'freecounterstat' %}
+              <span class="tech-badge tech-freecounterstat"><i class="fas fa-chart-bar"></i> FreeCounterStat</span>
+            {% when 'whos.amung.us' %}
+              <span class="tech-badge tech-amung"><i class="fas fa-users"></i> Whos.amung.us</span>
+            {% when 'feedjit' %}
+              <span class="tech-badge tech-feedjit"><i class="fas fa-rss"></i> Feedjit</span>
+            {% when 'sitemeter' %}
+              <span class="tech-badge tech-sitemeter"><i class="fas fa-tachometer-alt"></i> SiteMeter</span>
+            {% when 'bravenet' %}
+              <span class="tech-badge tech-bravenet"><i class="fas fa-globe"></i> Bravenet</span>
+            {% when 'extreme tracking' %}
+              <span class="tech-badge tech-extremetracking"><i class="fas fa-chart-line"></i> Extreme Tracking</span>
+            {% when 'shinystat' %}
+              <span class="tech-badge tech-shinystat"><i class="fas fa-star"></i> ShinyStat</span>
+            {% when 'w3counter' %}
+              <span class="tech-badge tech-w3counter"><i class="fas fa-chart-bar"></i> W3Counter</span>
+            {% when 'webalizer' %}
+              <span class="tech-badge tech-webalizer"><i class="fas fa-chart-pie"></i> Webalizer</span>
+            {% when 'awstats' %}
+              <span class="tech-badge tech-awstats"><i class="fas fa-chart-area"></i> AWStats</span>
+            {% when 'goaccess' %}
+              <span class="tech-badge tech-goaccess"><i class="fas fa-terminal"></i> GoAccess</span>
+            {% when 'analog' %}
+              <span class="tech-badge tech-analog"><i class="fas fa-clock"></i> Analog</span>
+            {% when 'piwik' %}
+              <span class="tech-badge tech-piwik"><i class="fas fa-chart-pie"></i> Piwik</span>
+            {% when 'opencounter' %}
+              <span class="tech-badge tech-opencounter"><i class="fas fa-door-open"></i> OpenCounter</span>
+            {% when 'hitsteps' %}
+              <span class="tech-badge tech-hitsteps"><i class="fas fa-shoe-prints"></i> Hitsteps</span>
+            {% when 'inspectlet' %}
+              <span class="tech-badge tech-inspectlet"><i class="fas fa-search"></i> Inspectlet</span>
+            {% when 'optimizely' %}
+              <span class="tech-badge tech-optimizely"><i class="fas fa-flask"></i> Optimizely</span>
+            {% when 'vwo' %}
+              <span class="tech-badge tech-vwo"><i class="fas fa-flask"></i> VWO</span>
+            {% when 'google optimize' %}
+              <span class="tech-badge tech-goptimize"><i class="fas fa-chart-line"></i> Google Optimize</span>
+            {% when 'ab tasty' %}
+              <span class="tech-badge tech-abtasty"><i class="fas fa-flask"></i> AB Tasty</span>
+            {% when 'convert' %}
+              <span class="tech-badge tech-convert"><i class="fas fa-exchange-alt"></i> Convert</span>
+            {% when 'unbounce' %}
+              <span class="tech-badge tech-unbounce"><i class="fas fa-arrow-up"></i> Unbounce</span>
+            {% when 'instapage' %}
+              <span class="tech-badge tech-instapage"><i class="fas fa-file-alt"></i> Instapage</span>
+            {% when 'leadpages' %}
+              <span class="tech-badge tech-leadpages"><i class="fas fa-file-alt"></i> Leadpages</span>
+            {% when 'clickfunnels' %}
+              <span class="tech-badge tech-clickfunnels"><i class="fas fa-filter"></i> ClickFunnels</span>
+            {% when 'kartra' %}
+              <span class="tech-badge tech-kartra"><i class="fas fa-shopping-cart"></i> Kartra</span>
+            {% when 'kajabi' %}
+              <span class="tech-badge tech-kajabi"><i class="fas fa-graduation-cap"></i> Kajabi</span>
+            {% when 'teachable' %}
+              <span class="tech-badge tech-teachable"><i class="fas fa-chalkboard-teacher"></i> Teachable</span>
+            {% when 'thinkific' %}
+              <span class="tech-badge tech-thinkific"><i class="fas fa-brain"></i> Thinkific</span>
+            {% when 'podia' %}
+              <span class="tech-badge tech-podia"><i class="fas fa-podcast"></i> Podia</span>
+            {% when 'gumroad' %}
+              <span class="tech-badge tech-gumroad"><i class="fas fa-road"></i> Gumroad</span>
+            {% when 'selz' %}
+              <span class="tech-badge tech-selz"><i class="fas fa-shopping-bag"></i> Selz</span>
+            {% when 'sendowl' %}
+              <span class="tech-badge tech-sendowl"><i class="fas fa-owl"></i> SendOwl</span>
+            {% when 'fetchapp' %}
+              <span class="tech-badge tech-fetchapp"><i class="fas fa-dog"></i> FetchApp</span>
+            {% when 'pulley' %}
+              <span class="tech-badge tech-pulley"><i class="fas fa-cog"></i> Pulley</span>
+            {% when 'e-junkie' %}
+              <span class="tech-badge tech-ejunkie"><i class="fas fa-trash"></i> E-junkie</span>
+            {% when 'shopify' %}
+              <span class="tech-badge tech-shopify"><i class="fas fa-shopping-bag"></i> Shopify</span>
+            {% when 'woocommerce' %}
+              <span class="tech-badge tech-woocommerce"><i class="fas fa-shopping-cart"></i> WooCommerce</span>
+            {% when 'magento' %}
+              <span class="tech-badge tech-magento"><i class="fas fa-shopping-bag"></i> Magento</span>
+            {% when 'bigcommerce' %}
+              <span class="tech-badge tech-bigcommerce"><i class="fas fa-store"></i> BigCommerce</span>
+            {% when 'prestashop' %}
+              <span class="tech-badge tech-prestashop"><i class="fas fa-shopping-bag"></i> PrestaShop</span>
+            {% when 'opencart' %}
+              <span class="tech-badge tech-opencart"><i class="fas fa-shopping-cart"></i> OpenCart</span>
+            {% when 'oscommerce' %}
+              <span class="tech-badge tech-oscommerce"><i class="fas fa-shopping-bag"></i> osCommerce</span>
+            {% when 'zen cart' %}
+              <span class="tech-badge tech-zencart"><i class="fas fa-shopping-cart"></i> Zen Cart</span>
+            {% when 'xtcommerce' %}
+              <span class="tech-badge tech-xtcommerce"><i class="fas fa-shopping-bag"></i> xt:Commerce</span>
+            {% when 'oxid eshop' %}
+              <span class="tech-badge tech-oxid"><i class="fas fa-shopping-bag"></i> OXID eShop</span>
+            {% when 'shopware' %}
+              <span class="tech-badge tech-shopware"><i class="fas fa-store"></i> Shopware</span>
+            {% when 'spree' %}
+              <span class="tech-badge tech-spree"><i class="fas fa-shopping-bag"></i> Spree</span>
+            {% when 'solidus' %}
+              <span class="tech-badge tech-solidus"><i class="fas fa-shopping-bag"></i> Solidus</span>
+            {% when 'saleor' %}
+              <span class="tech-badge tech-saleor"><i class="fas fa-shopping-bag"></i> Saleor</span>
+            {% when 'sylius' %}
+              <span class="tech-badge tech-sylius"><i class="fas fa-shopping-bag"></i> Sylius</span>
+            {% when 'bagisto' %}
+              <span class="tech-badge tech-bagisto"><i class="fas fa-shopping-bag"></i> Bagisto</span>
+            {% when 'aimeos' %}
+              <span class="tech-badge tech-aimeos"><i class="fas fa-shopping-cart"></i> Aimeos</span>
+            {% else %}
+              <span class="tech-badge"><i class="fas fa-code"></i> {{ tag }}</span>
+          {% endcase %}
         {% endfor %}
       </div>
     </div>
