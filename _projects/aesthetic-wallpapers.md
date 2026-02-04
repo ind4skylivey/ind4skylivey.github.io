@@ -1,41 +1,14 @@
 ---
-description: Personal collection of 144 curated high-quality wallpapers for desktop
-  (Anime, Catppuccin, Nature).
+description: Curated personal collection of 144 high-quality wallpapers (FHD-5K). Organized by theme (Anime, Catppuccin, Nature, Minimal, Urban, Abstract) and resolution. Git LFS backed up, MIT licensed. Clean structure for browsing. Scripts for organize/thumbnail generation/validation.
 featured: false
 layout: project
 repo: https://github.com/ind4skylivey/aesthetic-wallpapers
 tags:
-- Design
-- Assets
 - Wallpapers
-title: aesthetic-wallpapers
+- Aesthetic
+- Art
+- Collection
+- Git LFS
+title: Aesthetic Wallpapers
 ---
-
-## Description
-
-aesthetic-wallpapers is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: Design
-- **Frontend**: Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
 
