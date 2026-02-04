@@ -1,24 +1,17 @@
 ---
-layout: project
 title: ZigHound
-description: Advanced red team framework in Zig. Reconnaissance with banner grabbing, stealth scanning (jitter + randomization), HTTP brute-force. C2 with XChaCha20-Poly1305 encryption, interactive shell, persistence (systemd/Registry). Post-exploitation: PrivEsc audit, process injection, file exfiltration, tunneling.
+description: Advanced red team framework in Zig. Reconnaissance with banner grabbing, stealth scanning (jitter + randomization), HTTP brute-force. C2 with XChaCha20-Poly1305 encryption, interactive shell, persistence (systemd/Registry). Post-exploitation PrivEsc audit, process injection, file exfiltration, tunneling.
 tags:
-- Zig
-- Red Team
-- C2
-- Exploitation
-- Reconnaissance
-- Malware Development
-- Stealth
-repo: https://github.com/ind4skylivey/ZigHound
+  - Zig
+  - Red Team
+  - C2
+  - Exploitation
+  - Reconnaissance
+  - Malware Development
+  - Stealth
+repo: "https://github.com/ind4skylivey/ZigHound"
 featured: true
-stats:
-  - value: "15K+"
-    label: "Lines of Zig"
-  - value: "5"
-    label: "Core Modules"
-  - value: "Zero"
-    label: "Dependencies"
+layout: project
 ---
 
 ## Executive Summary
