@@ -3,4 +3,12 @@ description: Rust-based utility for managing and resetting JetBrains IDE trial p
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/jetbrains-trial-reset"
+tags:
+- Rust
+- JetBrains
+- IDE
+- CLI
+- TUI
+- Linux Tools
+title: JetBrains Trial Reset
 ---

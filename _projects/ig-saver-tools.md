@@ -3,4 +3,12 @@ description: Instagram content preservation toolkit with automated backup functi
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/IG-saver-tools"
+tags:
+- Python
+- Instagram
+- Content Archiving
+- CLI
+- TUI
+- Automation
+title: IG Saver Tools
 ---

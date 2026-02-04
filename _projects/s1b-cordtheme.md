@@ -3,4 +3,12 @@ description: Comprehensive Discord client customization package featuring cyberp
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/s1b-cordtheme"
+tags:
+- CSS
+- Discord
+- Theme
+- Cyberpunk
+- BetterDiscord
+- Customization
+title: S1B Cord Theme
 ---

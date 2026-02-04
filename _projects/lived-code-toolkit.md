@@ -3,4 +3,12 @@ description: Advanced AI prompt engineering framework with curated templates for
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/livey-codex-toolkit"
+tags:
+- AI
+- Prompt Engineering
+- LLM
+- Python
+- Templates
+- Development Tools
+title: Livey Code Toolkit
 ---
