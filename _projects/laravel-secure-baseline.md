@@ -1,6 +1,5 @@
 ---
-description: Fast, non-destructive scanner to detect security misconfigurations in
-  Laravel 10/11.
+description: Automated Laravel security scanner catching misconfigurations before production. Scans APP_DEBUG/APP_KEY, CORS, session security, headers, route exposure in <5 seconds. Zero-config, integrates GitHub Actions/GitLab/Jenkins, exports JSON/HTML/SARIF reports. Enforces security baseline via CI/CD.
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/laravel-secure-baseline
@@ -9,41 +8,9 @@ tags:
 - Laravel
 - Security
 - Scanner
+- Configuration Audit
+- DevOps
+- Composer
 title: Laravel Secure Baseline
 ---
-
-## Executive Summary
-
-Laravel Secure Baseline is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
-
-## Technical Overview
-
-### Architecture
-- **Language**: PHP
-- **Paradigm**: Event-driven
-- **Dependencies**: Minimal, performance-focused
-
-### Key Features
-- Real-time detection
-- Automated analysis
-- Detailed reporting
-- SIEM integration
-
-## Use Cases
-- Security monitoring
-- Incident response
-- Forensic analysis
-- Penetration testing
-
-## Installation
-
-```bash
-git clone https://github.com/ind4skylivey/laravel-secure-baseline
-cd laravel-secure-baseline
-# Project-specific instructions
-```
-
-## License
-
-MIT License - Responsible use
 

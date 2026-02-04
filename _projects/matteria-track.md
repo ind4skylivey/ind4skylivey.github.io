@@ -1,6 +1,15 @@
 ---
-description: Gamified productivity tracking tool built in Rust with Final Fantasy Materia-inspired theme system. Features 6 color schemes, Git synchronization, Obsidian integration, GPG encryption, Pomodoro timer, and 20+ achievement badges. Provides cross-platform support (Linux, macOS, Windows) with team analytics and productivity insights.
+description: Final Fantasy VII-themed CLI time tracker. 6 elemental themes (Fire/Ice/Lightning/Earth/Wind/Bahamut), Git auto-import, Obsidian sync, calendar TUI, 20+ achievements, GPG encryption, Pomodoro timer, statusbar integration. Async fuzzy finder, auditable database, portable binaries (Linux/macOS).
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/matteria-track"
+tags:
+- Rust
+- CLI
+- Time Tracking
+- TUI
+- Git
+- Productivity
+- Obsidian
+title: MatteriaTrack
 ---

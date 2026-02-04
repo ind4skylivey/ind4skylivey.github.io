@@ -1,6 +1,15 @@
 ---
-description: Comprehensive system maintenance suite providing intelligent cleanup for package caches, orphaned dependencies, temporary files, and log rotation. Features dry-run mode, automated scheduling, and detailed reporting for system administrators managing multiple Linux distributions. Supports systemd integration and includes kernel optimization recommendations.
+description: Multi-distro system cleanup utility automating cache cleanup, Docker pruning, orphaned packages, kernel removal. Three modes (Safe/Standard/Aggressive) for different risk tolerances. Supports Arch/Debian/Fedora/openSUSE. Dry-run capable, cron-ready, interactive or CLI args.
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/LinuxJanitor"
+tags:
+- Bash
+- Shell
+- Linux
+- System Maintenance
+- Cleanup
+- DevOps
+- Performance
+title: Linux Janitor
 ---
