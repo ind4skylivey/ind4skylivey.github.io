@@ -1,48 +1,15 @@
 ---
-description: Advanced shell automation and ghosting toolkit for security operations.
+description: Anti-forensic shell in Rust with memory zeroization, ChaCha20Poly1305 clipboard encryption, process masking, paranoid mode with auto-panic on debugger, and complete history volatility. For security research & red team exercises with comprehensive threat model documentation.
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/Ghost-intheShell
 tags:
+- Rust
 - Shell
 - Security
-- Automation
+- Anti-Forensics
 - Red Team
+- Encryption
 title: Ghost-inTheShell
 ---
-
-## Executive Summary
-
-Ghost-inTheShell is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
-
-## Technical Overview
-
-### Architecture
-- **Language**: Shell
-- **Paradigm**: Event-driven
-- **Dependencies**: Minimal, performance-focused
-
-### Key Features
-- Real-time detection
-- Automated analysis
-- Detailed reporting
-- SIEM integration
-
-## Use Cases
-- Security monitoring
-- Incident response
-- Forensic analysis
-- Penetration testing
-
-## Installation
-
-```bash
-git clone https://github.com/ind4skylivey/Ghost-intheShell
-cd Ghost-intheShell
-# Project-specific instructions
-```
-
-## License
-
-MIT License - Responsible use
 

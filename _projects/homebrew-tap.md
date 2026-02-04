@@ -1,6 +1,13 @@
 ---
-description: Official Homebrew formula repository for MatteriaTrack and S1B Group CLI tools. Provides automated package installation, version management, dependency resolution, and binary distribution. Includes checksum verification, fast incremental updates, and cross-platform support for macOS and Linux users seeking streamlined package management.
+description: Official Homebrew Tap for MatteriaTrack. Final Fantasy-themed CLI time tracker inspired by Zeit, designed for macOS with mystical Mako energy. One-command installation via Homebrew with automatic updates and easy version management.
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/homebrew-tap"
+tags:
+- Ruby
+- Homebrew
+- Productivity
+- macOS
+- Final Fantasy
+title: Homebrew Tap
 ---

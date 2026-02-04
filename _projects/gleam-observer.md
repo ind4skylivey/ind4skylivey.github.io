@@ -1,42 +1,16 @@
 ---
-description: Rust-powered observability tool with real-time analytics and cyberpunk
-  aesthetics.
+description: Universal hardware monitor with cyberpunk aesthetics. Rust-powered, real-time CPU/GPU/Memory monitoring with 130+ GPU models (NVIDIA/AMD/Intel), predictive analytics, trend detection, multi-GPU support, process tracking, power efficiency calculations, CSV/JSON export, and Catppuccin Mocha theme.
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/Gleam-Observer
 tags:
 - Rust
-- Observability
+- Monitoring
+- GPU
+- Linux
+- TUI
 - Ratatui
 - Catppuccin
 title: Gleam-Observer
 ---
-
-## Description
-
-Gleam-Observer is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: Rust
-- **Frontend**: Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
 

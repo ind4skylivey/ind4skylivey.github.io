@@ -1,6 +1,5 @@
 ---
-description: Universal CLI installer for Affinity apps on Linux (Photo, Designer,
-  Publisher).
+description: One-command installation for Affinity Universal on Linux. Prepares Wine prefix with .NET, DXVK/VKD3D, and optional Proton-GE runtime. Wine profiles (minimal/standard/full) for balance or maximum compatibility. Professional guides, troubleshooting, and creative freedom fund.
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/affinity-cli
@@ -9,34 +8,8 @@ tags:
 - Linux
 - CLI
 - Wine
+- Affinity
+- Creative Tools
 title: Affinity-CLI
 ---
-
-## Description
-
-Affinity-CLI is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: Python
-- **Frontend**: Terminal/Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
 

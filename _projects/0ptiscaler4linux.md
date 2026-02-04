@@ -1,6 +1,16 @@
 ---
-description: Advanced upscaling solution for Linux gaming that leverages FSR 4.0, XeSS, and DLSS technologies to deliver exceptional visual fidelity and performance optimization for modern GPUs including RDNA3/4, Arc, and RTX series. Features automatic profile generation, benchmarking tools, and integration with popular gaming platforms.
+description: The intelligent OptiScaler installer Linux gamers needed. Automates FSR 4.0, XeSS & DLSS configuration with GPU-optimized profiles for RDNA3/4, Arc & RTX cards. Multi-disk Steam library detection, 20+ AAA game profiles, and automatic GPU detection.
 featured: true
 layout: project
 repo: "https://github.com/ind4skylivey/0ptiscaler4linux"
+tags:
+- Shell
+- Bash
+- Gaming
+- Linux
+- Upscaling
+- FSR4
+- XeSS
+- DLSS
+title: OptiScaler4Linux
 ---

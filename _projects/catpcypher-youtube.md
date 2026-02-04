@@ -1,6 +1,13 @@
 ---
-description: Custom YouTube theme and userstyle implementation featuring cyberpunk HUD aesthetics with neon accents, animated elements, and dark mode optimization. Enhances video player interface with custom progress bars, chapter markers, and overlay controls. Includes customizable color schemes and resolution optimization for various screen sizes.
+description: Cyberpunk HUD YouTube theme with neon aesthetics, glassmorphism effects, and custom color schemes. Stylus userscript transforming YouTube into an illegal cyberpunk experience with gradient overlays, animated elements, dark mode optimization, and resolution-responsive design.
 featured: false
 layout: project
 repo: "https://github.com/ind4skylivey/Catpcypher-youtube"
+tags:
+- CSS
+- Stylus
+- Theme
+- YouTube
+- Cyberpunk
+title: Catpcypher YouTube
 ---
