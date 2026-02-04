@@ -1401,3 +1401,32 @@ code {
   font-size: 10px;
 }
 
+
+/* Fix Tech Stack Section Header */
+.tech-stack-section .section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tech-stack-section .section-header i {
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.tech-stack-section .section-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* Improve tech badge icon spacing */
+.tech-badge i {
+  margin-right: 6px;
+  font-size: 12px;
+}
+
