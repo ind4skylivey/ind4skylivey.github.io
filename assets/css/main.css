@@ -1452,3 +1452,60 @@ code {
   margin-top: 12px;
 }
 
+
+/* Fix tech icon size */
+.tech-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+}
+
+/* Make tech badge icon more visible */
+.tech-badge i {
+  margin-right: 6px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+
+/* Tech badge icon colors */
+.tech-badge i {
+  opacity: 0.9;
+}
+
+.tech-badge.tech-rust i {
+  color: #dea584;
+}
+
+.tech-badge.tech-python i {
+  color: #3776ab;
+}
+
+.tech-badge.tech-javascript i {
+  color: #f7df1e;
+}
+
+.tech-badge.tech-php i {
+  color: #777bb4;
+}
+
+.tech-badge.tech-docker i {
+  color: #2496ed;
+}
+
+.tech-badge.tech-zig i {
+  color: #ff7927;
+}
+
+.tech-badge.tech-shell i {
+  color: #89e051;
+}
+
+.tech-badge.tech-security i {
+  color: #ff0055;
+}
+
+.tech-badge.tech-cyber i {
+  color: #ff0055;
+}
+
