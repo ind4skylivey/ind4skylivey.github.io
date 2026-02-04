@@ -1430,3 +1430,25 @@ code {
   font-size: 12px;
 }
 
+
+/* Fix spacing between layer-group icon and tech badges */
+.tech-stack-section .section-header {
+  margin-bottom: 20px;
+}
+
+.tech-stack-section .section-header i.fa-layer-group {
+  margin-right: 10px;
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.tech-stack-section .section-header h3 {
+  margin: 0;
+  display: inline;
+}
+
+/* Ensure proper spacing between header and badges */
+.tech-badges {
+  margin-top: 12px;
+}
+

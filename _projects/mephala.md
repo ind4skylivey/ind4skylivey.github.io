@@ -1,6 +1,5 @@
 ---
-description: "Daedric deception platform \u2014 ML-powered honeypot with SSH/HTTP/FTP\
-  \ traps."
+description: "Advanced web reconnaissance and information gathering framework. Automates subdomain enumeration, technology fingerprinting, and vulnerability scanning with intelligent correlation and reporting capabilities."
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/mephala

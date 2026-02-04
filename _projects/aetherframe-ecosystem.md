@@ -1,6 +1,5 @@
 ---
-description: "Red\u2011team orchestration stack: FastAPI + Celery + Postgres/Redis/MinIO\
-  \ backend."
+description: "Comprehensive red-team orchestration platform integrating FastAPI backend with Celery task processing, PostgreSQL data persistence, Redis caching, and MinIO object storage. Features React-based dashboard, Typer CLI interface, and Frida dynamic instrumentation for advanced security testing workflows."
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/aetherframe-ecosystem

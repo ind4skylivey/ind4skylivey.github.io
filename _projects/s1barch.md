@@ -1,7 +1,5 @@
 ---
-description: "S1B System \u2014 Ascend your Arch installation to the underworld elite.\
-  \ Automated hardening, security tooling, and dark arts configuration for those who\
-  \ code in shadows."
+description: "Arch Linux system hardening and optimization automation suite. Implements security best practices, performance tuning, and aesthetic customization for elite desktop environments targeting power users and security professionals."
 featured: true
 layout: project
 repo: https://github.com/ind4skylivey/s1barch
