@@ -4,14 +4,76 @@ layout: default
 <article class="project">
   <header class="project-header">
     {% if page.banner %}<img class="banner" src="{{ page.banner }}" alt="{{ page.title }} banner">{% endif %}
-    <h1 class="project-title">{{ page.title }}</h1>
-    {% if page.description %}<p class="lede">{{ page.description }}</p>{% endif %}
-    <div class="project-meta">
-      {% if page.repo %}<a class="btn" href="{{ page.repo }}" target="_blank" rel="noopener">View Repository ↗</a>{% endif %}
-      {% if page.tags %}<p class="tags">{% for t in page.tags %}<span>#{{ t }}</span>{% endfor %}</p>{% endif %}
+    
+    <div class="project-title-section">
+      <h1 class="project-title">{{ page.title }}</h1>
+      {% if page.version %}<span class="version-badge">v{{ page.version }}</span>{% endif %}
+      {% if page.status %}<span class="status-badge status-{{ page.status }}">{{ page.status }}</span>{% endif %}
     </div>
+    
+    {% if page.description %}<p class="project-lede">{{ page.description }}</p>{% endif %}
+    
+    <div class="project-meta">
+      {% if page.repo %}
+      <a class="btn btn-primary" href="{{ page.repo }}" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+        View Repository ↗
+      </a>
+      {% endif %}
+      {% if page.demo %}
+      <a class="btn btn-outline" href="{{ page.demo }}" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+        Live Demo ↗
+      </a>
+      {% endif %}
+    </div>
+
+    {% if page.tags %}
+    <div class="tech-stack-section">
+      <h3 class="section-label">Technologies</h3>
+      <div class="tech-badges">
+        {% for tag in page.tags %}
+          <span class="tech-badge" data-tech="{{ tag | downcase }}">
+            <span class="tech-icon">{{ tag | slice: 0 }}</span>
+            {{ tag }}
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if page.stats %}
+    <div class="project-stats">
+      {% for stat in page.stats %}
+        <div class="stat-item">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </header>
+
   <section class="project-body">
     {{ content }}
   </section>
+
+  {% if page.related %}
+  <footer class="project-footer">
+    <h3>Related Projects</h3>
+    <div class="related-grid">
+      {% for related in page.related %}
+        <a href="{{ related.url }}" class="related-card">
+          <h4>{{ related.title }}</h4>
+          <p>{{ related.description }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </footer>
+  {% endif %}
 </article>
