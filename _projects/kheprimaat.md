@@ -1,12 +1,17 @@
 ---
-layout: "project"
-title: "KhepriMaat"
-description: "Evidence-first security automation framework built in Rust. Orchestrates reconnaissance and vulnerability scanning pipelines with REST API control, structured reporting, and lab-safe defaults."
-tags: ["Rust", "Security", "Async", "REST API", "Docker", "Penetration Testing"]
-repo: "https://github.com/ind4skylivey/kheprimaat"
+layout: project
+title: KhepriMaat
+description: Evidence-first bug bounty automation. Named after Egyptian gods Khepri & Maat. Async queue, priority scheduling, SSE event streaming, 30+ secret patterns auto-redacted. Subfinder → HTTPX → Nuclei → SQLMap pipelines. REST API with RBAC, scheduled scans, confidence scoring. Production-ready Rust framework.
+tags:
+- Rust
+- Security
+- Bug Bounty
+- Async
+- Automation
+- Reconnaissance
+- REST API
+repo: https://github.com/ind4skylivey/kheprimaat
 featured: true
-version: "0.9"
-status: "beta"
 stats:
   - value: "10K+"
     label: "Lines of Rust"

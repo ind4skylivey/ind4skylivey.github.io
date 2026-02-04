@@ -1,12 +1,17 @@
 ---
-layout: "project"
-title: "TenebriNET-v2"
-description: "Next-generation honeypot infrastructure powered by machine learning. Captures, analyzes, and visualizes cyber attacks in real-time with intelligent threat detection and behavioral analysis."
-tags: ["Python", "Machine Learning", "Honeypot", "Docker", "Vue.js", "Security"]
-repo: "https://github.com/ind4skylivey/tenebrinet-v2"
+layout: project
+title: TenebriNET v2
+description: ML-powered honeypot infrastructure. SSH/HTTP/FTP traps with credential capture. Neural engine auto-classifies attacks (Recon/BruteForce/Exploits/Botnets). FastAPI REST, Vue.js dashboard, real-time threat visualization. Random Forest classifier, Docker-ready, PostgreSQL backend, WebSocket streams.
+tags:
+- Python
+- Honeypot
+- Machine Learning
+- FastAPI
+- Vue.js
+- Security
+- Threat Intelligence
+repo: https://github.com/ind4skylivey/tenebrinet-v2
 featured: true
-version: "2.0"
-status: "stable"
 stats:
   - value: "8K+"
     label: "Lines of Python"

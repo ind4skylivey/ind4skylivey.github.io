@@ -1,12 +1,17 @@
 ---
-layout: "project"
-title: "ZigHound"
-description: "Advanced Red Team Framework written in Zig. Features encrypted C2 communication, stealth agents, process injection, persistence mechanisms, and comprehensive post-exploitation modules."
-tags: ["Zig", "Red Team", "Cybersecurity", "Pentesting", "Stealth", "C2"]
-repo: "https://github.com/ind4skylivey/ZigHound"
+layout: project
+title: ZigHound
+description: Advanced red team framework in Zig. Reconnaissance with banner grabbing, stealth scanning (jitter + randomization), HTTP brute-force. C2 with XChaCha20-Poly1305 encryption, interactive shell, persistence (systemd/Registry). Post-exploitation: PrivEsc audit, process injection, file exfiltration, tunneling.
+tags:
+- Zig
+- Red Team
+- C2
+- Exploitation
+- Reconnaissance
+- Malware Development
+- Stealth
+repo: https://github.com/ind4skylivey/ZigHound
 featured: true
-version: "0.8"
-status: "alpha"
 stats:
   - value: "15K+"
     label: "Lines of Zig"
