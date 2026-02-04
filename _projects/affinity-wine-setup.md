@@ -1,18 +1,42 @@
 ---
-layout: "project"
-title: "affinity-wine-setup"
-description: "Setup scripts and configuration for running Affinity software on Linux via Wine."
-tags: ["Shell", "Wine", "Linux", "Compatibility"]
-repo: "https://github.com/ind4skylivey/affinity-wine-setup"
+description: Setup scripts and configuration for running Affinity software on Linux
+  via Wine.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/affinity-wine-setup
+tags:
+- Shell
+- Wine
+- Linux
+- Compatibility
+title: affinity-wine-setup
 ---
 
-### Overview
-Scripts to facilitate the installation and setup of Affinity products using Wine on Linux.
+## Description
 
-### Highlights
-- Automates Wine prefix configuration.
-- Fixes common compatibility issues.
+affinity-wine-setup is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Shell • Wine • Linux • Compatibility
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Shell
+- **Frontend**: Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

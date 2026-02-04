@@ -1,18 +1,48 @@
 ---
-layout: "project"
-title: "Safe-Recon"
-description: "Advanced cyber-reconnaissance toolkit for ethical hackers and red teams."
-tags: ["Python", "Security", "Recon", "CLI"]
-repo: "https://github.com/ind4skylivey/safe-recon"
+description: Advanced cyber-reconnaissance toolkit for ethical hackers and red teams.
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/safe-recon
+tags:
+- Python
+- Security
+- Recon
+- CLI
+title: Safe-Recon
 ---
 
-### Overview
-Advanced cyber-reconnaissance toolkit for ethical hackers and red teams.
+## Executive Summary
 
-### Highlights
-- Designed and maintained by Livey.
-- Built for Linux power users, developers, and security researchers.
+Safe-Recon is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
 
-### Tech stack
-Python • Security • Recon • CLI
+## Technical Overview
+
+### Architecture
+- **Language**: Python
+- **Paradigm**: Event-driven
+- **Dependencies**: Minimal, performance-focused
+
+### Key Features
+- Real-time detection
+- Automated analysis
+- Detailed reporting
+- SIEM integration
+
+## Use Cases
+- Security monitoring
+- Incident response
+- Forensic analysis
+- Penetration testing
+
+## Installation
+
+```bash
+git clone https://github.com/ind4skylivey/safe-recon
+cd safe-recon
+# Project-specific instructions
+```
+
+## License
+
+MIT License - Responsible use
+

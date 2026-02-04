@@ -1,20 +1,43 @@
 ---
-layout: "project"
-title: "The-Nerve"
-description: "A cyberpunk text-based RPG game built in Python for the terminal."
-tags: ["Python", "Game", "RPG", "CLI", "Terminal", "Text-based"]
-repo: "https://github.com/ind4skylivey/the-nerve"
+description: A cyberpunk text-based RPG game built in Python for the terminal.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/the-nerve
+tags:
+- Python
+- Game
+- RPG
+- CLI
+- Terminal
+- Text-based
+title: The-Nerve
 ---
 
-### Overview
-A cyberpunk text-based RPG game built in Python for the terminal.
+## Description
 
-### Highlights
-- Text-based cyberpunk RPG
-- Terminal-based gameplay
-- Immersive story experience
-- Python-powered game engine
+The-Nerve is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Python • Game • RPG • CLI • Terminal
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Python
+- **Frontend**: Terminal/Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

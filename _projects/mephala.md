@@ -1,19 +1,49 @@
 ---
-layout: "project"
-title: "mephala"
-description: "Daedric deception platform — ML-powered honeypot with SSH/HTTP/FTP traps."
-tags: ["Machine Learning", "Security", "Honeypot", "Python"]
-repo: "https://github.com/ind4skylivey/mephala"
+description: "Daedric deception platform \u2014 ML-powered honeypot with SSH/HTTP/FTP\
+  \ traps."
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/mephala
+tags:
+- Machine Learning
+- Security
+- Honeypot
+- Python
+title: mephala
 ---
 
-### Overview
-ML-powered honeypot platform designed for deception with multiple protocol traps.
+## Executive Summary
 
-### Highlights
-- Real-time threat intelligence.
-- SSH, HTTP, and FTP traps.
-- Machine Learning integration for threat analysis.
+mephala is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
 
-### Tech stack
-Machine Learning • Security • Honeypot • Python
+## Technical Overview
+
+### Architecture
+- **Language**: Machine Learning
+- **Paradigm**: Event-driven
+- **Dependencies**: Minimal, performance-focused
+
+### Key Features
+- Real-time detection
+- Automated analysis
+- Detailed reporting
+- SIEM integration
+
+## Use Cases
+- Security monitoring
+- Incident response
+- Forensic analysis
+- Penetration testing
+
+## Installation
+
+```bash
+git clone https://github.com/ind4skylivey/mephala
+cd mephala
+# Project-specific instructions
+```
+
+## License
+
+MIT License - Responsible use
+

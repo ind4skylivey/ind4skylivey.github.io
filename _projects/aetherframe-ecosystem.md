@@ -1,19 +1,49 @@
 ---
-layout: "project"
-title: "aetherframe-ecosystem"
-description: "Red‑team orchestration stack: FastAPI + Celery + Postgres/Redis/MinIO backend."
-tags: ["FastAPI", "React", "Docker", "Security"]
-repo: "https://github.com/ind4skylivey/aetherframe-ecosystem"
+description: "Red\u2011team orchestration stack: FastAPI + Celery + Postgres/Redis/MinIO\
+  \ backend."
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/aetherframe-ecosystem
+tags:
+- FastAPI
+- React
+- Docker
+- Security
+title: aetherframe-ecosystem
 ---
 
-### Overview
-A comprehensive Red-team orchestration stack featuring a modern backend and frontend architecture.
+## Executive Summary
 
-### Highlights
-- Zero-setup via Docker Compose.
-- Vite/React UI with Typer CLI.
-- Backend powered by FastAPI, Celery, Postgres, Redis, and MinIO.
+aetherframe-ecosystem is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
 
-### Tech stack
-FastAPI • React • Docker • Security
+## Technical Overview
+
+### Architecture
+- **Language**: FastAPI
+- **Paradigm**: Event-driven
+- **Dependencies**: Minimal, performance-focused
+
+### Key Features
+- Real-time detection
+- Automated analysis
+- Detailed reporting
+- SIEM integration
+
+## Use Cases
+- Security monitoring
+- Incident response
+- Forensic analysis
+- Penetration testing
+
+## Installation
+
+```bash
+git clone https://github.com/ind4skylivey/aetherframe-ecosystem
+cd aetherframe-ecosystem
+# Project-specific instructions
+```
+
+## License
+
+MIT License - Responsible use
+

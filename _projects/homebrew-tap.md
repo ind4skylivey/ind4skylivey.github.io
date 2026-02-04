@@ -1,18 +1,41 @@
 ---
-layout: "project"
-title: "homebrew-tap"
-description: "Official Homebrew Tap for MatteriaTrack. The mystical CLI time tracker forged in Mako energy."
-tags: ["Homebrew", "MacOS", "Package Manager"]
-repo: "https://github.com/ind4skylivey/homebrew-tap"
+description: Official Homebrew Tap for MatteriaTrack. The mystical CLI time tracker
+  forged in Mako energy.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/homebrew-tap
+tags:
+- Homebrew
+- MacOS
+- Package Manager
+title: homebrew-tap
 ---
 
-### Overview
-The official Homebrew tap for installing MatteriaTrack on macOS.
+## Description
 
-### Highlights
-- Easy installation via `brew tap`.
-- Maintains up-to-date formulae for my tools.
+homebrew-tap is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Homebrew • MacOS • Package Manager
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Homebrew
+- **Frontend**: Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

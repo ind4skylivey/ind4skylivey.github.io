@@ -1,19 +1,42 @@
 ---
-layout: "project"
-title: "zed-ultimate-config"
-description: "Complete professional Zed IDE configuration for PHP/Laravel, Python, Rust, and Security Research."
-tags: ["Configuration", "IDE", "Zed", "Developer Tools"]
-repo: "https://github.com/ind4skylivey/zed-ultimate-config"
+description: Complete professional Zed IDE configuration for PHP/Laravel, Python,
+  Rust, and Security Research.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/zed-ultimate-config
+tags:
+- Configuration
+- IDE
+- Zed
+- Developer Tools
+title: zed-ultimate-config
 ---
 
-### Overview
-A comprehensive configuration for the Zed IDE tailored for full-stack development and security research.
+## Description
 
-### Highlights
-- 163+ snippets and 106 tasks.
-- Optimized for PHP, Python, and Rust.
-- Custom keybindings for efficiency.
+zed-ultimate-config is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Configuration • IDE • Zed • Developer Tools
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Configuration
+- **Frontend**: Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

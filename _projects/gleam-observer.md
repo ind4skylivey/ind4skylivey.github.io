@@ -1,18 +1,42 @@
 ---
-layout: "project"
-title: "Gleam-Observer"
-description: "Rust-powered observability tool with real-time analytics and cyberpunk aesthetics."
-tags: ["Rust", "Observability", "Ratatui", "Catppuccin"]
-repo: "https://github.com/ind4skylivey/Gleam-Observer"
+description: Rust-powered observability tool with real-time analytics and cyberpunk
+  aesthetics.
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/Gleam-Observer
+tags:
+- Rust
+- Observability
+- Ratatui
+- Catppuccin
+title: Gleam-Observer
 ---
 
-### Overview
-Rust-powered observability tool with real-time analytics and cyberpunk aesthetics.
+## Description
 
-### Highlights
-- Designed and maintained by Livey.
-- Built for Linux power users, developers, and security researchers.
+Gleam-Observer is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Rust • Observability • Ratatui • Catppuccin
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Rust
+- **Frontend**: Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

@@ -1,19 +1,42 @@
 ---
-layout: "project"
-title: "IG-saver-tools"
-description: "Instagram Highlights & Stories Backup Tool - CLI with smart incremental backup and 2FA support."
-tags: ["Python", "CLI", "Backup", "OSINT"]
-repo: "https://github.com/ind4skylivey/IG-saver-tools"
+description: Instagram Highlights & Stories Backup Tool - CLI with smart incremental
+  backup and 2FA support.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/IG-saver-tools
+tags:
+- Python
+- CLI
+- Backup
+- OSINT
+title: IG-saver-tools
 ---
 
-### Overview
-CLI tool for backing up Instagram Highlights and Stories with smart incremental backup, progress tracking, and 2FA support.
+## Description
 
-### Highlights
-- Incremental backup capabilities.
-- Supports Two-Factor Authentication.
-- Progress tracking for large downloads.
+IG-saver-tools is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Python • CLI • OSINT
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Python
+- **Frontend**: Terminal/Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

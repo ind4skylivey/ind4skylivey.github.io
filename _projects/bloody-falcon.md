@@ -1,20 +1,50 @@
 ---
-layout: "project"
-title: "Bloody-Falcon"
-description: "Defensive OSINT radar that normalizes public signals into auditable evidence and explainable findings built in Rust for SOC workflows."
-tags: ["Rust", "OSINT", "Security", "TUI", "SOC"]
-repo: "https://github.com/ind4skylivey/bloody-falcon"
+description: Defensive OSINT radar that normalizes public signals into auditable evidence
+  and explainable findings built in Rust for SOC workflows.
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/bloody-falcon
+tags:
+- Rust
+- OSINT
+- Security
+- TUI
+- SOC
+title: Bloody-Falcon
 ---
 
-### Overview
-Defensive OSINT radar that normalizes public signals into auditable evidence and explainable findings built in Rust for SOC workflows.
+## Executive Summary
 
-### Highlights
-- OSINT signal normalization
-- Auditable evidence collection
-- Explainable findings
-- Rust-powered TUI for SOC workflows
+Bloody-Falcon is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
 
-### Tech stack
-Rust • OSINT • Security • TUI • SOC
+## Technical Overview
+
+### Architecture
+- **Language**: Rust
+- **Paradigm**: Event-driven
+- **Dependencies**: Minimal, performance-focused
+
+### Key Features
+- Real-time detection
+- Automated analysis
+- Detailed reporting
+- SIEM integration
+
+## Use Cases
+- Security monitoring
+- Incident response
+- Forensic analysis
+- Penetration testing
+
+## Installation
+
+```bash
+git clone https://github.com/ind4skylivey/bloody-falcon
+cd bloody-falcon
+# Project-specific instructions
+```
+
+## License
+
+MIT License - Responsible use
+

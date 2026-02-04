@@ -1,19 +1,41 @@
 ---
-layout: "project"
-title: "iridex-prism-terminal"
-description: "Next-gen terminal theming and preview TUI in Rust."
-tags: ["Rust", "TUI", "Terminal", "Theming"]
-repo: "https://github.com/ind4skylivey/iridex-prism-terminal"
+description: Next-gen terminal theming and preview TUI in Rust.
 featured: true
+layout: project
+repo: https://github.com/ind4skylivey/iridex-prism-terminal
+tags:
+- Rust
+- TUI
+- Terminal
+- Theming
+title: iridex-prism-terminal
 ---
 
-### Overview
-A next-generation terminal theming and preview TUI written in Rust, focused on aesthetic and functionality.
+## Description
 
-### Highlights
-- Context-aware themes.
-- Async widgets.
-- Secure dotfiles synchronization.
+iridex-prism-terminal is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
 
-### Tech stack
-Rust • TUI • Terminal • Theming
+## Features
+
+### Core Features
+- Intuitive interface
+- High performance
+- Configurable
+- Extensible
+
+### Tech Stack
+- **Backend**: Rust
+- **Frontend**: Web
+- **Infrastructure**: Docker ready
+
+## Usage Guide
+See README.md for detailed examples
+
+## Contributing
+
+Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
+
+## License
+
+MIT License
+

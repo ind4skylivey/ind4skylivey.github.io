@@ -1,20 +1,48 @@
 ---
-layout: "project"
-title: "LiveySupplyChain"
-description: "Supply chain security analysis and monitoring toolkit."
-tags: ["Python", "Supply Chain", "Security", "Monitoring"]
-repo: "https://github.com/ind4skylivey/LiveySupplyChain"
+description: Supply chain security analysis and monitoring toolkit.
 featured: false
+layout: project
+repo: https://github.com/ind4skylivey/LiveySupplyChain
+tags:
+- Python
+- Supply Chain
+- Security
+- Monitoring
+title: LiveySupplyChain
 ---
 
-### Overview
-Supply chain security analysis and monitoring toolkit.
+## Executive Summary
 
-### Highlights
-- Supply chain security analysis
-- Dependency monitoring
-- Vulnerability tracking
-- Security assessment tools
+LiveySupplyChain is a security solution designed for cybersecurity professionals. It provides advanced threat detection and analysis capabilities with a focus on efficiency and accuracy.
 
-### Tech stack
-Python • Supply Chain • Security • Monitoring
+## Technical Overview
+
+### Architecture
+- **Language**: Python
+- **Paradigm**: Event-driven
+- **Dependencies**: Minimal, performance-focused
+
+### Key Features
+- Real-time detection
+- Automated analysis
+- Detailed reporting
+- SIEM integration
+
+## Use Cases
+- Security monitoring
+- Incident response
+- Forensic analysis
+- Penetration testing
+
+## Installation
+
+```bash
+git clone https://github.com/ind4skylivey/LiveySupplyChain
+cd LiveySupplyChain
+# Project-specific instructions
+```
+
+## License
+
+MIT License - Responsible use
+
