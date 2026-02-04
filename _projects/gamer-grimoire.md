@@ -1,43 +1,6 @@
 ---
-description: A curated collection of tactical survival guides, CRPG builds, and automated
-  RGB protocols for the ultimate gaming experience.
+description: Comprehensive gaming knowledge base containing optimized builds for CRPGs (Divinity: Original Sin 2, Pathfinder), survival game strategies (The Long Dark, Subnautica), and automated RGB protocols. Features detailed character guides, item databases, and automation scripts for enhanced gaming experience with community contributions and regularly updated content.
 featured: false
 layout: project
-repo: https://github.com/ind4skylivey/Gamer-Grimoire
-tags:
-- Markdown
-- Gaming
-- Automation
-- Survival Games
-- CRPG
-title: Gamer-Grimoire
+repo: "https://github.com/ind4skylivey/Gamer-Grimoire"
 ---
-
-## Description
-
-Gamer-Grimoire is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: Markdown
-- **Frontend**: Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
-

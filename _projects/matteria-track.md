@@ -1,41 +1,6 @@
 ---
-description: Mystical CLI time tracker inspired by Final Fantasy, built in Rust.
+description: Gamified productivity tracking tool built in Rust with Final Fantasy Materia-inspired theme system. Features 6 color schemes, Git synchronization, Obsidian integration, GPG encryption, Pomodoro timer, and 20+ achievement badges. Provides cross-platform support (Linux, macOS, Windows) with team analytics and productivity insights.
 featured: false
 layout: project
-repo: https://github.com/ind4skylivey/matteria-track
-tags:
-- Rust
-- CLI
-- Productivity
-- GPG
-title: matteria-track
+repo: "https://github.com/ind4skylivey/matteria-track"
 ---
-
-## Description
-
-matteria-track is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: Rust
-- **Frontend**: Terminal/Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
-

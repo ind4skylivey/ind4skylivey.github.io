@@ -1,42 +1,6 @@
 ---
-description: A futuristic, cyberpunk-themed overhaul for Discord. Wake up, Samurai.
+description: Comprehensive Discord client customization package featuring cyberpunk aesthetics, glassmorphism effects, and animated UI elements. Compatible with BetterDiscord and Vencord with custom CSS, JavaScript, and assets. Includes animated server list, chat bubbles, and reaction icons with fully customizable color schemes and transparency options.
 featured: false
 layout: project
-repo: https://github.com/ind4skylivey/s1b-cordtheme
-tags:
-- CSS
-- Discord
-- Theme
-- Cyberpunk
-- BetterDiscord
-title: S1B-CordTheme
+repo: "https://github.com/ind4skylivey/s1b-cordtheme"
 ---
-
-## Description
-
-S1B-CordTheme is a specialized tool designed for automating complex tasks. It offers an intuitive interface and powerful efficient processing capabilities.
-
-## Features
-
-### Core Features
-- Intuitive interface
-- High performance
-- Configurable
-- Extensible
-
-### Tech Stack
-- **Backend**: CSS
-- **Frontend**: Web
-- **Infrastructure**: Docker ready
-
-## Usage Guide
-See README.md for detailed examples
-
-## Contributing
-
-Contributions are welcome. Please read CONTRIBUTING.md before submitting PRs.
-
-## License
-
-MIT License
-
