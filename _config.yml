@@ -26,4 +26,7 @@ permalink: /:categories/:title/
 exclude:
   - README.md
   - .gitignore
+  - vendor
+  - Gemfile
+  - Gemfile.lock
 # Trigger rebuild

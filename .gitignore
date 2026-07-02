@@ -10,6 +10,10 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 
+# Bundler
+.bundle/
+vendor/
+
 # macOS
 .DS_Store
 

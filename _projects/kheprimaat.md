@@ -1,17 +1,18 @@
 ---
+title: "KhepriMaat"
+description: Evidence-first bug bounty automation. Async queue, priority scheduling, SSE event streaming, 30+ secret patterns auto-redacted. Subfinder → HTTPX → Nuclei → SQLMap pipelines. REST API with RBAC.
 layout: project
-title: KhepriMaat
-description: Evidence-first bug bounty automation. Named after Egyptian gods Khepri & Maat. Async queue, priority scheduling, SSE event streaming, 30+ secret patterns auto-redacted. Subfinder → HTTPX → Nuclei → SQLMap pipelines. REST API with RBAC, scheduled scans, confidence scoring. Production-ready Rust framework.
-tags:
-- Rust
-- Security
-- Bug Bounty
-- Async
-- Automation
-- Reconnaissance
-- REST API
-repo: https://github.com/ind4skylivey/kheprimaat
+repo: "https://github.com/ind4skylivey/kheprimaat"
 featured: true
+status: active
+tags:
+  - Rust
+  - Security
+  - Bug Bounty
+  - Async
+  - Automation
+  - Reconnaissance
+  - REST API
 stats:
   - value: "10K+"
     label: "Lines of Rust"
