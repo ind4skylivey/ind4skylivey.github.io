@@ -1,12 +1,16 @@
 ---
-layout: "project"
 title: "qutes1b"
-description: "Tactical Qutebrowser configuration engineered for security operators and red team professionals. Features Matrix HUD, live threat intel feeds, and mission-critical tracking systems."
-tags: ["JavaScript", "Qutebrowser", "Cybersecurity", "Red Teaming", "Tactical UI"]
+description: Tactical Qutebrowser configuration engineered for security operators and red team professionals. Features Matrix HUD, live threat intel feeds, and mission-critical tracking systems.
+layout: project
 repo: "https://github.com/ind4skylivey/qutes1b"
 featured: true
-version: "1.0"
-status: "stable"
+status: active
+tags:
+  - JavaScript
+  - Qutebrowser
+  - Security
+  - Red Team
+  - Tactical UI
 stats:
   - value: "2.5K+"
     label: "Lines of JS"
@@ -128,7 +132,7 @@ c.content.notifications.enabled = False
 - Threat intelligence gathering
 
 ### Penetration Testing
-- Organized bookmark hierarchy by test phase
+- Organized bookmark hierarchies by test phase
 - Integration with testing frameworks
 - Evidence collection automation
 - Client reporting tools

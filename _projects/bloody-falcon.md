@@ -1,15 +1,14 @@
 ---
-description: Defensive OSINT radar ingesting scoped public signals into deterministic IDs, auditable evidence, and explainable findings. Scope-first design, no exploitation. Typosquat generation, policy gates, noise discipline, multi-format outputs (JSON/JSONL/Markdown/SARIF/CSV), SQLite storage, and read-only TUI.
-featured: true
+title: "Bloody-Falcon"
+description: Defensive OSINT radar ingesting scoped public signals into deterministic IDs, auditable evidence, and explainable findings. Scope-first design, typosquat generation, multi-format outputs.
 layout: project
-repo: https://github.com/ind4skylivey/bloody-falcon
+repo: "https://github.com/ind4skylivey/bloody-falcon"
+featured: true
+status: active
 tags:
-- Rust
-- OSINT
-- Security
-- TUI
-- SOC
-- Cybersecurity
-title: Bloody-Falcon
+  - Rust
+  - OSINT
+  - Security
+  - TUI
+  - SOC
 ---
-

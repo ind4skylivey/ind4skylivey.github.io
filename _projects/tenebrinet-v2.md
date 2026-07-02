@@ -1,17 +1,18 @@
 ---
+title: "TenebriNET v2"
+description: ML-powered honeypot infrastructure. SSH/HTTP/FTP traps with credential capture. Neural engine auto-classifies attacks. FastAPI REST, Vue.js dashboard, real-time threat visualization.
 layout: project
-title: TenebriNET v2
-description: ML-powered honeypot infrastructure. SSH/HTTP/FTP traps with credential capture. Neural engine auto-classifies attacks (Recon/BruteForce/Exploits/Botnets). FastAPI REST, Vue.js dashboard, real-time threat visualization. Random Forest classifier, Docker-ready, PostgreSQL backend, WebSocket streams.
-tags:
-- Python
-- Honeypot
-- Machine Learning
-- FastAPI
-- Vue.js
-- Security
-- Threat Intelligence
-repo: https://github.com/ind4skylivey/tenebrinet-v2
+repo: "https://github.com/ind4skylivey/tenebrinet-v2"
 featured: true
+status: active
+tags:
+  - Python
+  - Honeypot
+  - Machine Learning
+  - FastAPI
+  - Vue.js
+  - Security
+  - Threat Intelligence
 stats:
   - value: "8K+"
     label: "Lines of Python"

@@ -1,16 +1,17 @@
 ---
+title: "WineWarden"
+description: Enterprise-grade security sandbox for Windows games on Linux. Kernel-level isolation with Landlock LSM, Seccomp BPF, filesystem virtualization. Real-time TUI monitoring, dynamic trust scoring.
 layout: project
-title: WineWarden
-description: Enterprise-grade security sandbox for Windows games on Linux. Kernel-level isolation with Landlock LSM, Seccomp BPF, filesystem virtualization. Real-time TUI monitoring, dynamic trust scoring, network awareness, process security. <50ms startup, <1% CPU overhead for sub-millisecond performance.
-tags:
-- Rust
-- Security
-- Sandbox
-- Linux Gaming
-- Wine
-- Proton
 repo: "https://github.com/S1b-Team/winewarden"
 featured: true
+status: active
+tags:
+  - Rust
+  - Security
+  - Sandbox
+  - Linux Gaming
+  - Wine
+  - Proton
 ---
 
 ## Executive Summary

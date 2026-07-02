@@ -1,16 +1,16 @@
 ---
-description: Universal hardware monitor with cyberpunk aesthetics. Rust-powered, real-time CPU/GPU/Memory monitoring with 130+ GPU models (NVIDIA/AMD/Intel), predictive analytics, trend detection, multi-GPU support, process tracking, power efficiency calculations, CSV/JSON export, and Catppuccin Mocha theme.
-featured: true
+title: "Gleam-Observer"
+description: Universal hardware monitor with cyberpunk aesthetics. Rust-powered, real-time CPU/GPU/Memory monitoring with 130+ GPU models, predictive analytics, trend detection, multi-GPU, CSV/JSON export.
 layout: project
-repo: https://github.com/ind4skylivey/Gleam-Observer
+repo: "https://github.com/ind4skylivey/Gleam-Observer"
+featured: true
+status: active
 tags:
-- Rust
-- Monitoring
-- GPU
-- Linux
-- TUI
-- Ratatui
-- Catppuccin
-title: Gleam-Observer
+  - Rust
+  - Monitoring
+  - GPU
+  - Linux
+  - TUI
+  - Ratatui
+  - Catppuccin
 ---
-

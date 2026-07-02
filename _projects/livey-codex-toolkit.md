@@ -1,15 +1,15 @@
 ---
-description: Advanced AI prompt engineering framework with curated templates for large language models. Features prompt optimization, evaluation metrics, and version control for prompt libraries. Includes industry-specific templates (coding, creative writing, analysis) with automatic testing and continuous improvement feedback loops for prompt developers and AI researchers.
-featured: false
+title: "Livey Codex Toolkit"
+description: AI prompt engineering framework with curated templates for LLMs. Prompt optimization, evaluation metrics, version control for prompt libraries. Industry-specific templates with automatic testing.
 layout: project
-repo: https://github.com/ind4skylivey/livey-codex-toolkit
+repo: "https://github.com/ind4skylivey/livey-codex-toolkit"
+featured: false
+status: active
 tags:
-- AI
-- Prompt Engineering
-- LLM
-- Python
-- Templates
-- Development Tools
-title: Livey Codex Toolkit
+  - AI
+  - Prompt Engineering
+  - LLM
+  - Python
+  - Templates
+  - Development Tools
 ---
-

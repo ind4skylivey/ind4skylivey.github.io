@@ -1,14 +1,15 @@
 ---
-description: Comprehensive Zed editor configuration optimized for full-stack development workflows. Includes language-specific LSP settings for PHP/Laravel (Intelephense, PHPStan), Python (pyright, ruff), Rust (rust-analyzer), and security analysis tools. Features custom keybindings, syntax highlighting themes, and file type-specific snippet collections for accelerated development.
-featured: false
+title: "Zed Ultimate Config"
+description: Comprehensive Zed editor configuration for full-stack development. LSP settings for PHP/Laravel, Python, Rust, and security tools. Custom keybindings and snippet collections.
 layout: project
 repo: "https://github.com/ind4skylivey/zed-ultimate-config"
+featured: false
+status: active
 tags:
-- Zed
-- Editor Config
-- LSP
-- Full Stack
-- Development
-- Dotfiles
-title: Zed Ultimate Config
+  - Zed
+  - Editor Config
+  - LSP
+  - Full Stack
+  - Development Tools
+  - Dotfiles
 ---

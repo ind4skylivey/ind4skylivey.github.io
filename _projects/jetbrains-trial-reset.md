@@ -1,14 +1,15 @@
 ---
-description: Rust-based utility for managing and resetting JetBrains IDE trial periods on Linux systems. Features CLI, TUI, and Rofi interfaces for seamless integration with various desktop environments. Provides automatic trial management, version detection, and system integrity protection while maintaining clean execution without leaving artifacts.
-featured: false
+title: "JetBrains Trial Reset"
+description: Rust-based utility for managing JetBrains IDE trial periods on Linux. Features CLI, TUI, and Rofi interfaces. Automatic trial management, version detection, and system integrity protection.
 layout: project
 repo: "https://github.com/ind4skylivey/jetbrains-trial-reset"
+featured: false
+status: active
 tags:
-- Rust
-- JetBrains
-- IDE
-- CLI
-- TUI
-- Linux Tools
-title: JetBrains Trial Reset
+  - Rust
+  - JetBrains
+  - IDE
+  - CLI
+  - TUI
+  - Linux
 ---
