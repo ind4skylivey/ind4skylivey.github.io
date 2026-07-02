@@ -105,21 +105,27 @@ permalink: /about/
   <div class="timeline reveal">
 
     <div class="timeline-item">
+      <span class="timeline-date">ORIGINS</span>
+      <h4 class="timeline-title">Security Research & Red Teaming</h4>
+      <p class="timeline-desc">Deep dive into offensive security, reverse engineering, malware analysis, and vulnerability research. The foundation of everything that followed.</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="timeline-date">EVOLUTION</span>
+      <h4 class="timeline-title">Tool Development & Open Source</h4>
+      <p class="timeline-desc">Building security tools, contributing to the community, and refining the craft. Every repo tells a chapter.</p>
+    </div>
+
+    <div class="timeline-item">
       <span class="timeline-date">2024 - PRESENT</span>
-      <h4 class="timeline-title">Lead Engineer @ S1b Gr0up</h4>
-      <p class="timeline-desc">Architecting next-gen security tools like <strong>Int3rceptor</strong> and <strong>Passport Guard</strong>. Leading research into AI-driven vulnerability detection.</p>
+      <h4 class="timeline-title">Founder & Operator @ S1B Gr0up</h4>
+      <p class="timeline-desc">Founded in 2024. Scaling tooling and operations since 2025. Still exploring beyond the barriers that security allows today.</p>
     </div>
 
     <div class="timeline-item">
-      <span class="timeline-date">2022 - 2024</span>
-      <h4 class="timeline-title">Independent Security Researcher</h4>
-      <p class="timeline-desc">Conducted audits on open-source frameworks. Developed <strong>Ghost Shell</strong> to address memory security in terminal environments.</p>
-    </div>
-
-    <div class="timeline-item">
-      <span class="timeline-date">2020 - 2022</span>
-      <h4 class="timeline-title">Full Stack Developer</h4>
-      <p class="timeline-desc">Specialized in high-performance Laravel applications and Linux server optimization.</p>
+      <span class="timeline-date">ACTIVE FRONTS</span>
+      <h4 class="timeline-title">Current Research</h4>
+      <p class="timeline-desc">AI-driven vulnerability detection, hardware-level security bypasses, and next-gen offensive tooling.</p>
     </div>
 
   </div>
